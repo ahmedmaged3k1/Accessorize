@@ -1,6 +1,6 @@
 <resources >
     <!-- Base application theme. -->
-    <style name="Theme.ArAccessories" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.ArAccessories" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/Grey</item>
@@ -22,6 +22,22 @@
         <item name="android:gravity">center</item>
         <item name="fontFamily">@font/circular_std</item>
         <item name="android:textSize">30sp</item>
+    </style>
+    <style name="buttons">
+        <item name="paddingStart">40dp</item>
+        <item name="paddingEnd">40dp</item>
+        <item name="android:textColor">@color/black</item>
+
+        <item name="textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="cornerRadius">20dp</item>
+    </style>
+
+    <style name="descriptions">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/Grey</item>
+        <item name="android:textSize">16sp</item>
     </style>
     <style name="Theme.ArAccessories.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

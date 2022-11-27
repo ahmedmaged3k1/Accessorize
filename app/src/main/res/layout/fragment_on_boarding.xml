@@ -1,14 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.features.onBoarding.OnBoardingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onBoardingViewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:background="@drawable/view_pager_background"
+        app:layout_constraintBottom_toTopOf="@id/viewCenterOfNext"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <LinearLayout
+        android:id="@+id/indicatorContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/skip"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+    <View
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+
+        android:background="@drawable/icon_outer_background"
+        app:layout_constraintBottom_toBottomOf="@id/imageNext"
+        app:layout_constraintEnd_toEndOf="@id/imageNext"
+        app:layout_constraintStart_toStartOf="@id/imageNext"
+        app:layout_constraintTop_toTopOf="@id/imageNext">
+
+    </View>
+
+    <View
+        android:id="@+id/viewCenterOfNext"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageNext"
+        app:layout_constraintEnd_toEndOf="@id/imageNext"
+        app:layout_constraintStart_toStartOf="@id/imageNext"
+        app:layout_constraintTop_toTopOf="@id/imageNext">
+
+    </View>
+
+
+    <ImageView
+        android:id="@+id/imageNext"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/icon_background"
+        android:contentDescription="@string/next"
+        android:src="@drawable/ic_right"
+        app:layout_constraintBottom_toTopOf="@+id/getStartedButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ImageView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/getStartedButton"
+        style="@style/buttons"
+        android:layout_width="126dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="60dp"
+        android:background="@drawable/rounded_onboard_button"
+        android:text="@string/get_started"
+
+        app:layout_constraintBaseline_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
