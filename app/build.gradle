@@ -61,6 +61,7 @@ dependencies {
     //lottie animations
     implementation 'com.airbnb.android:lottie:3.4.1'
 
+
 }
 apply plugin: 'com.google.ar.sceneform.plugin'
 

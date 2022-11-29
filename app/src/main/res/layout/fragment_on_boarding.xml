@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.features.onBoarding.OnBoardingFragment">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onBoardingViewPager"
+        android:elevation="10sp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/view_pager_background"
@@ -17,17 +17,7 @@
 
     </androidx.viewpager2.widget.ViewPager2>
 
-    <LinearLayout
-        android:id="@+id/indicatorContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
 
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textSkip"
@@ -46,6 +36,8 @@
     <View
         android:layout_width="55dp"
         android:layout_height="55dp"
+        android:elevation="10sp"
+
 
         android:background="@drawable/icon_outer_background"
         app:layout_constraintBottom_toBottomOf="@id/imageNext"
@@ -69,6 +61,7 @@
 
     <ImageView
         android:id="@+id/imageNext"
+        android:elevation="10sp"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginBottom="50dp"
