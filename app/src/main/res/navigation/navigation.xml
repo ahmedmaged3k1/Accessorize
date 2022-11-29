@@ -11,12 +11,21 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
-            android:id="@+id/action_splashFragment_to_onBoardingFragment"
-            app:destination="@id/onBoardingFragment" />
+            android:id="@+id/action_splashFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"
         android:name="com.example.araccessories.ui.features.onBoarding.OnBoardingFragment"
         android:label="fragment_on_boarding"
         tools:layout="@layout/fragment_on_boarding" />
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.example.araccessories.ui.features.welcomeScreen.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
+    </fragment>
 </navigation>

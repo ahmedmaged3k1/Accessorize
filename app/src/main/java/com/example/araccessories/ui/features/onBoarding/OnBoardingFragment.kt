@@ -26,20 +26,18 @@ class OnBoardingFragment : Fragment() {
         val onboardingItems: List<OnboardingItem> = listOf(
             OnboardingItem(
                 onBoardingImage = R.drawable.onboard_1,
-                "Face Accessories Try - On",
-                "You can try on the glasses you want and see how it looks on your face "
+                "Face Accessories Try - On"
             ),
             OnboardingItem(
                 onBoardingImage = R.drawable.onboard_2,
-                "Future Of E-commerce ",
-                "Through our app you can try on any product before you buy it using augmented reality"
+                "Future Of E-commerce "
+
             ),
 
 
             OnboardingItem(
-                onBoardingImage = R.drawable.ic_baseline_camera_front_24,
-                "Take A Shot ",
-                "You can take a shot to send it to your friend while trying on the product "
+                onBoardingImage = R.drawable.shot_me,
+                "Take A Shot "
             )
         )
         onboardingItemAdapter = OnboardingItemAdapter(onboardingItems)

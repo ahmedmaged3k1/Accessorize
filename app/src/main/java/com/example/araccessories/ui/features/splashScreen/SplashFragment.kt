@@ -16,14 +16,14 @@ class SplashFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater, container, false)
 
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
 
-            view?.findNavController()?.navigate(R.id.action_splashFragment_to_onBoardingFragment)
+            view?.findNavController()?.navigate(R.id.action_splashFragment_to_welcomeFragment)
         }, 4500)
         return binding.root
     }

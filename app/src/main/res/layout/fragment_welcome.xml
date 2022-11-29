@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/welcomeFragmentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/me_removed"
+    tools:context=".ui.features.welcomeScreen.WelcomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="235dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:background="@drawable/gradient_black_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            style="@style/titles"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_to_app_name"
+            android:textSize="60sp">
+
+        </TextView>
+
+        <TextView
+            style="@style/descriptions"
+            android:layout_width="match_parent"
+            android:layout_height="93dp"
+            android:text="@string/the_future_of_e_commerce"
+            android:textSize="25sp">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
