@@ -1,47 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:gravity="center"
     android:orientation="vertical"
     android:layout_height="match_parent">
-
     <ImageView
         android:id="@+id/imageOnBoarding"
         android:layout_width="match_parent"
-        android:layout_height="266dp"
-
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/onBoardingTextTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        >
 
     </ImageView>
-
     <TextView
         android:id="@+id/onBoardingTextTitle"
-        style="@style/titles"
         android:layout_width="match_parent"
-        android:layout_height="77dp"
-        app:layout_constraintBottom_toTopOf="@+id/onBoardingTextDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
+        android:layout_height="wrap_content"
+        style="@style/titles"
+        android:layout_marginTop="15dp"
+        >
     </TextView>
-
     <TextView
         android:id="@+id/onBoardingTextDescription"
-        style="@style/descriptions"
         android:layout_width="match_parent"
-        android:layout_height="118dp"
-        android:layout_marginBottom="268dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent">
+        android:layout_height="wrap_content"
+        style="@style/descriptions"
 
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="30dp"
+        >
     </TextView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
