@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.TrackingState
+import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.rendering.Texture
@@ -54,7 +55,16 @@ class GlassesActivity : AppCompatActivity() {
                 modelRenderable.isShadowReceiver = false
 
             }
+        ModelRenderable.builder()
+            .setSource(this, Uri.parse("sunglassesWithNoShades.sfb"))
+            .build()
+            .thenAccept { modelRenderable ->
 
+                glasses.add(modelRenderable)
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+
+            }
         ModelRenderable.builder()
             .setSource(this, Uri.parse("sunglasses.sfb"))
             .build()
@@ -65,6 +75,7 @@ class GlassesActivity : AppCompatActivity() {
                 modelRenderable.isShadowReceiver = false
 
             }
+
         ModelRenderable.builder()
             .setSource(this, Uri.parse("yellow_sunglasses.sfb"))
             .build()
