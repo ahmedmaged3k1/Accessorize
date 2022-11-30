@@ -84,6 +84,22 @@ sceneform.asset('sampledata/sunglassesWithNoShades.fbx',
         'default',
         'sampledata/sunglassesWithNoShades.sfa',
         'src/main/assets/sunglassesWithNoShades')
+sceneform.asset('sampledata/sunglassesnoshady.fbx',
+        'default',
+        'sampledata/sunglassesnoshady.sfa',
+        'src/main/assets/sunglassesnoshady')
+sceneform.asset('sampledata/shady2.fbx',
+        'default',
+        'sampledata/shady2.sfa',
+        'src/main/assets/shady2')
+
+
+
+
+sceneform.asset('sampledata/hat.fbx',
+        'default',
+        'sampledata/hat.sfa',
+        'src/main/assets/hat')
 
 
 

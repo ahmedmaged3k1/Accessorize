@@ -56,7 +56,7 @@ class GlassesActivity : AppCompatActivity() {
 
             }
         ModelRenderable.builder()
-            .setSource(this, Uri.parse("sunglassesWithNoShades.sfb"))
+            .setSource(this, Uri.parse("shady2.sfb"))
             .build()
             .thenAccept { modelRenderable ->
 
@@ -65,11 +65,12 @@ class GlassesActivity : AppCompatActivity() {
                 modelRenderable.isShadowReceiver = false
 
             }
+
+
         ModelRenderable.builder()
             .setSource(this, Uri.parse("sunglasses.sfb"))
             .build()
             .thenAccept { modelRenderable ->
-
                 glasses.add(modelRenderable)
                 modelRenderable.isShadowCaster = false
                 modelRenderable.isShadowReceiver = false

@@ -1,12 +1,14 @@
 package com.example.araccessories
 
 import android.content.Context
+import android.net.Uri
 import android.widget.ImageView
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
+import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
@@ -42,7 +44,8 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
         headNode = Node()
         headNode?.setParent(this)
 
-        ViewRenderable.builder()
+
+       /* ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
             .build()
             .thenAccept { uiRenderable: ViewRenderable ->
@@ -56,16 +59,19 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
                     "Could not create ui element",
                     throwable
                 )
-            }
+            }*/
+
+            .
 
         ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
+            .setSource(context, Uri.parse("hat.sfb"))
             .build()
             .thenAccept { uiRenderable: ViewRenderable ->
                 uiRenderable.isShadowCaster = false
                 uiRenderable.isShadowReceiver = false
                 mustacheNode?.renderable = uiRenderable
-                uiRenderable.view.findViewById<ImageView>(R.id.element_image).setImageResource(R.drawable.hat)
+                //uiRenderable.view.findViewById<ImageView>(R.id.element_image).setImageResource(R.drawable.hat)
             }
             .exceptionally { throwable: Throwable? ->
                 throw AssertionError(
@@ -73,7 +79,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
                     throwable
                 )
             }
-        ViewRenderable.builder()
+        /*ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
             .build()
             .thenAccept { uiRenderable: ViewRenderable ->
@@ -87,7 +93,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
                     "Could not create ui element",
                     throwable
                 )
-            }
+            }*/
     }
 
     private fun getRegionPose(region: FaceRegion) : Vector3? {
@@ -126,7 +132,8 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
             }
 
             getRegionPose(FaceRegion.MUSTACHE)?.let {
-                mustacheNode?.localPosition = Vector3(it.x, it.y + 0.06f, it.z + 0.015f)
+                mustacheNode?.localPosition = Vector3(it.x, it.y + 0.08f, it.z + 0.00f)
+
                 mustacheNode?.localScale = Vector3(0.07f, 0.07f, 0.07f)
             }
 
