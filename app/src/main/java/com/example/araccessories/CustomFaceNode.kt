@@ -61,7 +61,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
                 )
             }*/
 
-            .
+
 
         ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
