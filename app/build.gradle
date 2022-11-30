@@ -76,6 +76,12 @@ sceneform.asset('sampledata/modelglasses.fbx',
         'default',
         'sampledata/modelglasses.sfa',
         'src/main/assets/modelglasses')
+sceneform.asset('sampledata/glasses.fbx',
+        'default',
+        'sampledata/glasses.sfa',
+        'src/main/assets/glasses')
+
+
 
 
 sceneform.asset('sampledata/yellow_sunglasses.fbx',

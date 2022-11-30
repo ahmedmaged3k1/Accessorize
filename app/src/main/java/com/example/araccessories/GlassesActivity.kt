@@ -45,11 +45,13 @@ class GlassesActivity : AppCompatActivity() {
             .build()
             .thenAccept { texture -> faceMeshTexture = texture }
         ModelRenderable.builder()
-            .setSource(this, Uri.parse("modelglasses.sfb"))
+            .setSource(this, Uri.parse("glasses.sfb"))
             .build()
             .thenAccept { modelRenderable ->
 
                 glasses.add(modelRenderable)
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
 
             }
 

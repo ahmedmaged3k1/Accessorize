@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentOnBoardingBinding
 
@@ -19,7 +20,14 @@ class OnBoardingFragment : Fragment() {
     ): View {
         binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
         setOnboardingItems()
+        getStartedButton()
         return binding.root
+    }
+    private fun getStartedButton(){
+        binding.getStartedButton.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.action_onBoardingFragment_to_signInFragment)
+
+        }
     }
 
     private fun setOnboardingItems() {
