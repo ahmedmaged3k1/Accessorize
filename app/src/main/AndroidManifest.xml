@@ -60,6 +60,7 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".GlassesActivity"
+            android:exported="true"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

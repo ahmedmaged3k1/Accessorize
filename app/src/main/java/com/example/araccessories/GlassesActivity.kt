@@ -44,21 +44,30 @@ class GlassesActivity : AppCompatActivity() {
             .setSource(this, R.drawable.makeup)
             .build()
             .thenAccept { texture -> faceMeshTexture = texture }
-
         ModelRenderable.builder()
-            .setSource(this, Uri.parse("yellow_sunglasses.sfb"))
+            .setSource(this, Uri.parse("modelglasses.sfb"))
             .build()
             .thenAccept { modelRenderable ->
+
                 glasses.add(modelRenderable)
-                faceRegionsRenderable = modelRenderable
-                modelRenderable.isShadowCaster = false
-                modelRenderable.isShadowReceiver = false
+
             }
 
         ModelRenderable.builder()
             .setSource(this, Uri.parse("sunglasses.sfb"))
             .build()
             .thenAccept { modelRenderable ->
+
+                glasses.add(modelRenderable)
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+
+            }
+        ModelRenderable.builder()
+            .setSource(this, Uri.parse("yellow_sunglasses.sfb"))
+            .build()
+            .thenAccept { modelRenderable ->
+
                 glasses.add(modelRenderable)
                 modelRenderable.isShadowCaster = false
                 modelRenderable.isShadowReceiver = false
@@ -76,6 +85,7 @@ class GlassesActivity : AppCompatActivity() {
                             if (!faceNodeMap.containsKey(face)) {
                                 val faceNode = AugmentedFaceNode(face)
                                 faceNode.setParent(scene)
+
                                 faceNode.faceRegionsRenderable = faceRegionsRenderable
                                 faceNodeMap[face] = faceNode
                             } else if (changeModel) {

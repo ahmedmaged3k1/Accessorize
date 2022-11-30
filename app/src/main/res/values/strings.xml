@@ -19,4 +19,6 @@
     <string name="App_Name">Accessorize</string>
     <string name="get_started">Get Started</string>
     <string name="skip">Skip</string>
+    <string name="welcome_to_app_name">Welcome to Accessorzie</string>
+    <string name="the_future_of_e_commerce">The Future of e-commerce</string>
 </resources>
