@@ -132,7 +132,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
             }
 
             getRegionPose(FaceRegion.MUSTACHE)?.let {
-                mustacheNode?.localPosition = Vector3(it.x, it.y + 0.08f, it.z + 0.00f)
+                mustacheNode?.localPosition = Vector3(it.x, it.y + 0.11f, it.z -0.09f)
 
                 mustacheNode?.localScale = Vector3(0.07f, 0.07f, 0.07f)
             }

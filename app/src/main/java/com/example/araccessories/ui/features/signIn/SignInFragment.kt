@@ -22,8 +22,14 @@ class SignInFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentSignInBinding.inflate(inflater, container, false)
-
+        signUpButton()
         return binding.root
+    }
+    private fun signUpButton(){
+        binding.signIn.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.action_signInFragment_to_signUpFragment)
+        }
+
     }
 
 }

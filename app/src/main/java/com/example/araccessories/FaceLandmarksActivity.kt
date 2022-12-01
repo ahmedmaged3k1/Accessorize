@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
+import com.google.ar.core.Config
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.rendering.Renderable
 import kotlinx.android.synthetic.main.activity_regions.*
@@ -16,6 +17,8 @@ class FaceLandmarksActivity : AppCompatActivity() {
     companion object {
         const val MIN_OPENGL_VERSION = 3.0
     }
+
+    private var isDepthSupported = false
 
     lateinit var arFragment: FaceArFragment
     var faceNodeMap = HashMap<AugmentedFace, CustomFaceNode>()
@@ -35,9 +38,18 @@ class FaceLandmarksActivity : AppCompatActivity() {
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         val scene = sceneView.scene
 
+
         scene.addOnUpdateListener {
             sceneView.session
                 ?.getAllTrackables(AugmentedFace::class.java)?.let {
+                    val config: Config = sceneView.session!!.getConfig()
+                    isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
+                    if (isDepthSupported) {
+                        config.setDepthMode(Config.DepthMode.AUTOMATIC)
+                    } else {
+                        config.setDepthMode(Config.DepthMode.DISABLED)
+                    }
+                    sceneView.session!!.configure(config)
                     for (f in it) {
                         if (!faceNodeMap.containsKey(f)) {
                             val faceNode = CustomFaceNode(f, this)
