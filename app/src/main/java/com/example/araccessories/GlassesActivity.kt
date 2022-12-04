@@ -15,6 +15,7 @@ import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.rendering.Texture
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.android.synthetic.main.activity_glasses.*
+import java.io.File
 
 class GlassesActivity : AppCompatActivity() {
 
@@ -65,7 +66,8 @@ class GlassesActivity : AppCompatActivity() {
                 modelRenderable.isShadowReceiver = false
 
             }
-
+       //0 var file = File.createTempFile("out","glb")
+      //  RenderableSource
 
         ModelRenderable.builder()
             .setSource(this, Uri.parse("sunglasses.sfb"))
@@ -76,6 +78,16 @@ class GlassesActivity : AppCompatActivity() {
                 modelRenderable.isShadowReceiver = false
 
             }
+        ModelRenderable.builder()
+            .setSource(this, Uri.parse("Cat_Eye_Glasses.sfb"))
+            .build()
+            .thenAccept { modelRenderable ->
+                glasses.add(modelRenderable)
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+
+            }
+
 
         ModelRenderable.builder()
             .setSource(this, Uri.parse("yellow_sunglasses.sfb"))

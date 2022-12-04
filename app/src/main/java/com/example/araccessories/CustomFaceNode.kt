@@ -1,5 +1,6 @@
 package com.example.araccessories
 
+import ai.deepar.ar.DeepAR
 import android.content.Context
 import android.net.Uri
 import android.widget.ImageView
@@ -18,8 +19,10 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
 
     private var eyeNodeLeft: Node? = null
     private var eyeNodeRight: Node? = null
+
     private var mustacheNode: Node? = null
     private var headNode: Node? = null
+
 
 
     companion object {
@@ -65,7 +68,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
 
         ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
-            .setSource(context, Uri.parse("hat.sfb"))
+            .setSource(context, Uri.parse("baroka.sfb"))
             .build()
             .thenAccept { uiRenderable: ViewRenderable ->
                 uiRenderable.isShadowCaster = false

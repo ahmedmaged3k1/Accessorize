@@ -1,5 +1,6 @@
 package com.example.araccessories
 
+import ai.deepar.ar.DeepAR
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Bundle
@@ -26,6 +27,10 @@ class FaceRegionsActivity : AppCompatActivity() {
         if (!checkIsSupportedDeviceOrFinish()) {
             return
         }
+        /*var  deepArObject : DeepAR = DeepAR(this)
+        deepArObject.setLicenseKey("6bea679a4566cae4b1bc3b56507884ee819e00855d76b104d05b2d56a61fbfeacee6f7df165c7194")
+        deepArObject.initialize(this,{})*/
+
 
         setContentView(R.layout.activity_regions)
         arFragment = face_fragment as FaceArFragment

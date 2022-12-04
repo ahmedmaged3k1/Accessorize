@@ -24,10 +24,19 @@ class SignUpFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
         fillProfileButton()
+        signInButton()
         setEmailFieldFocus()
         setPasswordFieldFocus()
         return binding.root
     }
+    private fun signInButton() {
+
+        binding.tvSignIn.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_signUpFragment_to_signInFragment)
+        }
+
+    }
+
     private fun validateLogin(){
         binding.signUp.setOnClickListener{
             if(emailSignIn.text.toString() == "" || passwordSignIn.text.toString() == ""){
