@@ -62,7 +62,8 @@ dependencies {
     implementation 'com.google.ar.sceneform:core:1.17.1'
     //lottie animations
     implementation 'com.airbnb.android:lottie:3.4.1'
-
+//for country code picker in sign in activity
+    implementation 'com.hbb20:ccp:latest.release'
 
 }
 apply plugin: 'com.google.ar.sceneform.plugin'

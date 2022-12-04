@@ -45,5 +45,14 @@
         android:id="@+id/signUpFragment"
         android:name="com.example.araccessories.ui.features.register.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_fillProfileFragment"
+            app:destination="@id/fillProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fillProfileFragment"
+        android:name="com.example.araccessories.ui.features.fillProfile.FillProfileFragment"
+        android:label="fragment_fill_profile"
+        tools:layout="@layout/fragment_fill_profile" />
 </navigation>
