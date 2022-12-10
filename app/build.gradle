@@ -49,6 +49,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
     implementation files('E:\\Graduation Project\\Project Files\\DeepAR-Android-v4.0.3\\lib\\deepar.aar')
     implementation files('libs\\deepar.aar')
+    implementation project(path: ':openCV')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -111,7 +112,6 @@ sceneform.asset('sampledata/baroka.fbx',
         'default',
         'sampledata/baroka.sfa',
         'src/main/assets/baroka')
-
 
 sceneform.asset('sampledata/yellow_sunglasses.fbx',
         'default',

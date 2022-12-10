@@ -24,15 +24,17 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-          >
-
-
+            android:name=".AugmentedImageActivity"
+            android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
+        <activity android:name=".MainActivity">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ui.features.MainActivityLauncher"
             android:exported="true">
@@ -47,8 +49,6 @@
                 android:value="" />
         </activity>
 
-
-
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
@@ -60,8 +60,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".GlassesActivity"
-            android:exported="true"
             android:configChanges="orientation|screenSize"
+            android:exported="true"
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
@@ -71,8 +71,8 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".FaceLandmarksActivity"
-            android:exported="true"
             android:configChanges="orientation|screenSize"
+            android:exported="true"
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>

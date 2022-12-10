@@ -43,4 +43,5 @@
     <string name="_1066324579">1066324579</string>
     <string name="edit">edit</string>
     <string name="continue_">Continue</string>
+    <string name="title_activity_augmented_image">AugmentedImageActivity</string>
 </resources>
