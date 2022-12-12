@@ -113,6 +113,12 @@ sceneform.asset('sampledata/baroka.fbx',
         'sampledata/baroka.sfa',
         'src/main/assets/baroka')
 
+sceneform.asset('sampledata/tshirt.obj',
+        'default',
+        'sampledata/tshirt.sfa',
+        'src/main/assets/tshirt')
+
+
 sceneform.asset('sampledata/yellow_sunglasses.fbx',
         'default',
         'sampledata/yellow_sunglasses.sfa',

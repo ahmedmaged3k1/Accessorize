@@ -24,8 +24,8 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="31">
         <activity
-            android:name=".AugmentedImageActivity"
-            android:exported="false">
+            android:name=".ui.features.augmentedImage.AugmentedImageActivity"
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
