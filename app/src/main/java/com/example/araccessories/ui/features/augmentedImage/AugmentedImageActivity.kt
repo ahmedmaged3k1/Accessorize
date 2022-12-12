@@ -8,22 +8,21 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.araccessories.R
 import com.example.araccessories.databinding.ActivityAugmentedImageBinding
 import com.google.ar.core.*
+import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Scene
 import com.google.ar.sceneform.rendering.ModelRenderable
-import org.opencv.dnn.Model
+
 
 class AugmentedImageActivity : AppCompatActivity(), Scene.OnUpdateListener {
-    private lateinit var binding: ActivityAugmentedImageBinding
-    private lateinit var augmentedImageFragment :AugmentedImageFragment
+
+    private lateinit var augmentedImageFragment :CustomArFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAugmentedImageBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-        augmentedImageFragment = supportFragmentManager.findFragmentById(R.id.fragment) as AugmentedImageFragment
-        augmentedImageFragment.arSceneView.scene.addOnUpdateListener(this)
+        setContentView(R.layout.activity_augmented_image)
+        augmentedImageFragment = supportFragmentManager.findFragmentById(R.id.fragment) as CustomArFragment
+        augmentedImageFragment.arSceneView?.scene?.addOnUpdateListener(this)
 
     }
     public fun setupAugmentedImage(config: Config , session: Session){
@@ -34,7 +33,7 @@ class AugmentedImageActivity : AppCompatActivity(), Scene.OnUpdateListener {
     }
 
     override fun onUpdate(p0: FrameTime?) {
-        val frame = augmentedImageFragment.arSceneView.arFrame
+        val frame = augmentedImageFragment.arSceneView?.arFrame
         var images  = frame?.getUpdatedTrackables(AugmentedImage::class.java) as Collection<AugmentedImage>
         for (image in images)
         {
@@ -50,14 +49,16 @@ class AugmentedImageActivity : AppCompatActivity(), Scene.OnUpdateListener {
     }
 
     private fun createModel(anchor: Anchor) {
-        ModelRenderable.builder().setSource(this,Uri.parse("tshirt.sfb"))
+        ModelRenderable.builder().setSource(this,Uri.parse("shady2.sfb"))
             .build().thenAccept {
                 placeModel(it,anchor)
             }
     }
 
     private fun placeModel(modelRenderable: ModelRenderable?, anchor: Anchor) {
-
+        var anchorNode = AnchorNode(anchor)
+        anchorNode.renderable= modelRenderable
+        augmentedImageFragment.arSceneView?.scene?.addChild(anchorNode)
     }
 
 

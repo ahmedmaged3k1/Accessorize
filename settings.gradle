@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ArAccessories"
 include ':app'
-include ':openCV'

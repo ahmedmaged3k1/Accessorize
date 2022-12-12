@@ -5,10 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.features.augmentedImage.AugmentedImageActivity">
-    <com.google.ar.sceneform.ArSceneView
-        android:id="@+id/arSceneView"
+    <fragment
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:id="@+id/fragment"
+        android:name="com.example.araccessories.ui.features.augmentedImage.CustomArFragment"
+        >
 
+    </fragment>
 
 </FrameLayout>
