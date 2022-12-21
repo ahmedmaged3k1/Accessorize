@@ -45,6 +45,7 @@ class AugmentedImageActivity : AppCompatActivity(), Scene.OnUpdateListener {
             }
         }
     }
+   
 
     private fun createModel(anchor: Anchor) {
         ModelRenderable.builder().setSource(this, Uri.parse("shady2.sfb"))

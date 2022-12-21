@@ -1,6 +1,6 @@
 package com.example.araccessories
 
-import ai.deepar.ar.DeepAR
+
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Bundle

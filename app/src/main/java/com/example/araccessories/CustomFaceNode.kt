@@ -1,6 +1,6 @@
 package com.example.araccessories
 
-import ai.deepar.ar.DeepAR
+
 import android.content.Context
 import android.net.Uri
 import android.widget.ImageView
@@ -46,7 +46,6 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
 
         headNode = Node()
         headNode?.setParent(this)
-
 
        /* ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
