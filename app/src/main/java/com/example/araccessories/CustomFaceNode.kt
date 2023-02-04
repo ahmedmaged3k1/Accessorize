@@ -3,13 +3,11 @@ package com.example.araccessories
 
 import android.content.Context
 import android.net.Uri
-import android.widget.ImageView
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
-import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
@@ -20,8 +18,8 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
     private var eyeNodeLeft: Node? = null
     private var eyeNodeRight: Node? = null
 
-    private var mustacheNode: Node? = null
     private var headNode: Node? = null
+
 
 
 
@@ -29,7 +27,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
         enum class FaceRegion {
             LEFT_EYE,
             RIGHT_EYE,
-            MUSTACHE
+            Head
         }
     }
 
@@ -40,9 +38,6 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
 
         eyeNodeRight = Node()
         eyeNodeRight?.setParent(this)
-
-        mustacheNode = Node()
-        mustacheNode?.setParent(this)
 
         headNode = Node()
         headNode?.setParent(this)
@@ -67,12 +62,12 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
 
         ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
-            .setSource(context, Uri.parse("baroka.sfb"))
+            .setSource(context, Uri.parse("hat.sfb"))
             .build()
             .thenAccept { uiRenderable: ViewRenderable ->
                 uiRenderable.isShadowCaster = false
                 uiRenderable.isShadowReceiver = false
-                mustacheNode?.renderable = uiRenderable
+                headNode?.renderable = uiRenderable
                 //uiRenderable.view.findViewById<ImageView>(R.id.element_image).setImageResource(R.drawable.hat)
             }
             .exceptionally { throwable: Throwable? ->
@@ -107,10 +102,10 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
                     Vector3(buffer.get(374 * 3),buffer.get(374 * 3 + 1),  buffer.get(374 * 3 + 2))
                 FaceRegion.RIGHT_EYE ->
                     Vector3(buffer.get(145 * 3),buffer.get(145 * 3 + 1),  buffer.get(145 * 3 + 2))
-                FaceRegion.MUSTACHE ->
-                    Vector3(buffer.get(11 * 3),
-                        buffer.get(11 * 3 + 1),
-                        buffer.get(11 * 3 + 2))
+                FaceRegion.Head ->
+                    Vector3(buffer.get(10 * 3),
+                        buffer.get(10 * 3 + 1),
+                        buffer.get(10 * 3 + 2))
 
 
             }
@@ -133,10 +128,12 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
                 eyeNodeRight?.localRotation = Quaternion.axisAngle(Vector3(0.0f, 0.0f, 1.0f), 10f)
             }
 
-            getRegionPose(FaceRegion.MUSTACHE)?.let {
-                mustacheNode?.localPosition = Vector3(it.x, it.y + 0.11f, it.z -0.09f)
+            getRegionPose(FaceRegion.Head)?.let {
 
-                mustacheNode?.localScale = Vector3(0.07f, 0.07f, 0.07f)
+                //+ 0.11f
+                //headNode?.localPosition = Vector3(it.x, it.y , it.z )
+
+                headNode?.localScale = Vector3(0.09f, 0.07f, 0.09f)
             }
 
         }

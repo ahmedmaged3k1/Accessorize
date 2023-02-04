@@ -24,6 +24,8 @@ class GlassesActivity : AppCompatActivity() {
         const val MIN_OPENGL_VERSION = 3.0
     }
 
+    private var isDepthSupported = false
+
     lateinit var arFragment: FaceArFragment
     private var faceMeshTexture: Texture? = null
     private var glasses: ArrayList<ModelRenderable> = ArrayList()
@@ -104,15 +106,19 @@ class GlassesActivity : AppCompatActivity() {
         val sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         val scene = sceneView.scene
-        val isDepthSupported =sceneView.session?.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
-        if (isDepthSupported == true) {
-            sceneView.session?.config?.depthMode = Config.DepthMode.AUTOMATIC
-        }
-        sceneView.session?.configure(sceneView?.session!!.config)
+
         scene.addOnUpdateListener {
             if (faceRegionsRenderable != null) {
                 sceneView.session
                     ?.getAllTrackables(AugmentedFace::class.java)?.let {
+                        val config: Config = sceneView.session!!.getConfig()
+                        isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
+                        if (isDepthSupported) {
+                            config.setDepthMode(Config.DepthMode.AUTOMATIC)
+                        } else {
+                            config.setDepthMode(Config.DepthMode.DISABLED)
+                        }
+                        sceneView.session!!.configure(config)
                         for (face in it) {
                             if (!faceNodeMap.containsKey(face)) {
                                 val faceNode = AugmentedFaceNode(face)
