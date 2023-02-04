@@ -4,6 +4,7 @@
     package="com.example.araccessories">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="com.google.ar.core.depth" />
     <!--
  This tag indicates that this application requires ARCore. This results in the application
         only being visible in the Google Play Store on devices that support ARCore.
@@ -30,7 +31,7 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"  android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

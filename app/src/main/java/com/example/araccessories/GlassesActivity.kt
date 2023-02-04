@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
+import com.google.ar.core.Config
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
@@ -46,6 +47,7 @@ class GlassesActivity : AppCompatActivity() {
             .setSource(this, R.drawable.makeup)
             .build()
             .thenAccept { texture -> faceMeshTexture = texture }
+
         ModelRenderable.builder()
             .setSource(this, Uri.parse("glasses.sfb"))
             .build()
@@ -102,7 +104,11 @@ class GlassesActivity : AppCompatActivity() {
         val sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         val scene = sceneView.scene
-
+        val isDepthSupported =sceneView.session?.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
+        if (isDepthSupported == true) {
+            sceneView.session?.config?.depthMode = Config.DepthMode.AUTOMATIC
+        }
+        sceneView.session?.configure(sceneView?.session!!.config)
         scene.addOnUpdateListener {
             if (faceRegionsRenderable != null) {
                 sceneView.session
@@ -111,6 +117,7 @@ class GlassesActivity : AppCompatActivity() {
                             if (!faceNodeMap.containsKey(face)) {
                                 val faceNode = AugmentedFaceNode(face)
                                 faceNode.setParent(scene)
+                                face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
 
                                 faceNode.faceRegionsRenderable = faceRegionsRenderable
                                 faceNodeMap[face] = faceNode
