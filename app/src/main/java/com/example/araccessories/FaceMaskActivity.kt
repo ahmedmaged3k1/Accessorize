@@ -11,6 +11,7 @@ import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
 import com.google.ar.core.Config.AugmentedFaceMode
+import com.google.ar.core.Pose
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
@@ -62,7 +63,7 @@ class FaceMaskActivity : AppCompatActivity() {
             sceneView.session
                 ?.getAllTrackables(AugmentedFace::class.java)?.let {
                     val config: Config = sceneView.session!!.getConfig()
-                    config.augmentedFaceMode=Config.AugmentedFaceMode.MESH3D
+                    config.augmentedFaceMode= AugmentedFaceMode.MESH3D
                     isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
                     if (isDepthSupported) {
                         config.setDepthMode(Config.DepthMode.AUTOMATIC)
@@ -70,16 +71,23 @@ class FaceMaskActivity : AppCompatActivity() {
                         config.setDepthMode(Config.DepthMode.DISABLED)
                     }
                     sceneView.session!!.configure(config)
-                    for (f in it) {
-                        if (!faceNodeMap.containsKey(f)) {
-                            val faceNode = AugmentedFaceNode(f)
-                            faceNode.localScale= Vector3(0.05f, 0.05f, 0.05f)
+                    for (augmentedFace in it) {
+                        if (!faceNodeMap.containsKey(augmentedFace)) {
+                            val faceNode = AugmentedFaceNode(augmentedFace)
+//                            val buffer =  augmentedFace.meshVertices
+//                            var vector =Vector3(buffer.get(1 * 3),buffer.get(1 * 3 + 1),  buffer.get(1 * 3 + 2))
+//                            faceNode.localPosition = Vector3(vector.x +0f, vector.y -1.6f, vector.z +0)
+                            faceNode.localScale= Vector3(0.05f, 0.03f, 0.035f)
+
+                            augmentedFace.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
 
                             faceNode.setParent(scene)
                             faceNode.faceRegionsRenderable=modelRenderable
                             faceNode.faceMeshTexture=faceMeshTexture
 
-                            faceNodeMap[f] = faceNode
+                            faceNodeMap[augmentedFace] = faceNode
+
+
                         }
                     }
                     // Remove any AugmentedFaceNodes associated with an AugmentedFace that stopped tracking.
@@ -96,6 +104,9 @@ class FaceMaskActivity : AppCompatActivity() {
                 }
         }
         }
+//    private fun checkDepthSupportedOrNot() : Boolean{
+//
+//    }
     private fun checkIsSupportedDeviceOrFinish() : Boolean {
         if (ArCoreApk.getInstance().checkAvailability(this) == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE) {
             Toast.makeText(this, "Augmented Faces requires ARCore", Toast.LENGTH_LONG).show()

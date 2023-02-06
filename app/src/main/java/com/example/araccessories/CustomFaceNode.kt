@@ -22,7 +22,6 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
 
 
 
-
     companion object {
         enum class FaceRegion {
             LEFT_EYE,
