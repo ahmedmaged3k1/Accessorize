@@ -70,7 +70,7 @@ class GlassesActivity : AppCompatActivity() {
                 modelRenderable.isShadowReceiver = false
 
             }
-       //0 var file = File.createTempFile("out","glb")
+       //0 var file = File.createTempFile("out"C,"glb")
       //  RenderableSource
 
         ModelRenderable.builder()
