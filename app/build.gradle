@@ -75,10 +75,20 @@ sceneform.asset('sampledata/sunglasses.fbx',
         'default',
         'sampledata/sunglasses.sfa',
         'src/main/assets/sunglasses')
-sceneform.asset('sampledata/cat_mask.fbx',
+sceneform.asset('sampledata/gta.fbx',
         'default',
-        'sampledata/cat_mask.sfa',
-        'src/main/assets/cat_mask')
+        'sampledata/gta.sfa',
+        'src/main/assets/gta')
+sceneform.asset('sampledata/mask.fbx',
+        'default',
+        'sampledata/mask.sfa',
+        'src/main/assets/mask')
+sceneform.asset('sampledata/cat.fbx',
+        'default',
+        'sampledata/cat.sfa',
+        'src/main/assets/cat')
+
+
 sceneform.asset('sampledata/cat-mask.fbx',
         'default',
         'sampledata/cat-mask.sfa',

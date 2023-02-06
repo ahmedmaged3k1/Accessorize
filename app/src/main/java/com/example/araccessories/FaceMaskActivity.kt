@@ -41,7 +41,7 @@ class FaceMaskActivity : AppCompatActivity() {
 
 
         ModelRenderable.builder()
-            .setSource(this, Uri.parse("cat-mask.sfb"))
+            .setSource(this, Uri.parse("cat.sfb"))
             .build()
             .thenAccept { renderable ->
                 renderable.isShadowCaster = false
@@ -77,13 +77,13 @@ class FaceMaskActivity : AppCompatActivity() {
 //                            val buffer =  augmentedFace.meshVertices
 //                            var vector =Vector3(buffer.get(1 * 3),buffer.get(1 * 3 + 1),  buffer.get(1 * 3 + 2))
 //                            faceNode.localPosition = Vector3(vector.x +0f, vector.y -1.6f, vector.z +0)
-                            faceNode.localScale= Vector3(0.05f, 0.03f, 0.035f)
+                           faceNode.localScale= Vector3(0.4f, 0.1f, 0.2f)
 
-                            augmentedFace.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
+                            //augmentedFace.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
 
                             faceNode.setParent(scene)
                             faceNode.faceRegionsRenderable=modelRenderable
-                            faceNode.faceMeshTexture=faceMeshTexture
+                            //faceNode.faceMeshTexture=faceMeshTexture
 
                             faceNodeMap[augmentedFace] = faceNode
 
