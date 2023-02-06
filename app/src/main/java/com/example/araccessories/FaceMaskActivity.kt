@@ -62,6 +62,7 @@ class FaceMaskActivity : AppCompatActivity() {
             sceneView.session
                 ?.getAllTrackables(AugmentedFace::class.java)?.let {
                     val config: Config = sceneView.session!!.getConfig()
+                    config.augmentedFaceMode=Config.AugmentedFaceMode.MESH3D
                     isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
                     if (isDepthSupported) {
                         config.setDepthMode(Config.DepthMode.AUTOMATIC)
