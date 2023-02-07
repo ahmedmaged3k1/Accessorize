@@ -16,6 +16,10 @@ import com.google.ar.sceneform.ux.AugmentedFaceNode
 class CustomFaceNodes(augmentedFace: AugmentedFace, val context:Context) : AugmentedFaceNode(augmentedFace) {
 
     private var faceNode  : Node?  = null
+    var x = 0f
+    var y = 0f
+    var z = 0f
+
     companion object{
         enum class FaceRegions{
             CENTER_FACE
@@ -27,7 +31,7 @@ class CustomFaceNodes(augmentedFace: AugmentedFace, val context:Context) : Augme
         faceNode = Node()
         faceNode?.setParent(this)
         ModelRenderable.builder()
-            .setSource(context, Uri.parse("cat.sfb"))
+            .setSource(context, Uri.parse("mask.sfb"))
             .build()
             .thenAccept { modelRenderable ->
 
@@ -75,10 +79,16 @@ class CustomFaceNodes(augmentedFace: AugmentedFace, val context:Context) : Augme
                 if (it != null) {
                     faceNode?.localPosition = Vector3(it.x, it.y-0.005f , it.z+0.017f )
                 }
-               faceNode?.localScale = Vector3(0.35f, 0.35f, 0.35f)
+               faceNode?.localScale = Vector3(2f, 2f, 2f)
             }
 
         }
 
     }
 }
+
+// Cat  Mask
+//if (it != null) {
+//    faceNode?.localPosition = Vector3(it.x, it.y-0.005f , it.z+0.017f )
+//}
+//faceNode?.localScale = Vector3(0.35f, 0.35f, 0.35f)
