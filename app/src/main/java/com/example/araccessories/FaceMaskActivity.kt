@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Display.Mode
 import android.widget.Toast
+import com.example.araccessories.ui.core.customfacenodes.CustomFaceNodes
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
 import com.google.ar.core.Config.AugmentedFaceMode
 import com.google.ar.core.Pose
 import com.google.ar.core.TrackingState
+import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
@@ -25,10 +27,11 @@ class FaceMaskActivity : AppCompatActivity() {
         const val MIN_OPENGL_VERSION = 3.0
     }
     lateinit var arFragment: FaceArFragment
-    var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
+    var faceNodeMap = HashMap<AugmentedFace, CustomFaceNodes>()
     private var faceMeshTexture: Texture? = null
     private var isDepthSupported = false
     private lateinit var modelRenderable  : ModelRenderable
+    private var maskNode: Node? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,19 +43,19 @@ class FaceMaskActivity : AppCompatActivity() {
 
 
 
-        ModelRenderable.builder()
-            .setSource(this, Uri.parse("cat.sfb"))
-            .build()
-            .thenAccept { renderable ->
-                renderable.isShadowCaster = false
-                renderable.isShadowReceiver = false
-                modelRenderable=renderable
-
-            }
-        Texture.builder()
-            .setSource(this, R.drawable.fox_face_mesh_texture)
-            .build()
-            .thenAccept { texture -> faceMeshTexture = texture }
+//        ModelRenderable.builder()
+//            .setSource(this, Uri.parse("cat.sfb"))
+//            .build()
+//            .thenAccept { renderable ->
+//                renderable.isShadowCaster = false
+//                renderable.isShadowReceiver = false
+//                modelRenderable=renderable
+//
+//            }
+//        Texture.builder()
+//            .setSource(this, R.drawable.fox_face_mesh_texture)
+//            .build()
+//            .thenAccept { texture -> faceMeshTexture = texture }
         val sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         val scene = sceneView.scene
@@ -62,7 +65,7 @@ class FaceMaskActivity : AppCompatActivity() {
         scene.addOnUpdateListener{
             sceneView.session
                 ?.getAllTrackables(AugmentedFace::class.java)?.let {
-                    val config: Config = sceneView.session!!.getConfig()
+                    val config: Config = sceneView.session!!.config
                     config.augmentedFaceMode= AugmentedFaceMode.MESH3D
                     isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
                     if (isDepthSupported) {
@@ -73,17 +76,9 @@ class FaceMaskActivity : AppCompatActivity() {
                     sceneView.session!!.configure(config)
                     for (augmentedFace in it) {
                         if (!faceNodeMap.containsKey(augmentedFace)) {
-                            val faceNode = AugmentedFaceNode(augmentedFace)
-//                            val buffer =  augmentedFace.meshVertices
-//                            var vector =Vector3(buffer.get(1 * 3),buffer.get(1 * 3 + 1),  buffer.get(1 * 3 + 2))
-//                            faceNode.localPosition = Vector3(vector.x +0f, vector.y -1.6f, vector.z +0)
-                           faceNode.localScale= Vector3(0.4f, 0.1f, 0.2f)
-
-                            //augmentedFace.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
+                            val faceNode = CustomFaceNodes(augmentedFace,this)
 
                             faceNode.setParent(scene)
-                            faceNode.faceRegionsRenderable=modelRenderable
-                            //faceNode.faceMeshTexture=faceMeshTexture
 
                             faceNodeMap[augmentedFace] = faceNode
 
