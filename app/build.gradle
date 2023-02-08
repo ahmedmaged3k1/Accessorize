@@ -93,7 +93,18 @@ sceneform.asset('sampledata/cat-mask.fbx',
         'default',
         'sampledata/cat-mask.sfa',
         'src/main/assets/cat-mask')
-
+sceneform.asset('sampledata/ear.fbx',
+        'default',
+        'sampledata/ear.sfa',
+        'src/main/assets/ear')
+sceneform.asset('sampledata/red-earrings.fbx',
+        'default',
+        'sampledata/red-earrings.sfa',
+        'src/main/assets/red-earrings')
+sceneform.asset('sampledata/wedn1.fbx',
+        'default',
+        'sampledata/wedn1.sfa',
+        'src/main/assets/wedn1')
 sceneform.asset('sampledata/modelglasses.fbx',
         'default',
         'sampledata/modelglasses.sfa',

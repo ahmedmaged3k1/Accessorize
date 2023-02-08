@@ -26,6 +26,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="31">
         <activity
+            android:name=".EaringsActivity"
+            android:exported="true" />
+        <activity
             android:name=".FaceMaskActivity"
             android:exported="true" />
         <activity
