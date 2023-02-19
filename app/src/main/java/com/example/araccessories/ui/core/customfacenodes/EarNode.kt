@@ -58,9 +58,9 @@ class EarNode (augmentedFace: AugmentedFace, val context: Context) : AugmentedFa
 
             return when (region) {
                 FaceRegions.EARS->
-                    Vector3(buffer.get(447 * 3),
-                        buffer.get(447 * 3 + 1),
-                        buffer.get(447 * 3 + 2))
+                    Vector3(buffer.get(116 * 3),
+                        buffer.get(116 * 3 + 1),
+                        buffer.get(116 * 3 + 2))
 
 
             }
@@ -73,16 +73,21 @@ class EarNode (augmentedFace: AugmentedFace, val context: Context) : AugmentedFa
         augmentedFace.let {face ->
             getRegionPose(FaceRegions.EARS).let {
                 if (it != null) {
-                   //- earNode?.localPosition = Vector3(it.x, it.y-0.02f , it.z-0.15f )
+                   earNode?.localPosition = Vector3(it.x, it.y-0.08f, it.z -0.08f)
                 }
-            //   earNode?.localScale = Vector3(0.12f, 0.05f, 0.05f)
+            //  earNode?.localScale = Vector3(0.12f, 0.05f, 0.05f)
             }
 
         }
 
     }
 }
-
+// wedn 1
+//if (it != null) {
+//    earNode?.localPosition = Vector3(it.x, it.y-0.08f, it.z -0.08f)
+//}
+////  earNode?.localScale = Vector3(0.12f, 0.05f, 0.05f)
+//}
 //ear
 //if (it != null) {
 //    //earNode?.localPosition = Vector3(it.x, it.y-0.04f , it.z-0.04f )
