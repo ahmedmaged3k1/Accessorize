@@ -36,6 +36,10 @@ class SignInFragment : Fragment() {
             if (emailSignIn.text.toString() == "" || passwordSignIn.text.toString() == "") {
                 Toast.makeText(requireContext(), "Fill All Fields ", Toast.LENGTH_LONG).show()
             }
+            else {
+                view?.findNavController()?.navigate(R.id.action_signInFragment_to_mainNavigation)
+
+            }
         }
     }
 

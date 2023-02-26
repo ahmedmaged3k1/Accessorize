@@ -6,8 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".EaringsActivity">
 
-    <fragment android:name="com.example.araccessories.FaceArFragment"
+    <ImageButton
+        android:layout_width="40dp"
+        android:elevation="10dp"
+        android:layout_height="40dp"
+        android:src="@drawable/baseline_close_24"
+        app:layout_constraintBottom_toBottomOf="@+id/face_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.088"
+        android:contentDescription="@string/close" />
+
+    <fragment
         android:id="@+id/face_fragment"
+        android:name="com.example.araccessories.FaceArFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

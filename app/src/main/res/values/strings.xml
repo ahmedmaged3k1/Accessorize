@@ -44,4 +44,11 @@
     <string name="edit">edit</string>
     <string name="continue_">Continue</string>
     <string name="title_activity_augmented_image">AugmentedImageActivity</string>
+    <string name="close">close</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="cart">Cart</string>
+    <string name="search">Search</string>
+    <string name="fav">Fav</string>
+    <string name="welcome_ahmed">Welcome Ahmed</string>
 </resources>

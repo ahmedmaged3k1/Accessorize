@@ -38,6 +38,12 @@
         <item name="android:textColor">@color/Grey</item>
         <item name="android:textSize">16sp</item>
     </style>
+    <style name="welcome">
+        <item name="fontFamily">@font/inter_regulat</item>
+        <item name="android:textSize">12sp</item>
+        <item name="fontWeight">700</item>
+        <item name="color">@color/black</item>
+    </style>
     <style name="Theme.ArAccessories.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.ArAccessories.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

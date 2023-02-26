@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_signInFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_mainNavigation"
+            app:destination="@id/mainNavigation" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -57,5 +60,55 @@
         android:id="@+id/fillProfileFragment"
         android:name="com.example.araccessories.ui.features.fillProfile.FillProfileFragment"
         android:label="fragment_fill_profile"
-        tools:layout="@layout/fragment_fill_profile" />
+        tools:layout="@layout/fragment_fill_profile" >
+        <action
+            android:id="@+id/action_fillProfileFragment_to_mainNavigation"
+            app:destination="@id/mainNavigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainNavigation"
+        android:name="com.example.araccessories.ui.features.mainNavigation.MainNavigation"
+        android:label="fragment_main_navigation"
+        tools:layout="@layout/fragment_main_navigation" >
+        <action
+            android:id="@+id/action_mainNavigation_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_mainNavigation_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainNavigation_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_mainNavigation_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainNavigation_to_favouriteFragment"
+            app:destination="@id/favouriteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.araccessories.ui.features.homeFragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.araccessories.ui.features.cartFragment.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.araccessories.ui.features.profleFragment.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.araccessories.ui.features.searchFragment.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.example.araccessories.ui.features.favouriteFragment.FavouriteFragment"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_favourite" />
 </navigation>

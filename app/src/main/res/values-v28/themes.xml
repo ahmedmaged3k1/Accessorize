@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="welcome">
+        <item name="fontFamily">@font/inter_black</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:lineHeight">14.52px</item>
+
+    </style>
+</resources>
