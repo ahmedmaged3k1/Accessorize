@@ -7,15 +7,45 @@
     tools:context=".ui.features.homeFragment.HomeFragment">
 
     <TextView
+        android:id="@+id/homeWelcome"
         style="@style/welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/welcome_ahmed"
+        app:layout_constraintBottom_toTopOf="@+id/homeSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline3">
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintVertical_bias="0.0">
 
     </TextView>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/homeSearch"
+        android:layout_width="342dp"
+        android:elevation="6dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/rounded_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:layout_editor_absoluteY="41dp">
+
+    </com.google.android.material.textfield.TextInputEditText>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appAds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteX="34dp"
+        tools:layout_editor_absoluteY="143dp"
+        tools:listitem="">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
