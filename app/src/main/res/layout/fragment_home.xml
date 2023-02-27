@@ -25,25 +25,72 @@
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/homeSearch"
         android:layout_width="342dp"
-        android:elevation="6dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/rounded_search"
+        android:drawableStart="@drawable/baseline_search_24"
+        android:drawableEnd="@drawable/baseline_close_24"
+        android:elevation="6dp"
+        android:gravity="center"
+        android:hint="@string/what_are_you_looking_for"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:textColorHint="@color/grey"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/appAds"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.054"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        tools:layout_editor_absoluteY="41dp">
+        app:layout_constraintStart_toStartOf="@+id/guideline2">
 
     </com.google.android.material.textfield.TextInputEditText>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appAds"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="342dp"
+        android:layout_height="160dp"
+        android:layout_marginBottom="12dp"
         android:orientation="horizontal"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="143dp"
-        tools:listitem="">
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:listitem="@layout/ad_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="360dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:paddingEnd="20dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/productsHomeRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.257"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:listitem="@layout/category_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productsHomeRecyclerView"
+        android:layout_width="387dp"
+        android:layout_height="385dp"
+        android:layout_marginBottom="12dp"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        tools:listitem="@layout/product_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 

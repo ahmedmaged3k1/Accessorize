@@ -53,4 +53,10 @@
     <string name="welcome_ahmed">Welcome Ahmed</string>
     <string name="make_your_first_order_and_enjoy_10_discount">Make Your First Order and Enjoy 10% discount</string>
     <string name="adimage">adImage</string>
+    <string name="what_are_you_looking_for">What are you looking for..</string>
+    <string name="face_masks">Face Masks</string>
+    <string name="productimage">productImage</string>
+    <string name="productImage">productImage</string>
+    <string name="fox_face_mask">Fox Face Mask</string>
+    <string name="_700_egp">700 Egp</string>
 </resources>

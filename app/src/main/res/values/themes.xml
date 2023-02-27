@@ -51,6 +51,10 @@
         <item name="fontWeight">700</item>
 
     </style>
+    <style name="categoryText">
+        <item name="fontFamily">@font/inter_black</item>
+
+    </style>
     <style name="Theme.ArAccessories.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.ArAccessories.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
