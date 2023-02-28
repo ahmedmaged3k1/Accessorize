@@ -15,7 +15,8 @@ import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.rendering.Texture
-import kotlinx.android.synthetic.main.activity_regions.*
+import kotlinx.android.synthetic.main.activity_earings.*
+
 
 class EaringsActivity : AppCompatActivity() {
     companion object {

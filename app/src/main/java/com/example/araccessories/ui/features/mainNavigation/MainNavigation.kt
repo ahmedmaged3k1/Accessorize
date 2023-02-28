@@ -29,16 +29,33 @@ class MainNavigation : Fragment() {
         return binding.root
     }
     private fun  navigationSelector(){
-        binding.bottomNavigationView.setOnClickListener {
-            when(it.id){
-                R.id.home->replaceFragment(HomeFragment())
-                R.id.profile->replaceFragment(ProfileFragment())
-                R.id.cart->replaceFragment(CartFragment())
-                R.id.search->replaceFragment(SearchFragment())
-                R.id.fav->replaceFragment(FavouriteFragment())
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId){
 
-                else ->{
+                R.id.profile->{
+                    replaceFragment(ProfileFragment())
+                    true
+                }
 
+                R.id.cart->{
+                    replaceFragment(CartFragment())
+                    true
+                }
+                R.id.search->{
+                    replaceFragment(SearchFragment())
+                    true
+                }
+                R.id.fav->{
+                    replaceFragment(FavouriteFragment())
+                    true
+                }
+                R.id.home->{
+                    replaceFragment(HomeFragment())
+                    true
+                }
+
+                else -> {
+                    false
                 }
             }
 
@@ -51,6 +68,7 @@ class MainNavigation : Fragment() {
         val fragmentTransaction =fragmentManager?.beginTransaction()
         fragmentTransaction?.replace(R.id.frameLayout,fragment)
         fragmentTransaction?.commit()
+
     }
 
 

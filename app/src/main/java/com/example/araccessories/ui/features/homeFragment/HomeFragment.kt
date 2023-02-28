@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.databinding.FragmentMainNavigationBinding
+import dagger.hilt.android.HiltAndroidApp
+
 
 class HomeFragment : Fragment() {
 

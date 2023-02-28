@@ -22,12 +22,14 @@
 
     </TextView>
 
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/homeSearch"
         android:layout_width="342dp"
+        android:focusable="true"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/rounded_search"
         android:drawableStart="@drawable/baseline_search_24"
         android:drawableEnd="@drawable/baseline_close_24"
@@ -40,22 +42,21 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/appAds"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2">
 
     </com.google.android.material.textfield.TextInputEditText>
-
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/appAds"
         android:layout_width="342dp"
         android:layout_height="160dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.339"
+        app:layout_constraintHorizontal_bias="0.301"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         tools:listitem="@layout/ad_item">
 
