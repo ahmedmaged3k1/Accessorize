@@ -1,14 +1,12 @@
-package com.example.araccessories.ui.features.homeFragment
+package com.example.araccessories.ui.features.homeFragment.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
-import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.databinding.ProductItemBinding
 import android.view.LayoutInflater
-import androidx.navigation.findNavController
 
 
 class ProductsRecyclerViewAdapter :
