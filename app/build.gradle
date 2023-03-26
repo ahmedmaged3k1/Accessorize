@@ -88,6 +88,11 @@ dependencies {
     kaptTest 'com.google.dagger:hilt-compiler:2.43.2'
     //interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.4")
+    //Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    //Gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 
 }
 apply plugin: 'com.google.ar.sceneform.plugin'
