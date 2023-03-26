@@ -22,6 +22,11 @@
         <item name="fontFamily">@font/circular_std</item>
         <item name="android:textSize">40sp</item>
     </style>
+    <style name="productTitles">
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/inter_regulat</item>
+        <item name="android:textSize">20sp</item>
+    </style>
     <style name="buttons">
         <item name="paddingStart">40dp</item>
         <item name="paddingEnd">40dp</item>

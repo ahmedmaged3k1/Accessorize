@@ -90,7 +90,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.araccessories.ui.features.homeFragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="com.example.araccessories.ui.features.cartFragment.CartFragment"
@@ -111,4 +115,12 @@
         android:name="com.example.araccessories.ui.features.favouriteFragment.FavouriteFragment"
         android:label="fragment_favourite"
         tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.example.araccessories.ui.features.productDetails.ProductDetailsFragment"
+        android:label="ProductDetailsFragment" >
+        <action
+            android:id="@+id/action_productDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

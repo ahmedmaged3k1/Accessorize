@@ -59,4 +59,6 @@
     <string name="productImage">productImage</string>
     <string name="fox_face_mask">Fox Face Mask</string>
     <string name="_700_egp">700 Egp</string>
+    <string name="item_name">Item Name</string>
+    <string name="back_button">Back Button</string>
 </resources>
