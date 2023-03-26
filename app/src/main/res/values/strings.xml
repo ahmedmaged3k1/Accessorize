@@ -61,4 +61,7 @@
     <string name="_700_egp">700 Egp</string>
     <string name="item_name">Item Name</string>
     <string name="back_button">Back Button</string>
+    <string name="description">Description</string>
+    <string name="price">1500 EGP</string>
+    <string name="share">Share</string>
 </resources>
