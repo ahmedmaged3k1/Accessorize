@@ -16,12 +16,14 @@ class AdsRecyclerViewAdapter :
 
     override fun onBindViewHolder(holder: AdsViewHolder, position: Int) {
         holder.bind(getItem(position))
+
     }
 
     inner class AdsViewHolder constructor(private val binding: AdItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(ad: Ad) {
             binding.ad = ad
+            binding.imageView2.setImageResource(ad.adImage)
             binding.executePendingBindings()
         }
 

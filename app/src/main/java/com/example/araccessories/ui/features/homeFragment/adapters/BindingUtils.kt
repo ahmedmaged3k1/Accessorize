@@ -1,4 +1,4 @@
-package com.example.araccessories.ui.features.homeFragment
+package com.example.araccessories.ui.features.homeFragment.adapters
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -14,14 +14,11 @@ fun ImageView.setProductImage(product: Products?) {
             .into(this)
     }
 }
-@BindingAdapter("adImage")
-fun ImageView.setAdImage(ad: Ad?) {
-    ad?.let {
-        Glide.with(context)
-            .load(ad.adImage)
-            .into(this)
-    }
-}
+/*@BindingAdapter("adImages")
+fun ImageView.setAdImage( imageView :ImageView,  resource : Int) {
+    imageView.setImageResource(resource)
+
+}*/
 
 
 

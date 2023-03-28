@@ -1,21 +1,21 @@
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="ad"
             type="com.example.araccessories.data.dataSource.remoteDataSource.entities.Ad" />
     </data>
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="342dp"
-        android:background="@color/softGrey"
+        android:background="@drawable/rounded_ad_item"
         android:layout_height="160dp">
 
         <TextView
             android:id="@+id/adText"
             style="@style/adText"
-            android:layout_width="138dp"
-            android:layout_height="104dp"
+            android:layout_width="134dp"
+            android:layout_height="111dp"
             android:layout_marginStart="16dp"
             android:text="@{ad.adName}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,7 +30,6 @@
             android:layout_width="183dp"
             android:layout_height="118dp"
             android:src="@drawable/images_2"
-            app:adImage="@{ad}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
