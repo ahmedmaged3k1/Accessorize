@@ -7,6 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
 import com.example.araccessories.databinding.ProductItemBinding
 import android.view.LayoutInflater
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
+import com.example.araccessories.R
+import com.example.araccessories.ui.features.homeFragment.HomeFragment
+import kotlinx.android.synthetic.main.product_item.view.*
 
 
 class ProductsRecyclerViewAdapter :
@@ -22,8 +28,41 @@ class ProductsRecyclerViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
             fun bind (product :Products){
                 binding.product=product
+                binding.productName.text=product.productName
+                binding.productImage.setImageResource(product.productImage)
+                if (product.productFav==0){
+                    binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                }
+                else {
+                    binding.productFav.setImageResource(R.drawable.baseline_favorite_24)
+
+                }
+                binding.productFav.setOnClickListener {
+                    if (product.productFav==0){
+                        binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                        product.productFav=1
+                    }
+                    else {
+                        binding.productFav.setImageResource(R.drawable.baseline_favorite_24)
+                        product.productFav=0
+
+                    }
+                }
+                binding.productPrice.text = "${product.productPrice} Egp"
+                binding.productImage.setImageResource(product.productImage)
+                binding.productRate.numStars=product.productRate.toInt()
+
+                binding.root.product_item.setOnClickListener {
+                    binding.root.findNavController()
+                        .navigate(R.id.action_mainNavigation_to_productDetailsFragment)
+
+                }
                 binding.executePendingBindings()
             }
+        private fun onClickFav(){
+
+        }
+
         init {
 
         }

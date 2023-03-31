@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id("androidx.navigation.safeargs")
 
 }
 apply plugin: 'com.android.application'
@@ -11,6 +12,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.dagger.hilt.android'
 apply plugin: 'kotlin-kapt'
+
 android {
     compileSdk 32
 
@@ -92,7 +94,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     //Gson
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-
+//Navigation
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
 
 }
 apply plugin: 'com.google.ar.sceneform.plugin'

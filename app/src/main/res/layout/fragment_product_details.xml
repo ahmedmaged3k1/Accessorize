@@ -9,8 +9,8 @@
 
         <ImageButton
             android:id="@+id/backDetails"
-            android:layout_width="39dp"
-            android:layout_height="42dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:contentDescription="@string/back_button"
             android:src="@drawable/arrow_back_ios"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -25,16 +25,16 @@
 
         <ImageButton
             android:id="@+id/shareDetails"
-            android:layout_width="34dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:contentDescription="@string/share"
             android:src="@drawable/baseline_share_24"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.794"
             app:layout_constraintStart_toEndOf="@+id/productItemDetailsName"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.692"
-            android:contentDescription="@string/share">
+            app:layout_constraintVertical_bias="0.692">
 
         </ImageButton>
 

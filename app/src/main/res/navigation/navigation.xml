@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_mainNavigation_to_favouriteFragment"
             app:destination="@id/favouriteFragment" />
+        <action
+            android:id="@+id/action_mainNavigation_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -118,9 +121,7 @@
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.example.araccessories.ui.features.productDetails.ProductDetailsFragment"
-        android:label="ProductDetailsFragment" >
-        <action
-            android:id="@+id/action_productDetailsFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+        android:label="ProductDetailsFragment"
+        tools:layout="@layout/fragment_product_details"
+        />
 </navigation>
