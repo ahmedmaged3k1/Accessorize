@@ -85,19 +85,19 @@ class HomeFragment : Fragment() {
         productList = listOf(Products(1,"Black Sunglasses"
             ,listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,
             1,null,"The Best Sunglasses you can try on , " +
-                    "ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"),
+                    "ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
             Products(1,"Sunglasses",
                 listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,
                 2.0,1,0,null,
                 "The Best Sunglasses you can try on , ZARA company provides " +
-                        "you this sunglasses and gives you 14 days return back even after you try it"),
+                        "you this sunglasses and gives you 14 days return back even after you try it",null,null),
             Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,
                 2.0,1,0,null,"The Best Sunglasses you " +
-                        "can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"),
-            Products(1,"Sunglasses", listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"),
-            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"),
-            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"),
-            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"))
+                        "can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products(1,"Sunglasses", listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null))
         initializingModelRenderable()
 
     }

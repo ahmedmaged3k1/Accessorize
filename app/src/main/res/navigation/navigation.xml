@@ -136,6 +136,9 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_glassesTryOn"
             app:destination="@id/glassesTryOn" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_hatsTryOnFragment"
+            app:destination="@id/hatsTryOnFragment" />
     </fragment>
     <fragment
         android:id="@+id/glassesTryOn"
@@ -145,6 +148,15 @@
         <action
             android:id="@+id/action_glassesTryOn_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="Product"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.Products" />
+    </fragment>
+    <fragment
+        android:id="@+id/hatsTryOnFragment"
+        android:name="com.example.araccessories.ui.features.hatsUpTryOn.HatsTryOnFragment"
+        android:label="fragment_hats_try_on"
+        tools:layout="@layout/fragment_hats_try_on" >
         <argument
             android:name="Product"
             app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.Products" />

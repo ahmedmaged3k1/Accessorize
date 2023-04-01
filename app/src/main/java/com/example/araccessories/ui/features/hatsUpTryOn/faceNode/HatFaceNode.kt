@@ -1,8 +1,11 @@
-package com.example.araccessories
+package com.example.araccessories.ui.features.hatsUpTryOn.faceNode
 
 
 import android.content.Context
 import android.net.Uri
+import com.example.araccessories.R
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
@@ -11,8 +14,10 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
-class CustomFaceNode(augmentedFace: AugmentedFace?,
-                 val context: Context
+class HatFaceNode(augmentedFace: AugmentedFace?,
+                  val context: Context,
+                  val localScale: Scale,
+                  val localPosition: Position
 ): AugmentedFaceNode(augmentedFace) {
 
     private var eyeNodeLeft: Node? = null
@@ -41,22 +46,6 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
         headNode = Node()
         headNode?.setParent(this)
 
-       /* ViewRenderable.builder()
-            .setView(context, R.layout.element_layout)
-            .build()
-            .thenAccept { uiRenderable: ViewRenderable ->
-                uiRenderable.isShadowCaster = false
-                uiRenderable.isShadowReceiver = false
-                eyeNodeLeft?.renderable = uiRenderable
-                eyeNodeRight?.renderable = uiRenderable
-            }
-            .exceptionally { throwable: Throwable? ->
-                throw AssertionError(
-                    "Could not create ui element",
-                    throwable
-                )
-            }*/
-
 
 
         ViewRenderable.builder()
@@ -75,21 +64,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
                     throwable
                 )
             }
-        /*ViewRenderable.builder()
-            .setView(context, R.layout.element_layout)
-            .build()
-            .thenAccept { uiRenderable: ViewRenderable ->
-                uiRenderable.isShadowCaster = false
-                uiRenderable.isShadowReceiver = false
-                headNode?.renderable = uiRenderable
-                uiRenderable.view.findViewById<ImageView>(R.id.element_image).setImageResource(R.drawable.mustache)
-            }
-            .exceptionally { throwable: Throwable? ->
-                throw AssertionError(
-                    "Could not create ui element",
-                    throwable
-                )
-            }*/
+
     }
 
     private fun getRegionPose(region: FaceRegion) : Vector3? {
@@ -128,11 +103,7 @@ class CustomFaceNode(augmentedFace: AugmentedFace?,
             }
 
             getRegionPose(FaceRegion.Head)?.let {
-
-                //+ 0.11f
-                //headNode?.localPosition = Vector3(it.x, it.y , it.z )
-
-                headNode?.localScale = Vector3(0.09f, 0.07f, 0.09f)
+                headNode?.localScale = Vector3(localScale.x, localScale.y, localScale.z)
             }
 
         }

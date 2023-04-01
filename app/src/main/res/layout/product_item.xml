@@ -10,7 +10,6 @@
         android:id="@+id/product_item"
         android:layout_width="380dp"
         android:layout_height="125dp"
-
         android:elevation="6dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="380dp"

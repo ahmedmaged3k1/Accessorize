@@ -3,11 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MakeupActivity">
+    tools:context=".ui.features.hatsUpTryOn.HatsTryOnFragment">
 
     <fragment android:name="com.example.araccessories.ui.core.arSession.FaceArFragment"
-        android:id="@+id/face_fragment"
+        android:id="@+id/face_fragment_hats"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
 </FrameLayout>

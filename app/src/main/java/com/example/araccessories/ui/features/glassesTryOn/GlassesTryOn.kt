@@ -1,11 +1,9 @@
 package com.example.araccessories.ui.features.glassesTryOn
 
+import android.annotation.SuppressLint
 import android.app.ActivityManager
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,6 @@ import androidx.navigation.fragment.navArgs
 import com.example.araccessories.GlassesActivity
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentGlassesTryOnBinding
-import com.example.araccessories.ui.core.FaceArFragment
 import com.google.ar.core.*
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
@@ -38,22 +35,22 @@ class GlassesTryOn :Fragment() {
     private var faceRegionsRenderable: ModelRenderable? = null
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_glasses_try_on, container, false)
 
-
-
-        arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment ?: return view
-
-
         if (!checkIsSupportedDeviceOrFinish()) {
             //navigate
 
         }
-        Log.d(TAG, "onCreateView: ${args.product.toString()}")
+
+        arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment ?: return view
+
+
+
     faceRegionsRenderable=args.product.productModel
 
         initializeScene()
