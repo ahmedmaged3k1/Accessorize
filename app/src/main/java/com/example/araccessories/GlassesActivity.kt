@@ -123,7 +123,6 @@ class GlassesActivity : AppCompatActivity()  {
                                 val faceNode = AugmentedFaceNode(face)
                                 faceNode.setParent(scene)
                                 face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
-
                                 faceNode.faceRegionsRenderable = faceRegionsRenderable
 
                                 faceNodeMap[face] = faceNode

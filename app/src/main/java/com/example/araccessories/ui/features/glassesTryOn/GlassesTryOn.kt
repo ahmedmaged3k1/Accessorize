@@ -1,8 +1,11 @@
 package com.example.araccessories.ui.features.glassesTryOn
 
 import android.app.ActivityManager
+import android.content.ContentValues.TAG
 import android.content.Context
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,6 +53,8 @@ class GlassesTryOn :Fragment() {
             //navigate
 
         }
+        Log.d(TAG, "onCreateView: ${args.product.toString()}")
+    faceRegionsRenderable=args.product.productModel
 
         initializeScene()
 
@@ -79,8 +84,9 @@ class GlassesTryOn :Fragment() {
                                 val faceNode = AugmentedFaceNode(face)
                                 faceNode.setParent(scene)
                                 face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
+                               //faceRegionsRenderable=args.product.productModel
 
-                                faceNode.faceRegionsRenderable = args.product.productModel
+                                faceNode.faceRegionsRenderable = faceRegionsRenderable
                                 faceNodeMap[face] = faceNode
                             }
                         }
