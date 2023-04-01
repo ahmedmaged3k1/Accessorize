@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.homeFragment
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.AdsRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.CategoryRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyclerViewAdapter
+import com.google.ar.sceneform.rendering.ModelRenderable
 import java.util.*
 
 
@@ -96,7 +98,46 @@ class HomeFragment : Fragment() {
             Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"),
             Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"),
             Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it"))
+        initializingModelRenderable()
 
+    }
+    private fun initializingModelRenderable(){
+        ModelRenderable.builder()
+            .setSource(this.activity, Uri.parse("sunglasses.sfb"))
+            .build()
+            .thenAccept { modelRenderable ->
+                productList[0].productModel=modelRenderable
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+
+            }
+        ModelRenderable.builder()
+            .setSource(this.activity, Uri.parse("glasses.sfb"))
+            .build()
+            .thenAccept { modelRenderable ->
+                productList[1].productModel=modelRenderable
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+
+            }
+        ModelRenderable.builder()
+            .setSource(this.activity, Uri.parse("shady2.sfb"))
+            .build()
+            .thenAccept { modelRenderable ->
+                productList[2].productModel=modelRenderable
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+
+            }
+        ModelRenderable.builder()
+            .setSource(this.activity, Uri.parse("yellow_sunglasses.sfb"))
+            .build()
+            .thenAccept { modelRenderable ->
+                productList[3].productModel=modelRenderable
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+
+            }
 
     }
     private fun initializeProductsRecyclerView(){

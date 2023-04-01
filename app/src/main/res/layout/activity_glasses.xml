@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".GlassesActivity">
 
-    <fragment android:name="com.example.araccessories.FaceArFragment"
+    <fragment android:name="com.example.araccessories.ui.core.FaceArFragment"
         android:id="@+id/face_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

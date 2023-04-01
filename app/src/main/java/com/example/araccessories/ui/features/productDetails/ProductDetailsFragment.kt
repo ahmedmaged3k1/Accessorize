@@ -13,6 +13,7 @@ import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentProductDetailsBinding
 import com.example.araccessories.databinding.FragmentSplashBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyclerViewAdapter
+import com.example.araccessories.ui.features.mainNavigation.MainNavigationDirections
 import com.example.araccessories.ui.features.productDetails.adapters.ProductImageRecyclerViewAdapter
 
 
@@ -32,7 +33,7 @@ class ProductDetailsFragment : Fragment() {
         backButton()
         initializeArgs()
         initializeImageList()
-
+        tryOnProduct()
         initializeProductDetailsRecyclerView()
 
 
@@ -60,5 +61,16 @@ class ProductDetailsFragment : Fragment() {
             R.drawable.sunglasses,
             R.drawable.sunglasses
             )
+    }
+
+    private fun tryOnProduct(){
+        binding.tryOnButton.setOnClickListener {
+            val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
+                args.product
+            )
+
+            binding.root.findNavController()
+                .navigate(action)
+        }
     }
 }

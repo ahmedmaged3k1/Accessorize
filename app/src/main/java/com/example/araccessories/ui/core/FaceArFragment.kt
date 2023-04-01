@@ -1,4 +1,4 @@
-package com.example.araccessories
+package com.example.araccessories.ui.core
 
 import android.os.Bundle
 import android.view.LayoutInflater

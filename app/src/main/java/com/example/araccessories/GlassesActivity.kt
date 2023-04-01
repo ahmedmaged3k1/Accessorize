@@ -6,17 +6,16 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.araccessories.ui.core.FaceArFragment
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
 import com.google.ar.core.TrackingState
-import com.google.ar.sceneform.assets.RenderableSource
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.rendering.Texture
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.android.synthetic.main.activity_glasses.*
-import java.io.File
 
 class GlassesActivity : AppCompatActivity() {
 
@@ -126,6 +125,7 @@ class GlassesActivity : AppCompatActivity() {
                                 face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
 
                                 faceNode.faceRegionsRenderable = faceRegionsRenderable
+
                                 faceNodeMap[face] = faceNode
                             } else if (changeModel) {
                                 faceNodeMap.getValue(face).faceRegionsRenderable =

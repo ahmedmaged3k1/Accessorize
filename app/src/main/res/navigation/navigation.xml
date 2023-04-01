@@ -133,5 +133,20 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_mainNavigation"
             app:destination="@id/mainNavigation" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_glassesTryOn"
+            app:destination="@id/glassesTryOn" />
+    </fragment>
+    <fragment
+        android:id="@+id/glassesTryOn"
+        android:name="com.example.araccessories.ui.features.glassesTryOn.GlassesTryOn"
+        android:label="fragment_glasses_try_on"
+        tools:layout="@layout/fragment_glasses_try_on" >
+        <action
+            android:id="@+id/action_glassesTryOn_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="Product"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.Products" />
     </fragment>
 </navigation>
