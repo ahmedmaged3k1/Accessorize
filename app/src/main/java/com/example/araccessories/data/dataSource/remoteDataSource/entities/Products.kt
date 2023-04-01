@@ -14,7 +14,6 @@ data class Products(
     var productRate: Double,
     var categoryId:Int,
     var productFav:Int,
-
     var productModel: @RawValue ModelRenderable? =null,
     var productDescription: String,
     ):Parcelable
