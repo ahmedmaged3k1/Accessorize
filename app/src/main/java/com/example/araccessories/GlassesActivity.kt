@@ -111,7 +111,7 @@ class GlassesActivity : AppCompatActivity() {
             if (faceRegionsRenderable != null) {
                 sceneView.session
                     ?.getAllTrackables(AugmentedFace::class.java)?.let {
-                        val config: Config = sceneView.session!!.getConfig()
+                        val config: Config = sceneView.session!!  .getConfig()
                         isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
                         if (isDepthSupported) {
                             config.setDepthMode(Config.DepthMode.AUTOMATIC)

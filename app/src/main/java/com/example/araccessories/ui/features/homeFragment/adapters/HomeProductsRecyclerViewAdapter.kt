@@ -12,6 +12,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import com.example.araccessories.R
 import com.example.araccessories.ui.features.homeFragment.HomeFragment
+import com.example.araccessories.ui.features.homeFragment.HomeFragmentDirections
+import com.example.araccessories.ui.features.mainNavigation.MainNavigationDirections
 import kotlinx.android.synthetic.main.product_item.view.*
 
 
@@ -29,7 +31,7 @@ class ProductsRecyclerViewAdapter :
             fun bind (product :Products){
                 binding.product=product
                 binding.productName.text=product.productName
-                binding.productImage.setImageResource(product.productImage)
+                binding.productImage.setImageResource(product.productImage[0])
                 if (product.productFav==0){
                     binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
                 }
@@ -49,12 +51,17 @@ class ProductsRecyclerViewAdapter :
                     }
                 }
                 binding.productPrice.text = "${product.productPrice} Egp"
-                binding.productImage.setImageResource(product.productImage)
+                binding.productImage.setImageResource(product.productImage[0])
                 binding.productRate.numStars=product.productRate.toInt()
 
                 binding.root.product_item.setOnClickListener {
+                    val action =
+                        MainNavigationDirections.actionMainNavigationToProductDetailsFragment(
+                            getItem(position)
+                        )
+
                     binding.root.findNavController()
-                        .navigate(R.id.action_mainNavigation_to_productDetailsFragment)
+                        .navigate(action)
 
                 }
                 binding.executePendingBindings()
