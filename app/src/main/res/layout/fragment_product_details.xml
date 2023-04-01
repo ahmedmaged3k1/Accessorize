@@ -124,6 +124,39 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="495dp" />
 
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addToCartButton"
+            android:layout_width="254dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/btn_sign_in_rounded_corners"
+            android:text="@string/add_to_cart"
+            app:backgroundTint="@color/softGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/tryOnButton"
+            android:layout_width="254dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/btn_sign_in_rounded_corners"
+
+            android:text="@string/try_on"
+            app:backgroundTint="@color/softGrey"
+            app:layout_constraintBottom_toTopOf="@+id/addToCartButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/productDescription"
+            app:layout_constraintVertical_bias="0.833">
+
+        </androidx.appcompat.widget.AppCompatButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
