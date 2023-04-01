@@ -6,6 +6,7 @@ import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 @Parcelize
+
 data class Products(
     var productId: Int,
     var productName: String,

@@ -2,11 +2,11 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/glassesTryOnFragment"
     android:layout_height="match_parent"
     tools:context=".ui.features.glassesTryOn.GlassesTryOn">
 
-    <fragment
-        android:name="com.google.ar.sceneform.ux.ArFragment"
+    <fragment android:name="com.example.araccessories.ui.core.FaceArFragment"
         android:id="@+id/face_fragment_glasses"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

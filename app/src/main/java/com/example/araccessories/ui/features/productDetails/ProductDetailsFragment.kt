@@ -1,23 +1,22 @@
 package com.example.araccessories.ui.features.productDetails
 
+import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.araccessories.GlassesActivity
+import com.example.araccessories.MainActivity
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentProductDetailsBinding
-import com.example.araccessories.databinding.FragmentSplashBinding
-import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyclerViewAdapter
 import com.example.araccessories.ui.features.mainNavigation.MainNavigationDirections
 import com.example.araccessories.ui.features.productDetails.adapters.ProductImageRecyclerViewAdapter
 
 
-class ProductDetailsFragment : Fragment() {
+class ProductDetailsFragment : Fragment() , java.io.Serializable{
     private lateinit var binding: FragmentProductDetailsBinding
     private val args by navArgs<ProductDetailsFragmentArgs>()
     private val productRecyclerViewAdapter = ProductImageRecyclerViewAdapter()
@@ -65,12 +64,15 @@ class ProductDetailsFragment : Fragment() {
 
     private fun tryOnProduct(){
         binding.tryOnButton.setOnClickListener {
-            val action = ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
-                args.product
-            )
+            val action =
+                ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
+                    args.product
+                )
 
             binding.root.findNavController()
                 .navigate(action)
+
         }
+        }
+
     }
-}

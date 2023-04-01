@@ -17,7 +17,7 @@ import com.google.ar.sceneform.rendering.Texture
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.android.synthetic.main.activity_glasses.*
 
-class GlassesActivity : AppCompatActivity() {
+class GlassesActivity : AppCompatActivity()  {
 
     companion object {
         const val MIN_OPENGL_VERSION = 3.0

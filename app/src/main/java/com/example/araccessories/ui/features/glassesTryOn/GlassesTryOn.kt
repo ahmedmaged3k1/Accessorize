@@ -13,19 +13,18 @@ import com.example.araccessories.GlassesActivity
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentGlassesTryOnBinding
 import com.example.araccessories.ui.core.FaceArFragment
-import com.google.ar.core.ArCoreApk
-import com.google.ar.core.AugmentedFace
-import com.google.ar.core.Config
-import com.google.ar.core.TrackingState
+import com.google.ar.core.*
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.android.synthetic.main.activity_glasses.*
 import kotlinx.android.synthetic.main.fragment_glasses_try_on.*
+import java.util.*
+import kotlin.collections.HashMap
 
 
-class GlassesTryOn : Fragment() {
+class GlassesTryOn :Fragment() {
     private lateinit var binding: FragmentGlassesTryOnBinding
 
     private var isDepthSupported = false
@@ -38,22 +37,27 @@ class GlassesTryOn : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentGlassesTryOnBinding.inflate(inflater, container, false)
+        val view = inflater.inflate(R.layout.fragment_glasses_try_on, container, false)
+
+
+
+        arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment ?: return view
+
+
         if (!checkIsSupportedDeviceOrFinish()) {
             //navigate
 
         }
+
         initializeScene()
 
-        return binding.root
+        return view
     }
 
     private fun initializeScene() {
-//        arFragment = face_fragment_glasses as FaceArFragment
-        arFragment =
-            (activity?.supportFragmentManager?.findFragmentById(R.id.face_fragment_glasses) as ArFragment?)!!
+
         val sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         val scene = sceneView.scene
