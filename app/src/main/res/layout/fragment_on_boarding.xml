@@ -15,7 +15,7 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="31dp"
         android:elevation="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/getStartedButton"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,19 +25,36 @@
     </androidx.viewpager2.widget.ViewPager2>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/getStartedButton"
-        style="@style/buttons"
-        android:layout_width="338dp"
+        android:id="@+id/nextButton"
+        android:layout_width="157dp"
         android:layout_height="64dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/rounded_onboard_button"
-        android:text="@string/get_started"
-
-        app:layout_constraintBaseline_toBottomOf="parent"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/btn_sign_in_rounded_corners"
+        android:backgroundTint="@color/red"
+        android:text="@string/next"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager"
+        app:layout_constraintVertical_bias="1.0">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/skipButton"
+        android:layout_width="157dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/btn_sign_in_rounded_corners"
+        android:text="@string/skip"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/nextButton"
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager"
+        app:layout_constraintVertical_bias="1.0">
 
     </androidx.appcompat.widget.AppCompatButton>
 

@@ -12,5 +12,5 @@
     <color name="softGrey">#E6D5D5D5</color>
     <color name="ratingColor">#FFBA49</color>
     <color name="navigationBar">#DDDDDD</color>
-
+    <color name="red">#DB3022</color>
 </resources>

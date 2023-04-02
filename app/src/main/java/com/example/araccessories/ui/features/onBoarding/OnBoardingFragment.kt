@@ -24,30 +24,27 @@ class OnBoardingFragment : Fragment() {
         return binding.root
     }
     private fun getStartedButton(){
-        binding.getStartedButton.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.action_onBoardingFragment_to_signInFragment)
 
-        }
     }
 
     private fun setOnboardingItems() {
         val onboardingItems: List<OnboardingItem> = listOf(
             OnboardingItem(
-                onBoardingImage = R.drawable.onboard_1,
-                "Face Accessories Try - On",
-                "You can try on the glasses you want and see how it looks on your face "
+                onBoardingImage = R.drawable.onboarding1,
+                "Your New Stylist,",
+
             ),
             OnboardingItem(
-                onBoardingImage = R.drawable.onboard_2,
-                "Future Of E-commerce ",
-                "Through our app you can try on any product before you buy it using augmented reality"
+                onBoardingImage = R.drawable.onboarding2,
+                "Your Best Friend,",
+
             ),
 
 
             OnboardingItem(
-                onBoardingImage = R.drawable.shot_me,
-                "Take A Shot ",
-                "You can take a shot to send it to your friend while trying on the product "
+                onBoardingImage = R.drawable.onboarding3,
+                "Discover a new you!",
+
             )
         )
         onboardingItemAdapter = OnboardingItemAdapter(onboardingItems)
