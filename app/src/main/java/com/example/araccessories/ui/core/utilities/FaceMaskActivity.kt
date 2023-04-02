@@ -1,10 +1,11 @@
-package com.example.araccessories
+package com.example.araccessories.ui.core.utilities
 
 import android.app.ActivityManager
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.araccessories.R
 import com.example.araccessories.ui.core.arSession.FaceArFragment
 import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.ArCoreApk

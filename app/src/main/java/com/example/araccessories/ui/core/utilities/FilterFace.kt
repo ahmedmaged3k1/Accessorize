@@ -1,8 +1,9 @@
-package com.example.araccessories
+package com.example.araccessories.ui.core.utilities
 
 import android.content.Context
 import android.os.Handler
 import android.widget.TextView
+import com.example.araccessories.R
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node

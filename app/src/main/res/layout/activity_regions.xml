@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FaceRegionsActivity">
+    tools:context=".ui.core.utilities.FaceRegionsActivity">
 
     <fragment android:name="com.example.araccessories.ui.core.arSession.FaceArFragment"
         android:id="@+id/face_fragment"

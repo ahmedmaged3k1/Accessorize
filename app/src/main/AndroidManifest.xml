@@ -26,10 +26,10 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="31">
         <activity
-            android:name=".EaringsActivity"
+            android:name=".ui.core.utilities.EaringsActivity"
             android:exported="true" />
         <activity
-            android:name=".FaceMaskActivity"
+            android:name=".ui.core.utilities.FaceMaskActivity"
             android:exported="true" />
         <activity
             android:name=".ui.features.augmentedImage.AugmentedImageActivity"
@@ -39,7 +39,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.core.utilities.MainActivity"
             android:windowSoftInputMode="adjustPan"
 
             android:exported="true">
@@ -67,23 +67,23 @@
             android:value="required" />
 
         <activity
-            android:name=".MakeupActivity"
+            android:name=".ui.core.utilities.MakeupActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".GlassesActivity"
+            android:name=".ui.core.utilities.GlassesActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".FaceRegionsActivity"
+            android:name=".ui.core.utilities.FaceRegionsActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".FaceLandmarksActivity"
+            android:name=".ui.core.utilities.FaceLandmarksActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:screenOrientation="locked"

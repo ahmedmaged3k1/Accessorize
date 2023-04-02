@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.example.araccessories.GlassesActivity
+import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentGlassesTryOnBinding
 import com.google.ar.core.*

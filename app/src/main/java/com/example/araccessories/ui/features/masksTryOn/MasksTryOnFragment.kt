@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
-import com.example.araccessories.GlassesActivity
+import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.example.araccessories.R
 import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.ArCoreApk
