@@ -10,11 +10,14 @@
         android:id="@+id/product_item"
         android:layout_width="380dp"
         android:layout_height="125dp"
-        android:elevation="6dp">
+
+        >
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="380dp"
             android:layout_height="110dp"
             android:background="@drawable/product_item_shape"
+
+            android:elevation="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +26,8 @@
                 android:id="@+id/productImage"
                 android:layout_width="105dp"
                 android:layout_height="match_parent"
+                android:elevation="20dp"
+                android:scaleType="fitXY"
                 android:background="@drawable/product_item_image_shape"
                 android:contentDescription="@string/productImage"
                 android:src="@drawable/fox_face_mesh_texture"
@@ -59,8 +64,9 @@
                 android:layout_height="43dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="4dp"
-                android:scaleX="0.7"
-                android:scaleY="0.7"
+                android:scaleX="0.5"
+                android:shadowColor="@color/ratingColor"
+                android:scaleY="0.5"
                 app:layout_constraintBottom_toTopOf="@+id/productPrice"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -88,6 +94,7 @@
                 android:id="@+id/productFav"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
+                android:elevation="20dp"
                 android:background="@drawable/fav_shape"
                 android:src="@drawable/baseline_favorite_border_24"
                 app:layout_constraintBottom_toBottomOf="parent"

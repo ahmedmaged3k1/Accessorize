@@ -80,23 +80,10 @@ class HomeFragment : Fragment() {
         )
     }
     private fun initializeProducts(){
-        productList = listOf(Products("1","Black Sunglasses"
-            ,listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,
-            1,null,"The Best Sunglasses you can try on , " +
-                    "ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products("1","Sunglasses",
-                listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,
-                2.0,1,0,null,
-                "The Best Sunglasses you can try on , ZARA company provides " +
-                        "you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.yellowglasses1,R.drawable.yellowglassses2),250.0,
-                2.0,1,0,null,"The Best Sunglasses you " +
-                        "can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products("1","Sunglasses", listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products("hat.sfb","Hat",listOf(R.drawable.hat,R.drawable.hat),450.0,3.0,2,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f))
+        productList = listOf(
+            Products("1","Yellow Glasses",listOf(R.drawable.y1,R.drawable.y2,R.drawable.y3),250.0, 2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products("1","Sunglasses", listOf(R.drawable.g1,R.drawable.g2),375.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products("hat.sfb","Hat",listOf(R.drawable.h1,R.drawable.h2,R.drawable.h3,R.drawable.h4),450.0,3.0,2,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f))
             )
 
 
@@ -105,8 +92,9 @@ class HomeFragment : Fragment() {
 
     }
     private fun initializingModelRenderable(){
+
         ModelRenderable.builder()
-            .setSource(this.activity, Uri.parse("sunglasses.sfb"))
+            .setSource(this.activity, Uri.parse("shady2.sfb"))
             .build()
             .thenAccept { modelRenderable ->
                 productList[0].productModel=modelRenderable
@@ -115,28 +103,10 @@ class HomeFragment : Fragment() {
 
             }
         ModelRenderable.builder()
-            .setSource(this.activity, Uri.parse("glasses.sfb"))
-            .build()
-            .thenAccept { modelRenderable ->
-                productList[1].productModel=modelRenderable
-                modelRenderable.isShadowCaster = false
-                modelRenderable.isShadowReceiver = false
-
-            }
-        ModelRenderable.builder()
-            .setSource(this.activity, Uri.parse("shady2.sfb"))
-            .build()
-            .thenAccept { modelRenderable ->
-                productList[2].productModel=modelRenderable
-                modelRenderable.isShadowCaster = false
-                modelRenderable.isShadowReceiver = false
-
-            }
-        ModelRenderable.builder()
             .setSource(this.activity, Uri.parse("yellow_sunglasses.sfb"))
             .build()
             .thenAccept { modelRenderable ->
-                productList[3].productModel=modelRenderable
+                productList[1].productModel=modelRenderable
                 modelRenderable.isShadowCaster = false
                 modelRenderable.isShadowReceiver = false
 
