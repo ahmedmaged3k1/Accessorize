@@ -9,9 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.araccessories.R
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Ad
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Category
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.*
 import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.AdsRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.CategoryRecyclerViewAdapter
@@ -82,22 +80,27 @@ class HomeFragment : Fragment() {
         )
     }
     private fun initializeProducts(){
-        productList = listOf(Products(1,"Black Sunglasses"
+        productList = listOf(Products("1","Black Sunglasses"
             ,listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,
             1,null,"The Best Sunglasses you can try on , " +
                     "ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products(1,"Sunglasses",
+            Products("1","Sunglasses",
                 listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,
                 2.0,1,0,null,
                 "The Best Sunglasses you can try on , ZARA company provides " +
                         "you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,
+            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.yellowglasses1,R.drawable.yellowglassses2),250.0,
                 2.0,1,0,null,"The Best Sunglasses you " +
                         "can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products(1,"Sunglasses", listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
-            Products(1,"Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null))
+            Products("1","Sunglasses", listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products("1","Sunglasses",listOf(R.drawable.sunglasses_sdads,R.drawable.sunglasses_sdads),250.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
+            Products("hat.sfb","Hat",listOf(R.drawable.hat,R.drawable.hat),450.0,3.0,2,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f))
+            )
+
+
+
         initializingModelRenderable()
 
     }

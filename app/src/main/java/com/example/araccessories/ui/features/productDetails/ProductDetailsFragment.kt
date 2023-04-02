@@ -64,13 +64,28 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
     private fun tryOnProduct(){
         binding.tryOnButton.setOnClickListener {
-            val action =
-                ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
-                    args.product
-                )
+            if (args.product.categoryId==1)
+            {
+                val action =
+                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
+                        args.product
+                    )
 
-            binding.root.findNavController()
-                .navigate(action)
+                binding.root.findNavController()
+                    .navigate(action)
+            }
+            else   if (args.product.categoryId==2)
+            {
+                val action =
+                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToHatsTryOnFragment(
+                        args.product
+                    )
+
+                binding.root.findNavController()
+                    .navigate(action)
+            }
+
+
 
         }
         }

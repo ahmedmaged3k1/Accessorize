@@ -60,7 +60,7 @@ class FaceLandmarksActivity : AppCompatActivity() {
 
 
                             val faceNode = HatFaceNode(f, this, Scale(0.09f, 0.07f, 0.09f),
-                                Position(0.09f, 0.07f, 0.09f)
+                                Position(0.09f, 0.07f, 0.09f),"hat.sfb"
                             )
                             faceNode.setParent(scene)
                             faceNodeMap[f] = faceNode

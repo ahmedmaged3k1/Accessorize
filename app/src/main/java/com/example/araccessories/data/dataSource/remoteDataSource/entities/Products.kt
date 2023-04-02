@@ -8,7 +8,7 @@ import kotlinx.android.parcel.RawValue
 @Parcelize
 
 data class Products(
-    var productId: Int,
+    var productId: String,
     var productName: String,
     var productImage: List<Int>,
     var productPrice: Double,

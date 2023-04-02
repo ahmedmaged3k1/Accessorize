@@ -16,8 +16,9 @@ import com.google.ar.sceneform.ux.AugmentedFaceNode
 
 class HatFaceNode(augmentedFace: AugmentedFace?,
                   val context: Context,
-                  val localScale: Scale,
-                  val localPosition: Position
+                  val localScale: Scale?,
+                  val localPosition: Position?,
+                  val model:String
 ): AugmentedFaceNode(augmentedFace) {
 
     private var eyeNodeLeft: Node? = null
@@ -50,7 +51,7 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
 
         ViewRenderable.builder()
             .setView(context, R.layout.element_layout)
-            .setSource(context, Uri.parse("hat.sfb"))
+            .setSource(context, Uri.parse(model))
             .build()
             .thenAccept { uiRenderable: ViewRenderable ->
                 uiRenderable.isShadowCaster = false
@@ -103,7 +104,7 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
             }
 
             getRegionPose(FaceRegion.Head)?.let {
-                headNode?.localScale = Vector3(localScale.x, localScale.y, localScale.z)
+                headNode?.localScale = Vector3(localScale!!.x, localScale.y, localScale.z)
             }
 
         }

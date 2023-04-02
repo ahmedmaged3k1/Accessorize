@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.navArgs
 import com.example.araccessories.GlassesActivity
 import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
 import com.example.araccessories.databinding.FragmentHatsTryOnBinding
 import com.example.araccessories.ui.core.arSession.FaceArFragment
+import com.example.araccessories.ui.features.glassesTryOn.GlassesTryOnArgs
 import com.example.araccessories.ui.features.hatsUpTryOn.faceNode.HatFaceNode
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
@@ -26,6 +28,8 @@ import com.google.ar.sceneform.ux.ArFragment
 class HatsTryOnFragment : Fragment() {
     private lateinit var binding: FragmentHatsTryOnBinding
     lateinit var arFragment: ArFragment
+    private val args by navArgs<HatsTryOnFragmentArgs>()
+
     companion object {
         const val MIN_OPENGL_VERSION = 3.0
     }
@@ -35,14 +39,16 @@ class HatsTryOnFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+
+        val view =inflater.inflate(R.layout.fragment_hats_try_on, container, false)
         if (!checkIsSupportedDeviceOrFinish()) {
             //navigate
 
         }
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_hats) as? ArFragment ?: return view
+        initializeScene()
 
-
-        return inflater.inflate(R.layout.fragment_hats_try_on, container, false)
+        return  view
     }
     private fun initializeScene(){
 
@@ -65,8 +71,9 @@ class HatsTryOnFragment : Fragment() {
                     for (f in it) {
                         if (!faceNodeMap.containsKey(f)) {
                             val faceNode = HatFaceNode(f, this.requireActivity(),
-                                Scale(0.09f, 0.07f, 0.09f),
-                                Position(0.09f, 0.07f, 0.09f)
+                               args.product.localScale,
+                                args.product.localPosition,
+                                args.product.productId
                             )
                             faceNode.setParent(scene)
                             faceNodeMap[f] = faceNode
