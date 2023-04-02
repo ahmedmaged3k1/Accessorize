@@ -1,60 +1,119 @@
 package com.example.araccessories.ui.features.masksTryOn
 
+import android.app.ActivityManager
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.navArgs
+import com.example.araccessories.GlassesActivity
 import com.example.araccessories.R
+import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
+import com.google.ar.core.ArCoreApk
+import com.google.ar.core.AugmentedFace
+import com.google.ar.core.Config
+import com.google.ar.core.TrackingState
+import com.google.ar.sceneform.rendering.Renderable
+import com.google.ar.sceneform.rendering.Texture
+import com.google.ar.sceneform.ux.ArFragment
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MasksTryOnFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MasksTryOnFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    var faceNodeMap = HashMap<AugmentedFace, MaskNode>()
+    private var faceMeshTexture: Texture? = null
+    private var isDepthSupported = false
+    private val args by navArgs<MasksTryOnFragmentArgs>()
+    lateinit var arFragment: ArFragment
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_masks_try_on, container, false)
+        val view = inflater.inflate(R.layout.fragment_masks_try_on, container, false)
+        if (!checkIsSupportedDeviceOrFinish()) {
+            //navigate
+
+        }
+
+        arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_masks) as? ArFragment
+            ?: return view
+        initializeScene()
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MasksTryOnFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MasksTryOnFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun initializeScene() {
+        val sceneView = arFragment.arSceneView
+        sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
+        val scene = sceneView.scene
+        scene.addOnUpdateListener{
+            sceneView.session
+                ?.getAllTrackables(AugmentedFace::class.java)?.let {
+                    val config: Config = sceneView.session!!.config
+                    config.augmentedFaceMode= Config.AugmentedFaceMode.MESH3D
+                    isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
+                    if (isDepthSupported) {
+                        config.setDepthMode(Config.DepthMode.AUTOMATIC)
+                    } else {
+                        config.setDepthMode(Config.DepthMode.DISABLED)
+                    }
+                    sceneView.session!!.configure(config)
+                    for (augmentedFace in it) {
+                        if (!faceNodeMap.containsKey(augmentedFace)) {
+                            val faceNode = MaskNode(augmentedFace,this.requireActivity(),args.product.productId,args.product.localScale,args.product.localPosition)
+
+                            faceNode.setParent(scene)
+
+                            faceNodeMap[augmentedFace] = faceNode
+
+
+                        }
+                    }
+                    // Remove any AugmentedFaceNodes associated with an AugmentedFace that stopped tracking.
+                    val iter = faceNodeMap.entries.iterator()
+                    while (iter.hasNext()) {
+                        val entry = iter.next()
+                        val face = entry.key
+                        if (face.trackingState == TrackingState.STOPPED) {
+                            val faceNode = entry.value
+                            faceNode.setParent(null)
+                            iter.remove()
+                        }
+                    }
                 }
-            }
+        }
     }
+
+    private fun checkIsSupportedDeviceOrFinish(): Boolean {
+        if (ArCoreApk.getInstance()
+                .checkAvailability(this.context) == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE
+        ) {
+            Toast.makeText(this.context, "Augmented Faces requires ARCore", Toast.LENGTH_LONG)
+                .show()
+            activity?.finish()
+            return false
+        }
+        val openGlVersionString =
+            (activity?.getSystemService(Context.ACTIVITY_SERVICE) as? ActivityManager)
+                ?.deviceConfigurationInfo
+                ?.glEsVersion
+
+        openGlVersionString?.let { s ->
+            if (java.lang.Double.parseDouble(openGlVersionString) < GlassesActivity.MIN_OPENGL_VERSION) {
+                Toast.makeText(
+                    this.context,
+                    "Sceneform requires OpenGL ES 3.0 or later",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                activity?.finish()
+                return false
+            }
+        }
+        return true
+    }
+
 }

@@ -1,7 +1,9 @@
-package com.example.araccessories.ui.core.customfacenodes
+package com.example.araccessories.ui.features.masksTryOn.faceNode
 
 import android.content.Context
 import android.net.Uri
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
@@ -10,7 +12,10 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
 
-class MaskNode(augmentedFace: AugmentedFace, val context:Context) : AugmentedFaceNode(augmentedFace) {
+class MaskNode(augmentedFace: AugmentedFace, val context:Context,val model:String,
+var localScale: Scale?,
+             var  localPosition: Position?
+) : AugmentedFaceNode(augmentedFace) {
 
     private var faceNode  : Node?  = null
     var x = 0f
@@ -28,7 +33,7 @@ class MaskNode(augmentedFace: AugmentedFace, val context:Context) : AugmentedFac
         faceNode = Node()
         faceNode?.setParent(this)
         ModelRenderable.builder()
-            .setSource(context, Uri.parse("mask.sfb"))
+            .setSource(context, Uri.parse(model))
             .build()
             .thenAccept { modelRenderable ->
 
@@ -58,7 +63,7 @@ class MaskNode(augmentedFace: AugmentedFace, val context:Context) : AugmentedFac
         if (buffer != null) {
 
             return when (region) {
-               FaceRegions.CENTER_FACE->
+               FaceRegions.CENTER_FACE ->
                    Vector3(buffer.get(152 * 3),
                        buffer.get(152 * 3 + 1),
                        buffer.get(152 * 3 + 2))
@@ -74,9 +79,9 @@ class MaskNode(augmentedFace: AugmentedFace, val context:Context) : AugmentedFac
         augmentedFace.let {face ->
             getRegionPose(FaceRegions.CENTER_FACE).let {
                 if (it != null) {
-                    faceNode?.localPosition = Vector3(it.x, it.y-0.005f , it.z+0.017f )
+                    faceNode?.localPosition = Vector3(it.x+(localPosition!!.x), it.y+(localPosition!!.y) , it.z+(localPosition!!.z) )
                 }
-               faceNode?.localScale = Vector3(2f, 2f, 2f)
+               faceNode?.localScale = Vector3(localScale!!.x, localScale!!.y,localScale!!.z)
             }
 
         }

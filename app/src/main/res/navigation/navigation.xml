@@ -142,6 +142,9 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_makeUpTryOnFragment"
             app:destination="@id/makeUpTryOnFragment" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_masksTryOnFragment"
+            app:destination="@id/masksTryOnFragment" />
     </fragment>
     <fragment
         android:id="@+id/glassesTryOn"
@@ -171,6 +174,18 @@
         tools:layout="@layout/fragment_make_up_try_on" >
         <action
             android:id="@+id/action_makeUpTryOnFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="Product"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.Products" />
+    </fragment>
+    <fragment
+        android:id="@+id/masksTryOnFragment"
+        android:name="com.example.araccessories.ui.features.masksTryOn.MasksTryOnFragment"
+        android:label="fragment_masks_try_on"
+        tools:layout="@layout/fragment_masks_try_on" >
+        <action
+            android:id="@+id/action_masksTryOnFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
         <argument
             android:name="Product"

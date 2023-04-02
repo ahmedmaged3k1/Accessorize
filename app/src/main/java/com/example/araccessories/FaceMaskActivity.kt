@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.araccessories.ui.core.arSession.FaceArFragment
-import com.example.araccessories.ui.core.customfacenodes.MaskNode
+import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
@@ -72,7 +72,7 @@ class FaceMaskActivity : AppCompatActivity() {
                     sceneView.session!!.configure(config)
                     for (augmentedFace in it) {
                         if (!faceNodeMap.containsKey(augmentedFace)) {
-                            val faceNode = MaskNode(augmentedFace,this)
+                            val faceNode = MaskNode(augmentedFace,this,"mask.sfb",null,null)
 
                             faceNode.setParent(scene)
 

@@ -94,6 +94,16 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
                 binding.root.findNavController()
                     .navigate(action)
             }
+            else   if (args.product.categoryId==4)
+            {
+                val action =
+                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToMasksTryOnFragment(
+                        args.product
+                    )
+
+                binding.root.findNavController()
+                    .navigate(action)
+            }
 
 
 
