@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashFragment_to_welcomeFragment"
             app:destination="@id/welcomeFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_onBoardingFragment"
+            app:destination="@id/onBoardingFragment" />
     </fragment>
     <fragment
         android:id="@+id/onBoardingFragment"

@@ -31,13 +31,7 @@
         <activity
             android:name=".ui.core.utilities.FaceMaskActivity"
             android:exported="true" />
-        <activity
-            android:name=".ui.features.augmentedImage.AugmentedImageActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".ui.core.utilities.MainActivity"
             android:windowSoftInputMode="adjustPan"

@@ -23,7 +23,7 @@ class SplashFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
 
-            view?.findNavController()?.navigate(R.id.action_splashFragment_to_welcomeFragment)
+            view?.findNavController()?.navigate(R.id.action_splashFragment_to_onBoardingFragment)
         }, 4500)
         return binding.root
     }

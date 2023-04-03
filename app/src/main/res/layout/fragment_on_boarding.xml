@@ -48,6 +48,7 @@
         android:layout_marginBottom="36dp"
         android:background="@drawable/btn_sign_in_rounded_corners"
         android:text="@string/skip"
+
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nextButton"
@@ -55,6 +56,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager"
         app:layout_constraintVertical_bias="1.0">
+
+    </androidx.appcompat.widget.AppCompatButton>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="210dp"
+        android:layout_height="53dp"
+        android:id="@+id/getStartedButton"
+        android:background="@drawable/btn_sign_in_rounded_corners"
+        android:backgroundTint="@color/red"
+        android:text="@string/get_started"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager">
 
     </androidx.appcompat.widget.AppCompatButton>
 
