@@ -26,6 +26,7 @@ class OnBoardingFragment : Fragment() {
         nextButton()
         onBoardFinished()
         getStartedButton()
+        pointsUpdate()
         return binding.root
     }
     private fun getStartedButton(){
@@ -43,6 +44,31 @@ class OnBoardingFragment : Fragment() {
         binding.nextButton.setOnClickListener {
             binding.onBoardingViewPager.setCurrentItem(binding.onBoardingViewPager.currentItem+1,true)
         }
+    }
+    private fun pointsUpdate(){
+        binding.onBoardingViewPager.registerOnPageChangeCallback(object :OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if (position==0){
+                    binding.point1.setImageResource(R.drawable.point2)
+                    binding.point2.setImageResource(R.drawable.point1)
+                    binding.point3.setImageResource(R.drawable.point1)
+
+                }
+                else if (position==1){
+                    binding.point1.setImageResource(R.drawable.point1)
+                    binding.point2.setImageResource(R.drawable.point2)
+                    binding.point3.setImageResource(R.drawable.point1)
+
+                }
+                if (position==2){
+                    binding.point1.setImageResource(R.drawable.point1)
+                    binding.point2.setImageResource(R.drawable.point1)
+                    binding.point3.setImageResource(R.drawable.point2)
+
+                }
+            }
+        })
     }
     private fun onBoardFinished(){
         binding.onBoardingViewPager.registerOnPageChangeCallback(object :OnPageChangeCallback(){

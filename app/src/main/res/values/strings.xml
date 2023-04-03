@@ -67,4 +67,8 @@
     <string name="add_to_cart">Add To Cart</string>
     <string name="try_on">Try On</string>
     <string name="discover_a_new_you">Discover a new you !</string>
+    <string name="welcome_back">Welcome Back !</string>
+    <string name="glad_to_see_you">Glad to see you</string>
+    <string name="login">Login</string>
+    <string name="forgot_your_password">Forgot your password?</string>
 </resources>

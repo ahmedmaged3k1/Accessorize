@@ -4,52 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f7f5f3"
     tools:context=".ui.features.splashScreen.SplashFragment">
 
-    <TextView
-        style="@style/titles"
-        android:layout_width="374dp"
-        android:layout_height="75dp"
-        android:layout_marginTop="80dp"
-        android:text="@string/App_Name"
 
-
-        app:layout_constraintBottom_toTopOf="@+id/lottieAnimation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.432"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-    </TextView>
-
-    <com.airbnb.lottie.LottieAnimationView
+    <pl.droidsonroids.gif.GifImageView
         android:id="@+id/lottieAnimation"
         android:layout_width="match_parent"
-        android:layout_height="437dp"
-        android:layout_marginBottom="112dp"
+        android:layout_height="match_parent"
         android:elevation="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/accessorize"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/e_commerce">
+        app:layout_constraintTop_toTopOf="parent">
 
-    </com.airbnb.lottie.LottieAnimationView>
-
-    <ProgressBar
-        android:layout_width="94dp"
-
-        android:layout_height="74dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lottieAnimation">
-
-    </ProgressBar>
+    </pl.droidsonroids.gif.GifImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

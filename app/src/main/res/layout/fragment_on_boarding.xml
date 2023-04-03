@@ -2,25 +2,23 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.features.onBoarding.OnBoardingFragment">
 
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onBoardingViewPager"
         android:layout_width="match_parent"
-        android:layout_height="592dp"
+        android:layout_height="574dp"
         android:layout_marginTop="4dp"
-        android:layout_marginBottom="31dp"
         android:elevation="20sp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.viewpager2.widget.ViewPager2>
 
@@ -60,9 +58,9 @@
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="210dp"
-        android:layout_height="53dp"
         android:id="@+id/getStartedButton"
+        android:layout_width="222dp"
+        android:layout_height="65dp"
         android:background="@drawable/btn_sign_in_rounded_corners"
         android:backgroundTint="@color/red"
         android:text="@string/get_started"
@@ -70,10 +68,50 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager">
+        app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager"
+        app:layout_constraintVertical_bias="0.602">
 
     </androidx.appcompat.widget.AppCompatButton>
+
+    <ImageView
+        android:id="@+id/point3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="111dp"
+        android:src="@drawable/point1"
+        app:layout_constraintBottom_toTopOf="@+id/nextButton"
+        app:layout_constraintEnd_toEndOf="@+id/nextButton"
+        app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager"
+        app:layout_constraintVertical_bias="0.5">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/point1"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="66dp"
+        android:src="@drawable/point1"
+        app:layout_constraintBottom_toTopOf="@+id/skipButton"
+        app:layout_constraintStart_toStartOf="@+id/skipButton"
+        app:layout_constraintTop_toBottomOf="@+id/onBoardingViewPager"
+        app:layout_constraintVertical_bias="0.5">
+
+    </ImageView>
+
+    <ImageView
+        android:id="@+id/point2"
+        android:layout_width="50dp"
+        android:layout_height="10dp"
+        android:src="@drawable/point2"
+        app:layout_constraintEnd_toStartOf="@+id/point3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/point1"
+        tools:layout_editor_absoluteY="601dp">
+
+    </ImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
