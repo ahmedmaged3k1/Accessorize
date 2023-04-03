@@ -86,8 +86,12 @@ class HomeFragment : Fragment() {
             Products("hat.sfb","Hat",listOf(R.drawable.h1,R.drawable.h2,R.drawable.h3,R.drawable.h4),450.0,3.0,2,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
             Products("2","Red Rouge",listOf(R.drawable.makeup,R.drawable.makeup),450.0,3.0,3,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
             Products("2","Purple Rouge",listOf(R.drawable.makeup2,R.drawable.makeup2),450.0,3.0,3,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
+            Products("mask.sfb","Mask",listOf(R.drawable.makeup,R.drawable.makeup),450.0,3.0,4,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(2f, 2f, 2f), Position(0f, -0.005f, 0.017f)),
+            Products("clownMask.sfb","Clown Mask",listOf(R.drawable.cm1,R.drawable.cm2,R.drawable.cm3),450.0,3.0,4,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(6f, 6f, 6f), Position(0f, -0.005f, 0.017f)),
+            Products("maskamirat.sfb","Clown Mask",listOf(R.drawable.cm1,R.drawable.cm2,R.drawable.cm3),450.0,3.0,4,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(7f, 7f, 7f), Position(0f, +0.075f, 0.012f))
 
-            Products("mask.sfb","Mask",listOf(R.drawable.makeup,R.drawable.makeup),450.0,3.0,4,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(2f, 2f, 2f), Position(0f, -0.005f, 0.017f))
+
+
 
 
 

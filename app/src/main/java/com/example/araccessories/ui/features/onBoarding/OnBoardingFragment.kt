@@ -24,25 +24,28 @@ class OnBoardingFragment : Fragment() {
         return binding.root
     }
     private fun getStartedButton(){
+        binding.skipButton.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_onBoardingFragment_to_signInFragment)
 
+        }
     }
 
     private fun setOnboardingItems() {
         val onboardingItems: List<OnboardingItem> = listOf(
             OnboardingItem(
-                onBoardingImage = R.drawable.onboarding1,
+                onBoardingImage = R.drawable.onboarding2,
                 "Your New Stylist,",
 
             ),
             OnboardingItem(
-                onBoardingImage = R.drawable.onboarding2,
+                onBoardingImage = R.drawable.onboarding3,
                 "Your Best Friend,",
 
             ),
 
 
             OnboardingItem(
-                onBoardingImage = R.drawable.onboarding3,
+                onBoardingImage = R.drawable.onboarding1,
                 "Discover a new you!",
 
             )

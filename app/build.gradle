@@ -70,6 +70,7 @@ dependencies {
 
     // Provides ArFragment, and other UX resources.
     implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.17.1'
+
     //sceneform assetes
     implementation 'com.google.ar.sceneform:assets:1.10.0'
 
@@ -185,3 +186,12 @@ sceneform.asset('sampledata/yellow_sunglasses.fbx',
         'default',
         'sampledata/yellow_sunglasses.sfa',
         'src/main/assets/yellow_sunglasses')
+
+sceneform.asset('sampledata/clownMask.glb',
+        'default',
+        'sampledata/clownMask.sfa',
+        'src/main/assets/clownMask')
+sceneform.asset('sampledata/maskamirat.fbx',
+        'default',
+        'sampledata/maskamirat.sfa',
+        'src/main/assets/maskamirat')
