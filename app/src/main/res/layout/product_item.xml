@@ -22,22 +22,25 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+
             <ImageView
                 android:id="@+id/productImage"
                 android:layout_width="105dp"
                 android:layout_height="match_parent"
-                android:elevation="20dp"
-                android:scaleType="fitXY"
                 android:background="@drawable/product_item_image_shape"
                 android:contentDescription="@string/productImage"
+                android:elevation="20dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/fox_face_mesh_texture"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0">
 
             </ImageView>
-
 
             <TextView
                 android:id="@+id/productName"

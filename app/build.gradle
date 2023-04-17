@@ -103,6 +103,10 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
     //GIF
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.19'
+    // tensorflow dependencies
+    implementation 'org.tensorflow:tensorflow-lite:2.6.0'
+    implementation 'org.tensorflow:tensorflow-lite-gpu:2.6.0'
+
 
 }
 apply plugin: 'com.google.ar.sceneform.plugin'

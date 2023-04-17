@@ -24,7 +24,7 @@ class SplashFragment : Fragment() {
         handler.postDelayed({
 
             view?.findNavController()?.navigate(R.id.action_splashFragment_to_onBoardingFragment)
-        }, 4500)
+        }, 2300)
         return binding.root
     }
 
