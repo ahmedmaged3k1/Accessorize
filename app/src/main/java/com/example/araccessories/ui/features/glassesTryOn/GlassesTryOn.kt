@@ -84,7 +84,9 @@ class GlassesTryOn :Fragment()   {
             node.select()
         }
     }
+
     private fun initializeScene() {
+
         val sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         val scene = sceneView.scene
@@ -104,54 +106,23 @@ class GlassesTryOn :Fragment()   {
                         for (face in it) {
                             if (!faceNodeMap.containsKey(face)) {
                                 val faceNode = AugmentedFaceNode(face)
+
+
                                 faceNode.setParent(scene)
                                 face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
+                               //faceRegionsRenderable=args.product.productModel
 
-                                // Set the 3D model as a child of the face node
-                                val modelNode = Node()
-                                modelNode.setParent(faceNode)
-                                modelNode.renderable = faceRegionsRenderable
-
-                                // Add a gesture listener to the model node
-                                modelNode.setOnTapListener { _, _ ->
-                                    // Handle tap on the model
-                                    // For example, display information about the model
-                                }
-                                modelNode.setOnTouchListener(object : Node.OnTouchListener {
-                                    var previousX = 0f
-                                    var previousY = 0f
-
-                                    override fun onTouch(
-                                        hitTestResult: HitTestResult?,
-                                        event: MotionEvent?
-                                    ): Boolean {
-                                        when (event?.action) {
-                                            MotionEvent.ACTION_DOWN -> {
-                                                previousX = event.x
-                                                previousY = event.y
-                                            }
-                                            MotionEvent.ACTION_MOVE -> {
-                                                val dx = event.x - previousX
-                                                val dy = event.y - previousY
-                                                previousX = event.x
-                                                previousY = event.y
-                                                // Translate the model
-                                                modelNode.localPosition =
-                                                    Vector3(
-                                                        modelNode.localPosition.x + dx / 200f,
-                                                        modelNode.localPosition.y - dy / 200f,
-                                                        modelNode.localPosition.z
-                                                    )
-                                                // Rotate the model
-                                                modelNode.localRotation =
-                                                    Quaternion.axisAngle(Vector3(0f, 1f, 0f), dx)
-                                            }
-                                        }
-                                        return true
-                                    }
-                                })
-
+                                faceNode.faceRegionsRenderable = faceRegionsRenderable
                                 faceNodeMap[face] = faceNode
+                                faceNode.setOnTouchListener { hitTestResult, event ->
+
+                                        arFragment.transformationSystem.selectNode(faceNode as BaseTransformableNode)
+                                        Toast.makeText(context, "This is a toast message", Toast.LENGTH_SHORT).show()
+
+                                    
+                                    false
+                                }
+
                             }
                         }
 
@@ -170,54 +141,6 @@ class GlassesTryOn :Fragment()   {
             }
         }
     }
-
-
-
-    /*private fun initializeScene() {
-
-        val sceneView = arFragment.arSceneView
-        sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
-        val scene = sceneView.scene
-        scene.addOnUpdateListener {
-            if (faceRegionsRenderable != null) {
-                sceneView.session
-                    ?.getAllTrackables(AugmentedFace::class.java)?.let {
-                        val config: Config = sceneView.session!!.getConfig()
-                        isDepthSupported =
-                            sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
-                        if (isDepthSupported) {
-                            config.setDepthMode(Config.DepthMode.AUTOMATIC)
-                        } else {
-                            config.setDepthMode(Config.DepthMode.DISABLED)
-                        }
-                        sceneView.session!!.configure(config)
-                        for (face in it) {
-                            if (!faceNodeMap.containsKey(face)) {
-                                val faceNode = AugmentedFaceNode(face)
-                                faceNode.setParent(scene)
-                                face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
-                               //faceRegionsRenderable=args.product.productModel
-
-                                faceNode.faceRegionsRenderable = faceRegionsRenderable
-                                faceNodeMap[face] = faceNode
-                            }
-                        }
-
-                        // Remove any AugmentedFaceNodes associated with an AugmentedFace that stopped tracking.
-                        val iter = faceNodeMap.entries.iterator()
-                        while (iter.hasNext()) {
-                            val entry = iter.next()
-                            val face = entry.key
-                            if (face.trackingState == TrackingState.STOPPED) {
-                                val faceNode = entry.value
-                                faceNode.setParent(null)
-                                iter.remove()
-                            }
-                        }
-                    }
-            }
-        }
-    }*/
 
     private fun faceDetectionAndTryOn() {
 

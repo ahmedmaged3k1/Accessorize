@@ -72,11 +72,11 @@ class HomeFragment : Fragment() {
     }
     private fun initializeCategories(){
         categoryList = listOf(
-            Category("Glasses"),
-                    Category("Masks"),
-            Category("Makeup"),
-            Category("Hats"),
-            Category("Earings")
+            Category("Glasses",1),
+                    Category("Masks",2),
+            Category("Makeup",3),
+            Category("Hats",4),
+            Category("Earings",5)
         )
     }
     private fun initializeProducts(){

@@ -18,5 +18,7 @@ data class Products(
     var productModel: @RawValue ModelRenderable? =null,
     var productDescription: String,
     var localScale: @RawValue Scale?,
-    var localPosition:@RawValue Position?
+    var localPosition:@RawValue Position?,
+    var productCategory: String = "",
+    var triedProduct : Boolean = false
     ):Parcelable
