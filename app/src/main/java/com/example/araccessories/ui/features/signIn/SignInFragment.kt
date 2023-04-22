@@ -26,14 +26,12 @@ class SignInFragment : Fragment() {
 
         validateLogin()
         signUpButton()
-        setEmailFieldFocus()
-        setPasswordFieldFocus()
         return binding.root
     }
 
     private fun validateLogin() {
         binding.signIn.setOnClickListener {
-            if (emailSignIn.text.toString() == "" || passwordSignIn.text.toString() == "") {
+            if (emailSignUp.text.toString() == "" || nameSignUp.text.toString() == "") {
                 Toast.makeText(requireContext(), "Fill All Fields ", Toast.LENGTH_LONG).show()
             }
             else {
@@ -50,37 +48,6 @@ class SignInFragment : Fragment() {
 
     }
 
-    private fun setEmailFieldFocus() {
-        binding.emailSignIn.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(emailSignIn.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.black)
-                )
-            } else {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(emailSignIn.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.grey)
-                )
-            }
-        }
-    }
 
-    private fun setPasswordFieldFocus() {
-        binding.passwordSignIn.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(passwordSignIn.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.black)
-                )
-            } else {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(passwordSignIn.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.grey)
-                )
-            }
-        }
-
-    }
 
 }

@@ -23,64 +23,15 @@ class SignUpFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        fillProfileButton()
-        signInButton()
-        setEmailFieldFocus()
-        setPasswordFieldFocus()
+        login()
         return binding.root
     }
-    private fun signInButton() {
-
-        binding.tvSignIn.setOnClickListener {
+    private  fun login(){
+        binding.tvSignUp.setOnClickListener {
             view?.findNavController()?.navigate(R.id.action_signUpFragment_to_signInFragment)
-        }
 
-    }
-
-    private fun validateLogin(){
-        binding.signUp.setOnClickListener{
-            if(emailSignIn.text.toString() == "" || passwordSignIn.text.toString() == ""){
-                Toast.makeText(requireContext(),"Fill All Fields ", Toast.LENGTH_LONG).show()
-                return@setOnClickListener
-            }}
-    }
-    private fun fillProfileButton(){
-        validateLogin()
-        binding.signUp.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.action_signUpFragment_to_fillProfileFragment)
-        }
-
-    }
-
-    private fun setEmailFieldFocus(){
-        binding.emailSignUp.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(emailSignUp.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.black)
-                )
-            } else {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(emailSignUp.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.grey)
-                )
-            }
         }
     }
-    private fun setPasswordFieldFocus(){
-        binding.passwordSignUp.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(passwordSignUp.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.black)
-                )
-            } else {
-                DrawableCompat.setTint(
-                    DrawableCompat.wrap(passwordSignUp.compoundDrawables[0]),
-                    ContextCompat.getColor(requireContext(), R.color.grey)
-                )
-            }
-        }
 
-    }
+
 }

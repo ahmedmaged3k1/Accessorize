@@ -71,4 +71,6 @@
     <string name="glad_to_see_you">Glad to see you</string>
     <string name="login">Login</string>
     <string name="forgot_your_password">Forgot your password?</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="or_sign_up_with_social_account">Or Sign Up with social account</string>
 </resources>
