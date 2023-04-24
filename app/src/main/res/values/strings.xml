@@ -73,4 +73,11 @@
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="phone_number">Phone Number</string>
     <string name="or_sign_up_with_social_account">Or Sign Up with social account</string>
+    <string name="remove">Remove</string>
+    <string name="delete_item">Delete Item</string>
+    <string name="decrease_quantity">Decrease Quantity</string>
+    <string name="my_cart">My Cart</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="_1050_egp">1050 EGP</string>
+    <string name="checkout">CHECKOUT</string>
 </resources>
