@@ -7,12 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentMainNavigationBinding
-import com.example.araccessories.databinding.FragmentSplashBinding
 import com.example.araccessories.ui.features.cartFragment.CartFragment
 import com.example.araccessories.ui.features.favouriteFragment.FavouriteFragment
 import com.example.araccessories.ui.features.homeFragment.HomeFragment
 import com.example.araccessories.ui.features.profleFragment.ProfileFragment
-import com.example.araccessories.ui.features.searchFragment.SearchFragment
+import com.example.araccessories.ui.features.historyFragment.HistoryFragment
 
 
 class MainNavigation : Fragment() {
@@ -41,8 +40,8 @@ class MainNavigation : Fragment() {
                     replaceFragment(CartFragment())
                     true
                 }
-                R.id.search->{
-                    replaceFragment(SearchFragment())
+                R.id.history->{
+                    replaceFragment(HistoryFragment())
                     true
                 }
                 R.id.fav->{

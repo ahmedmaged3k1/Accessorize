@@ -116,7 +116,7 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.example.araccessories.ui.features.searchFragment.SearchFragment"
+        android:name="com.example.araccessories.ui.features.historyFragment.HistoryFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment

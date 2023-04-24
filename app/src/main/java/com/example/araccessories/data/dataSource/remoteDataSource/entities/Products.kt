@@ -20,5 +20,6 @@ data class Products(
     var localScale: @RawValue Scale?,
     var localPosition:@RawValue Position?,
     var productCategory: String = "",
-    var triedProduct : Boolean = false
+    var triedProduct : Boolean = false,
+    var productCount : Int =1
     ):Parcelable

@@ -91,12 +91,6 @@ class HomeFragment : Fragment() {
             Products("maskamirat.sfb","Queen Mask",listOf(R.drawable.queen1,R.drawable.queen2,R.drawable.queen3),450.0,3.0,4,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(7f, 7f, 7f), Position(0f, +0.075f, 0.012f)),
             Products("2","Fox Make Up",listOf(R.drawable.fox_face_mesh_texture,R.drawable.fox_face_mesh_texture,R.drawable.fox_face_mesh_texture),450.0,3.0,3,0,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
 
-
-
-
-
-
-
             )
 
 

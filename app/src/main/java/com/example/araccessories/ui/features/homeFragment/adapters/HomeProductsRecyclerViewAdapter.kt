@@ -51,7 +51,7 @@ class ProductsRecyclerViewAdapter :
                     }
                 }
                 binding.productPrice.text = "${product.productPrice} Egp"
-                binding.productImage.setImageResource(product.productImage[0])
+               // binding.productImage.setImageResource(product.productImage[0])
                 binding.productRate.numStars=product.productRate.toInt()
 
                 binding.root.product_item.setOnClickListener {

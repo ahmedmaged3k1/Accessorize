@@ -16,7 +16,7 @@
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/cartRecyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.068"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
     </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/cartRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="435dp"
         android:layout_marginBottom="28dp"
@@ -59,13 +59,14 @@
 
 
     <TextView
+        android:id="@+id/orderTotal"
         style="@style/productTitles"
         android:layout_width="95dp"
         android:layout_height="27dp"
         android:layout_marginStart="176dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="@string/_1050_egp"
+        android:text="@string/_1975_egp"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/signIn"
         app:layout_constraintEnd_toEndOf="parent"

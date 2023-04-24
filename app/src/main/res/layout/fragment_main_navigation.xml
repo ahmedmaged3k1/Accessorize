@@ -24,7 +24,6 @@
         android:background="@color/navigationBar"
         app:itemTextColor="@drawable/item_selector"
         app:itemIconTint="@drawable/item_selector"
-
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
