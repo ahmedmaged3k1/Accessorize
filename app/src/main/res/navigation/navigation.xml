@@ -169,6 +169,9 @@
         <argument
             android:name="Product"
             app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.Products" />
+        <action
+            android:id="@+id/action_hatsTryOnFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/makeUpTryOnFragment"

@@ -4,7 +4,7 @@
     package="com.example.araccessories">
 
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:name="com.google.ar.core.depth" />
     <!--
  This tag indicates that this application requires ARCore. This results in the application
@@ -14,7 +14,9 @@
         android:name="android.hardware.camera.ar"
         android:required="true" />
 
+
     <application
+        android:name=".di.MyApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
