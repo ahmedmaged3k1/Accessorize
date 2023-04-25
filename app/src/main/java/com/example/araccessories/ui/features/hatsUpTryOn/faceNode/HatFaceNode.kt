@@ -17,33 +17,19 @@ import com.google.ar.sceneform.ux.AugmentedFaceNode
 class HatFaceNode(augmentedFace: AugmentedFace?,
                   val context: Context,
                   val localScale: Scale?,
-                  val localPosition: Position?,
+                  var  localPosition: Position?,
                   val model:String
 ): AugmentedFaceNode(augmentedFace) {
 
-    private var eyeNodeLeft: Node? = null
-    private var eyeNodeRight: Node? = null
-
     private var headNode: Node? = null
-
-
-
     companion object {
         enum class FaceRegion {
-            LEFT_EYE,
-            RIGHT_EYE,
             Head
         }
     }
 
     override fun onActivate() {
         super.onActivate()
-        eyeNodeLeft = Node()
-        eyeNodeLeft?.setParent(this)
-
-        eyeNodeRight = Node()
-        eyeNodeRight?.setParent(this)
-
         headNode = Node()
         headNode?.setParent(this)
 
@@ -73,10 +59,6 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
         if (buffer != null) {
 
             return when (region) {
-                FaceRegion.LEFT_EYE ->
-                    Vector3(buffer.get(374 * 3),buffer.get(374 * 3 + 1),  buffer.get(374 * 3 + 2))
-                FaceRegion.RIGHT_EYE ->
-                    Vector3(buffer.get(145 * 3),buffer.get(145 * 3 + 1),  buffer.get(145 * 3 + 2))
                 FaceRegion.Head ->
                     Vector3(buffer.get(10 * 3),
                         buffer.get(10 * 3 + 1),
@@ -90,19 +72,7 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
 
     override fun onUpdate(frameTime: FrameTime?) {
         super.onUpdate(frameTime)
-        augmentedFace?.let {face ->
-            getRegionPose(FaceRegion.LEFT_EYE)?.let {
-                eyeNodeLeft?.localPosition = Vector3(it.x, it.y - 0.035f, it.z + 0.015f)
-                eyeNodeLeft?.localScale = Vector3(0.055f, 0.055f, 0.055f)
-                eyeNodeLeft?.localRotation = Quaternion.axisAngle(Vector3(0.0f, 0.0f, 1.0f), -10f)
-            }
-
-            getRegionPose(FaceRegion.RIGHT_EYE)?.let {
-                eyeNodeRight?.localPosition = Vector3(it.x, it.y - 0.035f, it.z + 0.015f)
-                eyeNodeRight?.localScale = Vector3(0.055f, 0.055f, 0.055f)
-                eyeNodeRight?.localRotation = Quaternion.axisAngle(Vector3(0.0f, 0.0f, 1.0f), 10f)
-            }
-
+        augmentedFace?.let {
             getRegionPose(FaceRegion.Head)?.let {
                 headNode?.localScale = Vector3(localScale!!.x, localScale.y, localScale.z)
             }

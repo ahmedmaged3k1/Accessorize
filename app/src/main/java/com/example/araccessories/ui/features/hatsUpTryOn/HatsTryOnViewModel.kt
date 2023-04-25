@@ -1,15 +1,19 @@
-package com.example.araccessories.ui.features.glassesTryOn
+package com.example.araccessories.ui.features.hatsUpTryOn
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.util.Log
 import android.view.PixelCopy
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
 import com.example.araccessories.ui.features.glassesTryOn.FaceNode.GlassesFaceNode
 import com.example.araccessories.ui.features.hatsUpTryOn.faceNode.HatFaceNode
 import com.google.ar.core.AugmentedFace
@@ -23,19 +27,20 @@ import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.coroutines.launch
 
-class GlassesTryOnViewModel :ViewModel() {
+class HatsTryOnViewModel (): ViewModel()  {
     private var isDepthSupported = false
     private lateinit var sceneView: ArSceneView
     private lateinit var scene: Scene
     private lateinit var config: Config
 
+    var faceNodeMap = HashMap<AugmentedFace, HatFaceNode>()
     private var faceRegionsRenderable: ModelRenderable? = null
-    var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
-    private fun configureArSession(productModel : ModelRenderable? ,arFragment: ArFragment  ){
+
+    private fun configureArSession(productModel : ModelRenderable?, arFragment: ArFragment){
         sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         scene = sceneView.scene
-        faceRegionsRenderable=productModel
+       // faceRegionsRenderable=productModel
     }
     private fun enableDepth(){
         config = sceneView.session!!.config
@@ -49,31 +54,14 @@ class GlassesTryOnViewModel :ViewModel() {
         sceneView.session!!.configure(config)
 
     }
-     fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment) {
-        configureArSession(productModel, arFragment)
-        scene.addOnUpdateListener {
-            if (faceRegionsRenderable != null) {
-                sceneView.session
-                    ?.getAllTrackables(AugmentedFace::class.java)?.let {
-                        enableDepth()
-                        for (face in it) {
-                            if (!faceNodeMap.containsKey(face)) {
-                                attachModel(face)
-
-                            }
-                        }
-                        removeRedundantModels()
-                    }
-            }
-        }
-    }
-    private fun attachModel(face : AugmentedFace){
-        val faceNodeGlasses = GlassesFaceNode(face)
-        faceNodeGlasses.isActive
-        val faceNode = AugmentedFaceNode(face)
+    private fun attachModel(face : AugmentedFace, context: Context,localScale :Scale?,localPosition: Position?, productId : String){
+        val faceNode = HatFaceNode(face, context,
+            localScale,
+            localPosition,
+            productId
+        )
+        Log.d(TAG, "attachModel: $productId")
         faceNode.setParent(scene)
-        face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
-        faceNode.faceRegionsRenderable = faceRegionsRenderable
         faceNodeMap[face] = faceNode
     }
     private fun removeRedundantModels(){
@@ -89,7 +77,24 @@ class GlassesTryOnViewModel :ViewModel() {
             }
         }
     }
-     fun takeSnapShot(context : Context){
+    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment,context: Context,localScale :Scale?,localPosition: Position?, productId : String) {
+        configureArSession(productModel, arFragment)
+        scene.addOnUpdateListener {
+                sceneView.session
+                    ?.getAllTrackables(AugmentedFace::class.java)?.let {
+                        enableDepth()
+                        for (face in it) {
+                            if (!faceNodeMap.containsKey(face)) {
+                                attachModel(face,context, localScale,localPosition, productId)
+                            }
+                        }
+                        removeRedundantModels()
+                    }
+            }
+
+    }
+
+    fun takeSnapShot(context : Context){
         viewModelScope.launch {
             val width =  sceneView.width
             val height =  sceneView.height
@@ -116,8 +121,5 @@ class GlassesTryOnViewModel :ViewModel() {
 
 
     }
-
-
-
 
 }

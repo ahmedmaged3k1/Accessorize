@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.hatsUpTryOn
 
+import android.annotation.SuppressLint
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Bundle
@@ -8,10 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentHatsTryOnBinding
+import com.example.araccessories.ui.features.glassesTryOn.GlassesTryOnViewModel
 import com.example.araccessories.ui.features.hatsUpTryOn.faceNode.HatFaceNode
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
@@ -32,17 +36,25 @@ class HatsTryOnFragment : Fragment() {
 
     private var isDepthSupported = false
     var faceNodeMap = HashMap<AugmentedFace, HatFaceNode>()
+
+    private val viewModel: HatsTryOnViewModel by viewModels()
+
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
 
         val view =inflater.inflate(R.layout.fragment_hats_try_on, container, false)
         if (!checkIsSupportedDeviceOrFinish()) {
-            //navigate
-
+            view?.findNavController()?.navigate(R.id.action_hatsTryOnFragment_to_productDetailsFragment)
         }
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_hats) as? ArFragment ?: return view
-        initializeScene()
+
+
+            viewModel.tryOnProduct(args.product.productModel, arFragment,requireContext(), args.product.localScale,args.product.localPosition,args.product.productId)
+
+
+
 
         return  view
     }
@@ -105,7 +117,7 @@ class HatsTryOnFragment : Fragment() {
                 ?.deviceConfigurationInfo
                 ?.glEsVersion
 
-        openGlVersionString?.let { s ->
+        openGlVersionString?.let {
             if (java.lang.Double.parseDouble(openGlVersionString) < GlassesActivity.MIN_OPENGL_VERSION) {
                 Toast.makeText(
                     this.context,
