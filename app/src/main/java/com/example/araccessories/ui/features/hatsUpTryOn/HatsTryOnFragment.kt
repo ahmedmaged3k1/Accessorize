@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -26,20 +27,14 @@ import com.google.ar.sceneform.ux.ArFragment
 
 
 class HatsTryOnFragment : Fragment() {
-    private lateinit var binding: FragmentHatsTryOnBinding
+
     lateinit var arFragment: ArFragment
     private val args by navArgs<HatsTryOnFragmentArgs>()
-
-    companion object {
-        const val MIN_OPENGL_VERSION = 3.0
-    }
-
-    private var isDepthSupported = false
     var faceNodeMap = HashMap<AugmentedFace, HatFaceNode>()
-
+    private lateinit var captureShot: ImageButton
     private val viewModel: HatsTryOnViewModel by viewModels()
 
-    @SuppressLint("SuspiciousIndentation")
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
@@ -49,59 +44,12 @@ class HatsTryOnFragment : Fragment() {
             view?.findNavController()?.navigate(R.id.action_hatsTryOnFragment_to_productDetailsFragment)
         }
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_hats) as? ArFragment ?: return view
-
-
-            viewModel.tryOnProduct(args.product.productModel, arFragment,requireContext(), args.product.localScale,args.product.localPosition,args.product.productId)
-
-
-
+        viewModel.tryOnProduct(args.product.productModel, arFragment,requireContext(), args.product.localScale,args.product.localPosition,args.product.productId)
+        captureShot = view.findViewById(R.id.captureImageHats)
+        takeSnapShot()
 
         return  view
     }
-    private fun initializeScene(){
-
-        val sceneView = arFragment.arSceneView
-        sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
-        val scene = sceneView.scene
-
-
-        scene.addOnUpdateListener {
-            sceneView.session
-                ?.getAllTrackables(AugmentedFace::class.java)?.let {
-                    val config: Config = sceneView.session!!.config
-                    isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
-                    if (isDepthSupported) {
-                        config.setDepthMode(Config.DepthMode.AUTOMATIC)
-                    } else {
-                        config.setDepthMode(Config.DepthMode.DISABLED)
-                    }
-                    sceneView.session!!.configure(config)
-                    for (f in it) {
-                        if (!faceNodeMap.containsKey(f)) {
-                            val faceNode = HatFaceNode(f, this.requireActivity(),
-                               args.product.localScale,
-                                args.product.localPosition,
-                                args.product.productId
-                            )
-                            faceNode.setParent(scene)
-                            faceNodeMap[f] = faceNode
-                        }
-                    }
-                    // Remove any AugmentedFaceNodes associated with an AugmentedFace that stopped tracking.
-                    val iter = faceNodeMap.entries.iterator()
-                    while (iter.hasNext()) {
-                        val entry = iter.next()
-                        val face = entry.key
-                        if (face.trackingState == TrackingState.STOPPED) {
-                            val faceNode = entry.value
-                            faceNode.setParent(null)
-                            iter.remove()
-                        }
-                    }
-                }
-        }
-    }
-
 
     private fun checkIsSupportedDeviceOrFinish(): Boolean {
         if (ArCoreApk.getInstance()
@@ -131,6 +79,12 @@ class HatsTryOnFragment : Fragment() {
         }
         return true
     }
+    private fun takeSnapShot() {
+        captureShot.setOnClickListener {
+            viewModel.takeSnapShot(requireContext())
+        }
+    }
+
 
 
 }

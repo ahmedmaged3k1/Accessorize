@@ -38,7 +38,7 @@ class GlassesTryOn : Fragment() {
         arFragment =
             childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment
                 ?: return view
-        captureShot = view.findViewById(R.id.captureImage)
+        captureShot = view.findViewById(R.id.captureImageGlasses)
         viewModel.tryOnProduct(args.product.productModel, arFragment)
         takeSnapShot()
         return view
@@ -73,7 +73,6 @@ class GlassesTryOn : Fragment() {
         }
         return true
     }
-
 
     private fun takeSnapShot() {
         captureShot.setOnClickListener {

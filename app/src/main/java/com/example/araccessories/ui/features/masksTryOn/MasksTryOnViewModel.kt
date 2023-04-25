@@ -1,7 +1,6 @@
-package com.example.araccessories.ui.features.hatsUpTryOn
+package com.example.araccessories.ui.features.masksTryOn
 
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Handler
@@ -14,8 +13,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
-import com.example.araccessories.ui.features.glassesTryOn.FaceNode.GlassesFaceNode
 import com.example.araccessories.ui.features.hatsUpTryOn.faceNode.HatFaceNode
+import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
 import com.google.ar.core.TrackingState
@@ -24,23 +23,20 @@ import com.google.ar.sceneform.Scene
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
-import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.coroutines.launch
 
-class HatsTryOnViewModel (): ViewModel()  {
-    private var isDepthSupported = false
+class MasksTryOnViewModel : ViewModel() {
+    var faceNodeMap = HashMap<AugmentedFace, MaskNode>()
     private lateinit var sceneView: ArSceneView
     private lateinit var scene: Scene
     private lateinit var config: Config
-
-    var faceNodeMap = HashMap<AugmentedFace, HatFaceNode>()
-    private var faceRegionsRenderable: ModelRenderable? = null
+    private var isDepthSupported = false
 
     private fun configureArSession(productModel : ModelRenderable?, arFragment: ArFragment){
         sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         scene = sceneView.scene
-       // faceRegionsRenderable=productModel
+        // faceRegionsRenderable=productModel
     }
     private fun enableDepth(){
         config = sceneView.session!!.config
@@ -54,13 +50,13 @@ class HatsTryOnViewModel (): ViewModel()  {
         sceneView.session!!.configure(config)
 
     }
-    private fun attachModel(face : AugmentedFace, context: Context,localScale :Scale?,localPosition: Position?, productId : String){
-        val faceNode = HatFaceNode(face, context,
+    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String){
+        val faceNode = MaskNode(face, context,
+            productId,
             localScale,
-            localPosition,
-            productId
+            localPosition
         )
-        Log.d(TAG, "attachModel: $productId")
+        Log.d(ContentValues.TAG, "attachModel: $productId")
         faceNode.setParent(scene)
         faceNodeMap[face] = faceNode
     }
@@ -80,20 +76,18 @@ class HatsTryOnViewModel (): ViewModel()  {
     fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment,context: Context,localScale :Scale?,localPosition: Position?, productId : String) {
         configureArSession(productModel, arFragment)
         scene.addOnUpdateListener {
-                sceneView.session
-                    ?.getAllTrackables(AugmentedFace::class.java)?.let {
-                        enableDepth()
-                        for (face in it) {
-                            if (!faceNodeMap.containsKey(face)) {
-                                attachModel(face,context, localScale,localPosition, productId)
-                            }
+            sceneView.session
+                ?.getAllTrackables(AugmentedFace::class.java)?.let {
+                    enableDepth()
+                    for (face in it) {
+                        if (!faceNodeMap.containsKey(face)) {
+                            attachModel(face,context, localScale,localPosition, productId)
                         }
-                        removeRedundantModels()
                     }
-            }
-
+                    removeRedundantModels()
+                }
+        }
     }
-
     fun takeSnapShot(context : Context){
         viewModelScope.launch {
             val width =  sceneView.width

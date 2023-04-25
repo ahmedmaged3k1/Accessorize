@@ -7,10 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.example.araccessories.R
+import com.example.araccessories.ui.features.hatsUpTryOn.HatsTryOnViewModel
 import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
@@ -26,6 +30,8 @@ class MasksTryOnFragment : Fragment() {
     private var isDepthSupported = false
     private val args by navArgs<MasksTryOnFragmentArgs>()
     lateinit var arFragment: ArFragment
+    private lateinit var captureShot: ImageButton
+    private val viewModel: MasksTryOnViewModel by viewModels()
 
 
     override fun onCreateView(
@@ -35,13 +41,15 @@ class MasksTryOnFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_masks_try_on, container, false)
         if (!checkIsSupportedDeviceOrFinish()) {
-            //navigate
-
+            view?.findNavController()?.navigate(R.id.action_masksTryOnFragment_to_productDetailsFragment)
         }
 
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_masks) as? ArFragment
             ?: return view
-        initializeScene()
+      //  initializeScene()
+        viewModel.tryOnProduct(args.product.productModel, arFragment,requireContext(), args.product.localScale,args.product.localPosition,args.product.productId)
+        captureShot = view.findViewById(R.id.captureImageMasks)
+        takeSnapShot()
         return view
     }
 
@@ -64,9 +72,7 @@ class MasksTryOnFragment : Fragment() {
                     for (augmentedFace in it) {
                         if (!faceNodeMap.containsKey(augmentedFace)) {
                             val faceNode = MaskNode(augmentedFace,this.requireActivity(),args.product.productId,args.product.localScale,args.product.localPosition)
-
                             faceNode.setParent(scene)
-
                             faceNodeMap[augmentedFace] = faceNode
 
 
@@ -114,6 +120,11 @@ class MasksTryOnFragment : Fragment() {
             }
         }
         return true
+    }
+    private fun takeSnapShot() {
+        captureShot.setOnClickListener {
+            viewModel.takeSnapShot(requireContext())
+        }
     }
 
 }
