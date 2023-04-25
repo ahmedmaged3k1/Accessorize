@@ -3,24 +3,20 @@ package com.example.araccessories.ui.features.masksTryOn
 import android.app.ActivityManager
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.example.araccessories.R
-import com.example.araccessories.ui.features.hatsUpTryOn.HatsTryOnViewModel
+import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
-import com.google.ar.core.Config
-import com.google.ar.core.TrackingState
-import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.rendering.Texture
 import com.google.ar.sceneform.ux.ArFragment
 
@@ -41,57 +37,26 @@ class MasksTryOnFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_masks_try_on, container, false)
         if (!checkIsSupportedDeviceOrFinish()) {
-            view?.findNavController()?.navigate(R.id.action_masksTryOnFragment_to_productDetailsFragment)
+            view?.findNavController()
+                ?.navigate(R.id.action_masksTryOnFragment_to_productDetailsFragment)
         }
 
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_masks) as? ArFragment
             ?: return view
-      //  initializeScene()
-        viewModel.tryOnProduct(args.product.productModel, arFragment,requireContext(), args.product.localScale,args.product.localPosition,args.product.productId)
+        //  initializeScene()
+        viewModel.tryOnProduct(
+            args.product.productModel,
+            arFragment,
+            requireContext(),
+            args.product.localScale,
+            args.product.localPosition,
+            args.product.productId
+        )
         captureShot = view.findViewById(R.id.captureImageMasks)
         takeSnapShot()
         return view
     }
 
-    private fun initializeScene() {
-        val sceneView = arFragment.arSceneView
-        sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
-        val scene = sceneView.scene
-        scene.addOnUpdateListener{
-            sceneView.session
-                ?.getAllTrackables(AugmentedFace::class.java)?.let {
-                    val config: Config = sceneView.session!!.config
-                    config.augmentedFaceMode= Config.AugmentedFaceMode.MESH3D
-                    isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
-                    if (isDepthSupported) {
-                        config.setDepthMode(Config.DepthMode.AUTOMATIC)
-                    } else {
-                        config.setDepthMode(Config.DepthMode.DISABLED)
-                    }
-                    sceneView.session!!.configure(config)
-                    for (augmentedFace in it) {
-                        if (!faceNodeMap.containsKey(augmentedFace)) {
-                            val faceNode = MaskNode(augmentedFace,this.requireActivity(),args.product.productId,args.product.localScale,args.product.localPosition)
-                            faceNode.setParent(scene)
-                            faceNodeMap[augmentedFace] = faceNode
-
-
-                        }
-                    }
-                    // Remove any AugmentedFaceNodes associated with an AugmentedFace that stopped tracking.
-                    val iter = faceNodeMap.entries.iterator()
-                    while (iter.hasNext()) {
-                        val entry = iter.next()
-                        val face = entry.key
-                        if (face.trackingState == TrackingState.STOPPED) {
-                            val faceNode = entry.value
-                            faceNode.setParent(null)
-                            iter.remove()
-                        }
-                    }
-                }
-        }
-    }
 
     private fun checkIsSupportedDeviceOrFinish(): Boolean {
         if (ArCoreApk.getInstance()
@@ -107,7 +72,7 @@ class MasksTryOnFragment : Fragment() {
                 ?.deviceConfigurationInfo
                 ?.glEsVersion
 
-        openGlVersionString?.let { s ->
+        openGlVersionString?.let {
             if (java.lang.Double.parseDouble(openGlVersionString) < GlassesActivity.MIN_OPENGL_VERSION) {
                 Toast.makeText(
                     this.context,
@@ -121,6 +86,7 @@ class MasksTryOnFragment : Fragment() {
         }
         return true
     }
+
     private fun takeSnapShot() {
         captureShot.setOnClickListener {
             viewModel.takeSnapShot(requireContext())

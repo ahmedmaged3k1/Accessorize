@@ -78,8 +78,6 @@ class GlassesTryOn : Fragment() {
         captureShot.setOnClickListener {
             viewModel.takeSnapShot(requireContext())
         }
-
-
     }
 
 

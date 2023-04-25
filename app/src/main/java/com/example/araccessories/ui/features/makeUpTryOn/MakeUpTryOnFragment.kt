@@ -7,10 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.example.araccessories.R
+import com.example.araccessories.ui.features.glassesTryOn.GlassesTryOnViewModel
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.TrackingState
@@ -24,24 +28,26 @@ class MakeUpTryOnFragment : Fragment() {
     private var faceMeshTexture: Texture? = null
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private val args by navArgs<MakeUpTryOnFragmentArgs>()
-
+    private val viewModel: MakeUpTryOnViewModel by viewModels()
+    private lateinit var captureShot: ImageButton
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_make_up_try_on, container, false)
-
         if (!checkIsSupportedDeviceOrFinish()) {
             //navigate
-
+            view?.findNavController()?.navigate(R.id.action_makeUpTryOnFragment_to_productDetailsFragment)
         }
-
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_makeUp) as? ArFragment
             ?: return view
 
-        initializeScene()
+        captureShot = view.findViewById(R.id.captureImageMakeUp)
 
+        viewModel.tryOnProduct(args.product.productModel, arFragment,requireContext(),args.product.productImage[0])
+        takeSnapShot()
+        //initializeScene()
         return view
     }
     private  fun initializeScene(){
@@ -108,5 +114,10 @@ class MakeUpTryOnFragment : Fragment() {
             }
         }
         return true
+    }
+    private fun takeSnapShot() {
+        captureShot.setOnClickListener {
+            viewModel.takeSnapShot(requireContext())
+        }
     }
 }
