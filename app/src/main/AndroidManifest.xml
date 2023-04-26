@@ -13,6 +13,9 @@
     <uses-feature
         android:name="android.hardware.camera.ar"
         android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
 
     <application
@@ -36,14 +39,7 @@
         <activity
             android:name=".ui.core.utilities.FaceMaskActivity"
             android:exported="true" />
-        <activity
-            android:name=".ui.core.utilities.MainActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <activity
             android:name=".ui.features.MainActivityLauncher"
             android:exported="true"
@@ -79,12 +75,7 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="locked"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".ui.core.utilities.FaceLandmarksActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="locked"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
     </application>
 
 </manifest>

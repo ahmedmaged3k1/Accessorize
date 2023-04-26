@@ -82,4 +82,6 @@
     <string name="checkout">CHECKOUT</string>
     <string name="_1975_egp">1975 EGP</string>
     <string name="capture_photo">capture photo</string>
+    <string name="history">History</string>
+    <string name="favourite">Favourite</string>
 </resources>

@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    tools:context=".ui.features.favouriteFragment.FavouriteFragment"
+
+    >
+
+<TextView
+    android:layout_width="176dp"
+    android:layout_height="81dp"
+    android:layout_marginTop="16dp"
+    android:fontFamily="sans-serif"
+    android:gravity="center"
+    android:text="@string/favourite"
+    android:textColor="@color/black"
+    android:textSize="40sp"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toTopOf="@+id/cartRecyclerView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.068"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0">
+
+</TextView>
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/cartRecyclerView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.features.favouriteFragment.FavouriteFragment">
+    android:layout_height="630dp"
+    android:orientation="vertical"
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    tools:listitem="@layout/product_history">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+</androidx.recyclerview.widget.RecyclerView>
 
-</FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

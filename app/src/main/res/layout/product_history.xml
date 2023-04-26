@@ -79,9 +79,9 @@
             <ImageButton
                 android:id="@+id/removeProduct"
                 android:layout_width="wrap_content"
+                android:background="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:background="@color/white"
                 android:contentDescription="@string/delete_item"
                 android:minWidth="48dp"
                 android:minHeight="48dp"
@@ -106,49 +106,7 @@
 
             </TextView>
 
-            <ImageButton
-                android:id="@+id/decreaseCount"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="28dp"
-                android:background="@color/white"
-                android:contentDescription="@string/decrease_quantity"
-                android:src="@drawable/do_not_disturb_on"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/productPrice"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.506">
 
-            </ImageButton>
-
-            <ImageButton
-                android:id="@+id/increaseCount"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="4dp"
-                android:background="@color/white"
-                android:contentDescription="@string/decrease_quantity"
-                android:src="@drawable/add_circle"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.493">
-
-            </ImageButton>
-
-            <TextView
-                style="@style/categoryText"
-                android:id="@+id/productCartCount"
-                android:layout_width="24dp"
-                android:layout_height="21dp"
-                android:gravity="center"
-                android:text="1"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/increaseCount"
-                app:layout_constraintStart_toEndOf="@+id/decreaseCount"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </TextView>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

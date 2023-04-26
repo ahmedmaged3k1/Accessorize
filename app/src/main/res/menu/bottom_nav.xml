@@ -11,7 +11,7 @@
     <item android:title="@string/cart"
         android:id="@+id/cart"
         android:icon="@drawable/baseline_shopping_cart_24"/>
-    <item android:title="@string/search"
+    <item android:title="@string/history"
         android:id="@+id/history"
         android:icon="@drawable/baseline_history_24"/>
     <item android:title="@string/fav"
