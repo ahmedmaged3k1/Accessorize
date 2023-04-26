@@ -6,13 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.araccessories.R
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Products
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.databinding.FragmentCartBinding
-import com.example.araccessories.databinding.FragmentSignInBinding
 import com.example.araccessories.ui.features.cartFragment.adapters.CartFragmentRecyclerView
-import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyclerViewAdapter
 
 
 class CartFragment : Fragment() {

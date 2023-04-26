@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Category
+import com.example.araccessories.data.dataSource.localDataSource.entities.Category
 import com.example.araccessories.databinding.CategoryItemBinding
 
 val diffCallbackCategory = object : DiffUtil.ItemCallback<Category>() {
@@ -33,7 +33,7 @@ class CategoryRecyclerViewAdapter :
     }
     inner class CategoryRecyclerView constructor(private val binding: CategoryItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind (category :Category){
+        fun bind (category : Category){
             binding.category=category
             binding.executePendingBindings()
         }

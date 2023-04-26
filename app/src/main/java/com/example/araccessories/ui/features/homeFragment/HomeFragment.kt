@@ -9,7 +9,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.araccessories.R
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.*
+import com.example.araccessories.data.dataSource.localDataSource.entities.Ad
+import com.example.araccessories.data.dataSource.localDataSource.entities.Category
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Products
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.AdsRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.CategoryRecyclerViewAdapter
@@ -60,7 +64,8 @@ class HomeFragment : Fragment() {
         },0,2000)
     }
     private fun initializeAds(){
-        adList= listOf(Ad("Huge Sales on Accessories",R.drawable.sale),
+        adList= listOf(
+            Ad("Huge Sales on Accessories",R.drawable.sale),
             Ad("You Must Buy Now",R.drawable.sales2),
             Ad("Buy 2 Get 1 ",R.drawable.images_2)
             )

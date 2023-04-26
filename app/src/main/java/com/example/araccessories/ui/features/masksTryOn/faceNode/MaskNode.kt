@@ -2,8 +2,8 @@ package com.example.araccessories.ui.features.masksTryOn.faceNode
 
 import android.content.Context
 import android.net.Uri
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
@@ -12,9 +12,9 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
 
-class MaskNode(augmentedFace: AugmentedFace, val context:Context,val model:String,
-var localScale: Scale?,
-             var  localPosition: Position?
+class MaskNode(augmentedFace: AugmentedFace, val context:Context, val model:String,
+               var localScale: Scale?,
+               var  localPosition: Position?
 ) : AugmentedFaceNode(augmentedFace) {
 
     private var faceNode  : Node?  = null

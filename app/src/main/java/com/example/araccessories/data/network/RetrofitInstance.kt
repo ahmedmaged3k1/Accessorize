@@ -20,8 +20,5 @@ class RetrofitInstance {
         retrofit.create(ApiService::class.java)
     }
 
-    fun getCoffeeApi(): ApiService {
-        return api
-    }
 
 }

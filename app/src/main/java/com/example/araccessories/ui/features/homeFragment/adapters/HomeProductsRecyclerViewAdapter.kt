@@ -4,15 +4,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
+import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.databinding.ProductItemBinding
 import android.view.LayoutInflater
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigator
 import com.example.araccessories.R
-import com.example.araccessories.ui.features.homeFragment.HomeFragment
-import com.example.araccessories.ui.features.homeFragment.HomeFragmentDirections
 import com.example.araccessories.ui.features.mainNavigation.MainNavigationDirections
 import kotlinx.android.synthetic.main.product_item.view.*
 
@@ -28,7 +24,7 @@ class ProductsRecyclerViewAdapter :
     }
     inner class ProductViewHolder constructor(private val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-            fun bind (product :Products){
+            fun bind (product : Products){
                 binding.product=product
                 binding.productName.text=product.productName
                 binding.productImage.setImageResource(product.productImage[0])

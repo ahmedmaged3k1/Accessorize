@@ -5,11 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Ad
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
-import com.example.araccessories.databinding.AdItemBinding
+import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.databinding.ProductCartBinding
-import com.example.araccessories.databinding.ProductItemBinding
 
 
 class CartFragmentRecyclerView :

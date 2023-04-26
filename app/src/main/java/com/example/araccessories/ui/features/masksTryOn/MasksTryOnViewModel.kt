@@ -11,9 +11,8 @@ import android.view.PixelCopy
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
-import com.example.araccessories.ui.features.hatsUpTryOn.faceNode.HatFaceNode
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
@@ -73,7 +72,7 @@ class MasksTryOnViewModel : ViewModel() {
             }
         }
     }
-    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment,context: Context,localScale :Scale?,localPosition: Position?, productId : String) {
+    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String) {
         configureArSession(productModel, arFragment)
         scene.addOnUpdateListener {
             sceneView.session

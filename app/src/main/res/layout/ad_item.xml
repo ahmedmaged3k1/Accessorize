@@ -4,7 +4,7 @@
     <data>
         <variable
             name="ad"
-            type="com.example.araccessories.data.dataSource.remoteDataSource.entities.Ad" />
+            type="com.example.araccessories.data.dataSource.localDataSource.entities.Ad" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="342dp"

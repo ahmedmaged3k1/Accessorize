@@ -3,8 +3,7 @@ package com.example.araccessories.ui.features.homeFragment.adapters
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Ad
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
+import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 
 @BindingAdapter("productImage")
 fun ImageView.setProductImage(product: Products?) {

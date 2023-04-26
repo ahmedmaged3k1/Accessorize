@@ -4,7 +4,7 @@
     <data>
         <variable
             name="product"
-            type="com.example.araccessories.data.dataSource.remoteDataSource.entities.Products" />
+            type="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/product_item"

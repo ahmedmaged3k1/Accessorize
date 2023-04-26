@@ -1,16 +1,15 @@
 package com.example.araccessories.data.dataSource.remoteDataSource.entities
 
-data class User(var email : String ,
-                var password : String ,
-                var firstName : String ,
-                var lastName : String ,
-                var phoneNumber : String ,
-                var birthDate : String = "",
-                var city : String = " ",
-                var zipCode : String = " ",
-                var streetAddress : String = " ",
-                var floorNum : String = " ",
-                var aptNum : String = " ",
+import com.google.gson.annotations.SerializedName
 
-
-                )
+data class User(@SerializedName("_id"         ) var Id          : String?  = null,
+                @SerializedName("createdAt"   ) var createdAt   : String?  = null,
+                @SerializedName("updatedAt"   ) var updatedAt   : String?  = null,
+                @SerializedName("address"     ) var address     : Address? = Address(),
+                @SerializedName("phoneNumber" ) var phoneNumber : String?  = null,
+                @SerializedName("password"    ) var password    : String?  = null,
+                @SerializedName("email"       ) var email       : String?  = null,
+                @SerializedName("birthDate"   ) var birthDate   : String?  = null,
+                @SerializedName("gender"      ) var gender      : String?  = null,
+                @SerializedName("lastName"    ) var lastName    : String?  = null,
+                @SerializedName("firstName"   ) var firstName   : String?  = null)

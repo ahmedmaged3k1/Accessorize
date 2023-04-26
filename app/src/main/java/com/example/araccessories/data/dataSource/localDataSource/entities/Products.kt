@@ -1,4 +1,4 @@
-package com.example.araccessories.data.dataSource.remoteDataSource.entities
+package com.example.araccessories.data.dataSource.localDataSource.entities
 
 import android.os.Parcelable
 import com.google.ar.sceneform.rendering.ModelRenderable

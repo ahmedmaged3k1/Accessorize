@@ -4,12 +4,11 @@ package com.example.araccessories.ui.features.hatsUpTryOn.faceNode
 import android.content.Context
 import android.net.Uri
 import com.example.araccessories.R
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
-import com.google.ar.sceneform.math.Quaternion
 import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ViewRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode

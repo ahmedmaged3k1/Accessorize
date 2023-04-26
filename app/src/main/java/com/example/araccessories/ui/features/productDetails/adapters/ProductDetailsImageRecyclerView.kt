@@ -2,11 +2,9 @@ package com.example.araccessories.ui.features.productDetails.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.adapters.ImageViewBindingAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Category
 import com.example.araccessories.databinding.ProductDetailsImageItemBinding
 
 

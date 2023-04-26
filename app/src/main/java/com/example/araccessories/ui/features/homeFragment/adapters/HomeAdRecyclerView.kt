@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Ad
+import com.example.araccessories.data.dataSource.localDataSource.entities.Ad
 import com.example.araccessories.databinding.AdItemBinding
 
 class AdsRecyclerViewAdapter :

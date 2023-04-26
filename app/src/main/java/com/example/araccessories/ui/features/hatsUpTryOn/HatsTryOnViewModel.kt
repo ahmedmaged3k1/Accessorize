@@ -12,9 +12,8 @@ import android.view.PixelCopy
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
-import com.example.araccessories.ui.features.glassesTryOn.FaceNode.GlassesFaceNode
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.ui.features.hatsUpTryOn.faceNode.HatFaceNode
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
@@ -24,7 +23,6 @@ import com.google.ar.sceneform.Scene
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
-import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.coroutines.launch
 
 class HatsTryOnViewModel (): ViewModel()  {
@@ -54,7 +52,7 @@ class HatsTryOnViewModel (): ViewModel()  {
         sceneView.session!!.configure(config)
 
     }
-    private fun attachModel(face : AugmentedFace, context: Context,localScale :Scale?,localPosition: Position?, productId : String){
+    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String){
         val faceNode = HatFaceNode(face, context,
             localScale,
             localPosition,
@@ -77,7 +75,7 @@ class HatsTryOnViewModel (): ViewModel()  {
             }
         }
     }
-    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment,context: Context,localScale :Scale?,localPosition: Position?, productId : String) {
+    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String) {
         configureArSession(productModel, arFragment)
         scene.addOnUpdateListener {
                 sceneView.session

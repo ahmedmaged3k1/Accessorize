@@ -1,20 +1,15 @@
 package com.example.araccessories.ui.features.historyFragment
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
 import com.example.araccessories.R
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Position
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Products
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.Scale
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Products
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.databinding.FragmentHistoryBinding
-import com.example.araccessories.databinding.FragmentSplashBinding
-import com.example.araccessories.ui.features.cartFragment.adapters.CartFragmentRecyclerView
 import com.example.araccessories.ui.features.historyFragment.adapters.HistoryRecyclerViewAdapter
 
 
