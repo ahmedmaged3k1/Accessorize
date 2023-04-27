@@ -2,15 +2,12 @@ package com.example.araccessories.ui.core
 
 import android.app.Activity
 import android.app.ActivityManager
-import android.app.Application
 import android.content.Context
 import android.net.ConnectivityManager
-import android.net.Network
 import android.net.NetworkCapabilities
 import android.widget.Toast
 import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.google.ar.core.ArCoreApk
-import dagger.hilt.android.internal.Contexts.getApplication
 
 object HelperFunctions {
      fun checkIsSupportedDeviceOrFinish(context: Context?, activity : Activity?): Boolean {
@@ -43,7 +40,15 @@ object HelperFunctions {
         return true
     }
     // function to check internet connectivity ( returns true when internet is reliable and it will return false if not
-
+    fun isInternetConnected(context: Context): Boolean {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetwork ?: return false
+        val networkCapabilities = connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
+        return networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+     fun noInternetConnection(context : Context){
+        Toast.makeText(context,"No Internet Connection",Toast.LENGTH_LONG).show()
+    }
 
 
 }

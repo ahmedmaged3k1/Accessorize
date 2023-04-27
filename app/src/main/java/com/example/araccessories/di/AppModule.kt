@@ -1,9 +1,10 @@
 package com.example.araccessories.di
 
+import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
 import com.example.araccessories.data.dataSource.remoteDataSource.ApiService
 import com.example.araccessories.data.network.Credentials
 import com.example.araccessories.domain.repositories.RemoteRepository
-import com.example.araccessories.domain.useCases.UserLoginUseCase
+import com.example.araccessories.domain.useCases.UserAccountUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,7 +13,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -20,15 +20,25 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideUserLoginUseCase(remoteRepository: RemoteRepository): UserLoginUseCase {
-        return UserLoginUseCase(remoteRepository)
+    fun provideUserLoginUseCase(remoteRepository: RemoteRepository): UserAccountUseCase {
+        return UserAccountUseCase(remoteRepository)
     }
-
 
     @Singleton
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor { chain ->
+                chain.proceed(chain.request().newBuilder().also {
+                    if (chain.request().url.toString().contains("get")) {
+                        it.addHeader(
+                            "Authorization",
+                            "Bearer ${SharedPreference.readStringFromSharedPreference("token", "")}"
+                        )
+                    }
+                }
+                    .build())
+            }
           .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
