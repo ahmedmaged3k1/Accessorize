@@ -47,7 +47,7 @@ object HelperFunctions {
         return networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
      fun noInternetConnection(context : Context){
-        Toast.makeText(context,"No Internet Connection",Toast.LENGTH_LONG).show()
+        Toast.makeText(context,"No Internet Connection , Please Use Internet Connection To Proceed",Toast.LENGTH_LONG).show()
     }
 
 

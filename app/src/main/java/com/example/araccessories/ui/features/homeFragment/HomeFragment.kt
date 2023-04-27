@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.araccessories.R
@@ -14,25 +16,27 @@ import com.example.araccessories.data.dataSource.localDataSource.entities.Catego
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
+import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
 import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.AdsRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.CategoryRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyclerViewAdapter
+import com.example.araccessories.ui.features.signIn.SignInViewModel
 import com.google.ar.sceneform.rendering.ModelRenderable
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
+@AndroidEntryPoint
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adList: List<Ad>
     private lateinit var categoryList: List<Category>
     private lateinit var productList: List<Products>
-
     private val adsRecyclerViewAdapter = AdsRecyclerViewAdapter()
     private val categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter()
     private val productRecyclerViewAdapter = ProductsRecyclerViewAdapter()
-
+    private val viewModel: HomeFragmentViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,7 +46,13 @@ class HomeFragment : Fragment() {
         initializeAdsRecyclerView()
         initializeCategoriesRecyclerView()
         initializeProductsRecyclerView()
+        initializeProductsRemote()
         return binding.root
+    }
+    private fun initializeProductsRemote(){
+        viewModel.getAllProducts("Bearer ${
+            SharedPreference.readStringFromSharedPreference("token", "").toString()
+        }")
     }
     private fun initializeAdsRecyclerView(){
         initializeAds()

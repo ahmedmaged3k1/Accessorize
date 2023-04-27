@@ -4,6 +4,7 @@ import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence
 import com.example.araccessories.data.dataSource.remoteDataSource.ApiService
 import com.example.araccessories.data.network.Credentials
 import com.example.araccessories.domain.repositories.RemoteRepository
+import com.example.araccessories.domain.useCases.ProductsUseCase
 import com.example.araccessories.domain.useCases.UserAccountUseCase
 import dagger.Module
 import dagger.Provides
@@ -22,6 +23,11 @@ object AppModule {
     @Singleton
     fun provideUserLoginUseCase(remoteRepository: RemoteRepository): UserAccountUseCase {
         return UserAccountUseCase(remoteRepository)
+    }
+    @Provides
+    @Singleton
+    fun provideProductUseCase(remoteRepository: RemoteRepository): ProductsUseCase {
+        return ProductsUseCase(remoteRepository)
     }
 
     @Singleton
