@@ -45,7 +45,7 @@ class SignUpFragment : Fragment() {
         }
     }
     private fun validateLogin() {
-        viewModel.validator.observe(viewLifecycleOwner) {
+        viewModel.validatorSignUp.observe(viewLifecycleOwner) {
             if (it == 2) {
                 Toast.makeText(requireContext(),"Please Fill All Fields",Toast.LENGTH_LONG).show()
             }
@@ -54,14 +54,14 @@ class SignUpFragment : Fragment() {
 
     }
     private fun wrongCredentials() {
-        viewModel.badRequest.observe(viewLifecycleOwner) {
+        viewModel.badRequestSignUp.observe(viewLifecycleOwner) {
             if (it == 2) {
                 Toast.makeText(requireContext(),"Account Creation Error , Please Try Again",Toast.LENGTH_LONG).show()
             }
         }
     }
     private fun login(view: View) {
-        viewModel.observer.observe(viewLifecycleOwner) {
+        viewModel.observerSignUp.observe(viewLifecycleOwner) {
             if (it == 2) {
                 Toast.makeText(requireContext(),"Account Created Successfully",Toast.LENGTH_LONG).show()
 

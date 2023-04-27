@@ -12,13 +12,13 @@ import javax.inject.Inject
 @HiltViewModel
 class SignUpViewModel @Inject constructor(private val loginUseCase: UserAccountUseCase) :
     ViewModel() {
-    var userName = MutableLiveData<String>()
-    var userEmail = MutableLiveData<String>()
-    var userPassword = MutableLiveData<String>()
-    var userPhoneNumber = MutableLiveData<String>()
-    var observer = MutableLiveData(1)
-    var validator = MutableLiveData(1)
-    var badRequest = MutableLiveData(1)
+    var userName = MutableLiveData<String>("")
+    var userEmail = MutableLiveData<String>("")
+    var userPassword = MutableLiveData<String>("")
+    var userPhoneNumber = MutableLiveData<String>("")
+    var observerSignUp = MutableLiveData(1)
+    var validatorSignUp = MutableLiveData(1)
+    var badRequestSignUp = MutableLiveData(1)
 
     fun register() {
         viewModelScope.launch {
@@ -27,7 +27,7 @@ class SignUpViewModel @Inject constructor(private val loginUseCase: UserAccountU
                 userEmail.value?.contains(".com") == false ||
                         userPhoneNumber.value?.isEmpty() ==true
             ) {
-                manipulateLiveData(validator)
+                manipulateLiveData(validatorSignUp)
                 return@launch
             } else {
                 val newUser = UserRegister(firstName = userName.value, email = userEmail.value, password = userPassword.value, phoneNumber = userPhoneNumber.value
@@ -35,11 +35,11 @@ class SignUpViewModel @Inject constructor(private val loginUseCase: UserAccountU
                 )
                 if (loginUseCase.registerNewUser(newUser)) {
                     resetData()
-                   manipulateLiveData(observer)
+                   manipulateLiveData(observerSignUp)
 
                 }
                 else{
-                    manipulateLiveData(badRequest)
+                    manipulateLiveData(badRequestSignUp)
 
                 }
             }

@@ -14,8 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountUseCase) :
     ViewModel() {
-    var userEmail = MutableLiveData<String>()
-    var userPassword = MutableLiveData<String>()
+    var userEmail = MutableLiveData<String>("")
+    var userPassword = MutableLiveData<String>("")
     private var confirmedUser = UserResponse()
     var observer = MutableLiveData(1)
     var validator = MutableLiveData(1)
@@ -48,7 +48,7 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
 
     private fun manipulateLiveData(liveData: MutableLiveData<Int>) {
         liveData.value = liveData.value?.inc()
-        liveData.value = liveData.value?.dec()
+
     }
 
     private fun resetData() {
