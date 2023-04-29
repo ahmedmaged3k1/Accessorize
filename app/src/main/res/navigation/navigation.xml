@@ -127,9 +127,6 @@
         android:label="ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details"
         >
-        <argument
-            android:name="Product"
-            app:argType="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
         <action
             android:id="@+id/action_productDetailsFragment_to_mainNavigation"
             app:destination="@id/mainNavigation" />
@@ -145,6 +142,9 @@
         <action
             android:id="@+id/action_productDetailsFragment_to_masksTryOnFragment"
             app:destination="@id/masksTryOnFragment" />
+        <argument
+            android:name="Products"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
     </fragment>
     <fragment
         android:id="@+id/glassesTryOn"
@@ -155,20 +155,20 @@
             android:id="@+id/action_glassesTryOn_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
         <argument
-            android:name="Product"
-            app:argType="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
+            android:name="Products"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
     </fragment>
     <fragment
         android:id="@+id/hatsTryOnFragment"
         android:name="com.example.araccessories.ui.features.hatsUpTryOn.HatsTryOnFragment"
         android:label="fragment_hats_try_on"
         tools:layout="@layout/fragment_hats_try_on" >
-        <argument
-            android:name="Product"
-            app:argType="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
         <action
             android:id="@+id/action_hatsTryOnFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <argument
+            android:name="Products"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
     </fragment>
     <fragment
         android:id="@+id/makeUpTryOnFragment"
@@ -179,8 +179,8 @@
             android:id="@+id/action_makeUpTryOnFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
         <argument
-            android:name="Product"
-            app:argType="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
+            android:name="Products"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
     </fragment>
     <fragment
         android:id="@+id/masksTryOnFragment"
@@ -191,7 +191,7 @@
             android:id="@+id/action_masksTryOnFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
         <argument
-            android:name="Product"
-            app:argType="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
+            android:name="Products"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
     </fragment>
 </navigation>

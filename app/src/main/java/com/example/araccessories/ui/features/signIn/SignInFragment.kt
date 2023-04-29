@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.signIn
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
     private val viewModel: SignInViewModel by activityViewModels()
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,16 +29,19 @@ class SignInFragment : Fragment() {
         binding = FragmentSignInBinding.inflate(inflater, container, false)
         binding.user=viewModel
         binding.lifecycleOwner=this
-        if (HelperFunctions.isInternetConnected(requireContext()))
-        {
-            validateLogin()
-            wrongCredentials()
-            login(binding.root)
-            signUpButton()
-        }
-        else{
-            HelperFunctions.noInternetConnection(requireContext())
-        }
+
+            if (HelperFunctions.isInternetConnected(requireActivity().applicationContext))
+            {
+                validateLogin()
+                wrongCredentials()
+                login(binding.root)
+                signUpButton()
+            }
+            else{
+                HelperFunctions.noInternetConnection(requireActivity().applicationContext)
+            }
+
+
 
         return binding.root
     }

@@ -5,15 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.ProductDetailsImageItemBinding
 
 
-val diffCallbackInt= object : DiffUtil.ItemCallback<Int>() {
-    override fun areItemsTheSame(oldItem: Int, newItem: Int): Boolean {
+val diffCallbackInt= object : DiffUtil.ItemCallback<String>() {
+    override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Int, newItem: Int): Boolean {
+    override fun areContentsTheSame(oldItem: String, newItem: String): Boolean {
         return oldItem == newItem
 
 
@@ -23,7 +24,7 @@ val diffCallbackInt= object : DiffUtil.ItemCallback<Int>() {
 
 }
 class ProductImageRecyclerViewAdapter :
-    ListAdapter<Int, ProductImageRecyclerViewAdapter.ImageRecyclerView>(diffCallbackInt) {
+    ListAdapter<String, ProductImageRecyclerViewAdapter.ImageRecyclerView>(diffCallbackInt) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageRecyclerView {
         return from(parent)
     }
@@ -34,9 +35,9 @@ class ProductImageRecyclerViewAdapter :
     }
     inner class ImageRecyclerView constructor(private val binding: ProductDetailsImageItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind (image :Int){
-            binding.imageDetails=image
-            binding.imageDetailsRecyclerView.setImageResource(getItem(position))
+        fun bind (image: String ){
+            binding.image=image
+
             binding.executePendingBindings()
         }
         init {

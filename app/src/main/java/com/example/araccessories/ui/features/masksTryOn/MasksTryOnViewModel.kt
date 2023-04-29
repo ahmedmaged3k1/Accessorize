@@ -49,7 +49,7 @@ class MasksTryOnViewModel : ViewModel() {
         sceneView.session!!.configure(config)
 
     }
-    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String){
+    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String?){
         val faceNode = MaskNode(face, context,
             productId,
             localScale,
@@ -72,7 +72,7 @@ class MasksTryOnViewModel : ViewModel() {
             }
         }
     }
-    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String) {
+    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String?) {
         configureArSession(productModel, arFragment)
         scene.addOnUpdateListener {
             sceneView.session

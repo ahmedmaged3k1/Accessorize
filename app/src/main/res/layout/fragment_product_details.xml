@@ -1,7 +1,11 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+        <data>
+            <variable
+                name="product"
+                type="com.example.araccessories.ui.features.productDetails.ProductDetailsViewModel" />
+        </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,15 +45,16 @@
         <TextView
             android:id="@+id/productItemDetailsName"
             style="@style/productTitles"
-            android:layout_width="182dp"
-            android:layout_height="37dp"
-            android:layout_marginEnd="112dp"
+            android:layout_width="251dp"
+            android:layout_height="42dp"
+            android:layout_marginEnd="76dp"
             android:gravity="center"
-            android:text="@string/item_name"
+            android:text="@{product.productName}"
+
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.551">
+            app:layout_constraintVertical_bias="0.541">
 
         </TextView>
 
@@ -86,6 +91,7 @@
             android:id="@+id/productDescription"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:text="@{product.productDescription}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -99,8 +105,9 @@
             android:layout_width="148dp"
             android:layout_height="34dp"
             android:layout_marginStart="180dp"
+            android:text="@{product.productPrice}"
+
             android:gravity="center"
-            android:text="@string/price"
             app:layout_constraintBottom_toTopOf="@+id/productDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -143,7 +150,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/tryOnButton"
             android:layout_width="254dp"
-            android:layout_height="45dp"
+            android:layout_height="48dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="14dp"
             android:background="@drawable/btn_sign_in_rounded_corners"

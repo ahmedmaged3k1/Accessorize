@@ -12,7 +12,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
 
-class MaskNode(augmentedFace: AugmentedFace, val context:Context, val model:String,
+class MaskNode(augmentedFace: AugmentedFace, val context:Context, val model:String?,
                var localScale: Scale?,
                var  localPosition: Position?
 ) : AugmentedFaceNode(augmentedFace) {

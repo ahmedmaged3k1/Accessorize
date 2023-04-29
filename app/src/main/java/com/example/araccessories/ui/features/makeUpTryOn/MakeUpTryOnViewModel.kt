@@ -1,15 +1,22 @@
 package com.example.araccessories.ui.features.makeUpTryOn
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
+import android.util.Log
 import android.view.PixelCopy
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
 import com.google.ar.core.TrackingState
@@ -54,14 +61,34 @@ class MakeUpTryOnViewModel : ViewModel() {
         productModel: ModelRenderable?,
         arFragment: ArFragment,
         context: Context,
-        productImage: Int
+        productImage: String?
     ) {
         configureArSession(productModel, arFragment)
+        Log.d(TAG, "tryOnProduct: $productImage")
         scene.addOnUpdateListener {
-            Texture.builder()
-                .setSource(context, productImage)
+           /* Texture.builder()
+                .setSource(context, Uri.parse(productImage))
                 .build()
-                .thenAccept { texture -> faceMeshTexture = texture }
+                .thenAccept { texture -> faceMeshTexture = texture }*/
+
+
+            Glide.with(context)
+                .asBitmap()
+                .load(productImage)
+                .into(object : CustomTarget<Bitmap>() {
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        Texture.builder()
+                            .setSource(resource)
+                            .build()
+                            .thenAccept { texture -> faceMeshTexture = texture }
+                    }
+
+                    override fun onLoadCleared(placeholder: Drawable?) {}
+                })
+
             faceMeshTexture.let {
                 sceneView.session
                     ?.getAllTrackables(AugmentedFace::class.java)?.let {

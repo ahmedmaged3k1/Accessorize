@@ -23,6 +23,7 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
 
 
     fun login() {
+
         viewModelScope.launch {
             if (userEmail.value?.isEmpty() == true || userPassword.value?.isEmpty() == true
             ) {

@@ -1,8 +1,8 @@
 <layout>
     <data>
         <variable
-            name="imageDetails"
-            type="Integer" />
+            name="image"
+            type="String" />
 
     </data>
 
@@ -26,7 +26,7 @@
                 android:id="@+id/imageDetailsRecyclerView"
                 android:layout_width="match_parent"
                 android:background="@color/grey"
-
+                app:productImages="@{image}"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:contentDescription="@string/productImage"

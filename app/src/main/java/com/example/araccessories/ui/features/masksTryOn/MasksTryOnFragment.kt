@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.masksTryOn
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.example.araccessories.R
 import com.example.araccessories.ui.core.HelperFunctions
 import com.example.araccessories.ui.features.masksTryOn.faceNode.MaskNode
 import com.google.ar.core.AugmentedFace
+import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 
 class MasksTryOnFragment : Fragment() {
@@ -21,6 +23,7 @@ class MasksTryOnFragment : Fragment() {
     lateinit var arFragment: ArFragment
     private lateinit var captureShot: ImageButton
     private val viewModel: MasksTryOnViewModel by viewModels()
+    private lateinit var productModelRenderable : ModelRenderable
 
 
     override fun onCreateView(
@@ -34,7 +37,7 @@ class MasksTryOnFragment : Fragment() {
         }
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_masks) as? ArFragment
             ?: return view
-        viewModel.tryOnProduct(args.product.productModel, arFragment, requireContext(), args.product.localScale, args.product.localPosition, args.product.productId)
+        viewModel.tryOnProduct(null, arFragment, requireActivity().applicationContext, args.products.modelSize, args.products.modelPosition, args.products.modelLink)
         captureShot = view.findViewById(R.id.captureImageMasks)
         takeSnapShot()
         return view
@@ -45,5 +48,17 @@ class MasksTryOnFragment : Fragment() {
             viewModel.takeSnapShot(requireContext())
         }
     }
+    private fun initializeModel (){
+        ModelRenderable.builder()
+            .setSource(this.activity, Uri.parse(args.products.modelLink))
+            .build()
+            .thenAccept { modelRenderable ->
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+                productModelRenderable=modelRenderable
+
+            }
+    }
+
 
 }

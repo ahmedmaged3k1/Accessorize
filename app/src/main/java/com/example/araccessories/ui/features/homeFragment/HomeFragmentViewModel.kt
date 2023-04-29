@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragmentViewModel@Inject constructor(private val productsUseCase: ProductsUseCase) :  ViewModel(){
-    private val productList = MutableLiveData<ArrayList<ProductsRemote>>()
+     val productList = MutableLiveData<ArrayList<ProductsRemote>>()
     fun getAllProducts(authToken: String) {
         viewModelScope.launch {
             productList.postValue(productsUseCase.getAllProducts(authToken) as ArrayList<ProductsRemote>?)

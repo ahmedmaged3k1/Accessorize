@@ -1,6 +1,9 @@
 package com.example.araccessories.ui.features.makeUpTryOn
 
+import android.content.ContentValues.TAG
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.araccessories.R
 import com.example.araccessories.ui.core.HelperFunctions
 import com.google.ar.core.AugmentedFace
+import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
@@ -21,6 +25,7 @@ class MakeUpTryOnFragment : Fragment() {
     private val args by navArgs<MakeUpTryOnFragmentArgs>()
     private val viewModel: MakeUpTryOnViewModel by viewModels()
     private lateinit var captureShot: ImageButton
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -32,7 +37,10 @@ class MakeUpTryOnFragment : Fragment() {
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_makeUp) as? ArFragment
             ?: return view
         captureShot = view.findViewById(R.id.captureImageMakeUp)
-        viewModel.tryOnProduct(args.product.productModel, arFragment,requireContext(),args.product.productImage[0])
+        Log.d(TAG, "initializeModel 1 : ${args.products.toString()}")
+        viewModel.tryOnProduct(null, arFragment,requireActivity().applicationContext,args.products.modelLink)
+
+        //initializeModel()
         takeSnapShot()
         return view
     }
@@ -41,4 +49,17 @@ class MakeUpTryOnFragment : Fragment() {
             viewModel.takeSnapShot(requireContext())
         }
     }
+    private fun initializeModel (){
+        ModelRenderable.builder()
+            .setSource(this.activity, Uri.parse(args.products.modelLink))
+            .build()
+            .thenAccept { modelRenderable ->
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+                val productModelRenderable =modelRenderable
+                Log.d(TAG, "initializeModel: ${args.products.toString()}")
+
+            }
+    }
+
 }

@@ -4,12 +4,23 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 
 @BindingAdapter("productImage")
-fun ImageView.setProductImage(product: Products?) {
+fun ImageView.setProductImage(product: ProductsRemote?) {
+
     product?.let {
         Glide.with(context)
-            .load(product.productImage)
+            .load(product.images[0])
+            .into(this)
+    }
+}
+@BindingAdapter("productImages")
+fun ImageView.setProductImages(image: String?) {
+
+    image.let {
+        Glide.with(context)
+            .load(image)
             .into(this)
     }
 }

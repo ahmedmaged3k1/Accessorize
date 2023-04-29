@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.araccessories.R
@@ -17,7 +18,7 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
     private val args by navArgs<ProductDetailsFragmentArgs>()
     private val productRecyclerViewAdapter = ProductImageRecyclerViewAdapter()
     private lateinit var imageList :List<Int>
-
+    private val viewModel: ProductDetailsViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,9 +26,11 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
+        binding.product=viewModel
+        binding.lifecycleOwner=this
         backButton()
         initializeArgs()
-        initializeImageList()
+      //  initializeImageList()
         tryOnProduct()
         initializeProductDetailsRecyclerView()
 
@@ -35,9 +38,9 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
         return binding.root
     }
     private fun initializeArgs(){
-        binding.productItemDetailsName.text = args.product.productName
-        binding.productDetailsPrice.text = "${args.product.productPrice} Egp"
-        binding.productDescription.text=args.product.productDescription
+        viewModel.productName.value = args.products.name
+        viewModel.productDescription.value = args.products.description
+        viewModel.productPrice.value = args.products.price.toString()
     }
      private fun backButton(){
         binding.backDetails.setOnClickListener{
@@ -46,7 +49,7 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
         }
     }
     private fun initializeProductDetailsRecyclerView(){
-        productRecyclerViewAdapter.submitList(args.product.productImage)
+        productRecyclerViewAdapter.submitList(args.products.images)
         binding.productDetailsRecyclerView.adapter=productRecyclerViewAdapter
     }
     private fun initializeImageList()
@@ -60,41 +63,41 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
     private fun tryOnProduct(){
         binding.tryOnButton.setOnClickListener {
-            if (args.product.categoryId==1)
+            if (args.products.category?.toLowerCase()=="glasses")
             {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
-                        args.product
+                        args.products
                     )
 
                 binding.root.findNavController()
                     .navigate(action)
             }
-            else   if (args.product.categoryId==2)
+            else   if (args.products.category?.toLowerCase()=="hats")
             {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToHatsTryOnFragment(
-                        args.product
+                        args.products
                     )
 
                 binding.root.findNavController()
                     .navigate(action)
             }
-            else   if (args.product.categoryId==3)
+            else   if (args.products.category?.toLowerCase()=="makeup")
             {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToMakeUpTryOnFragment(
-                        args.product
+                        args.products
                     )
 
                 binding.root.findNavController()
                     .navigate(action)
             }
-            else   if (args.product.categoryId==4)
+            else   if (args.products.category?.toLowerCase()=="masks")
             {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToMasksTryOnFragment(
-                        args.product
+                        args.products
                     )
 
                 binding.root.findNavController()

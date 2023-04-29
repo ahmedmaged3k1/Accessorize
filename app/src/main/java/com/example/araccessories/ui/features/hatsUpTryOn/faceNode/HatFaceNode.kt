@@ -17,7 +17,7 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
                   val context: Context,
                   val localScale: Scale?,
                   var  localPosition: Position?,
-                  val model:String
+                  val model:String?
 ): AugmentedFaceNode(augmentedFace) {
 
     private var headNode: Node? = null
@@ -74,6 +74,8 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
         augmentedFace?.let {
             getRegionPose(FaceRegion.Head)?.let {
                 headNode?.localScale = Vector3(localScale!!.x, localScale.y, localScale.z)
+                headNode?.localPosition = Vector3(localPosition!!.x, localPosition!!.y, localPosition!!.z)
+
             }
 
         }

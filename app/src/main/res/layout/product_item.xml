@@ -1,10 +1,10 @@
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="product"
-            type="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
+            type="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/product_item"
@@ -32,6 +32,7 @@
                 android:contentDescription="@string/productImage"
                 android:elevation="20dp"
                 android:scaleType="fitXY"
+                app:productImage="@{product}"
                 android:src="@drawable/fox_face_mesh_texture"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -45,13 +46,14 @@
             <TextView
                 android:id="@+id/productName"
                 style="@style/categoryText"
-
-                android:layout_width="132dp"
-                android:layout_height="25dp"
+                android:layout_width="242dp"
+                android:layout_height="28dp"
                 android:layout_marginStart="8dp"
+
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="4dp"
                 android:gravity="center"
+                android:text="@{product.name}"
                 app:layout_constraintBottom_toTopOf="@+id/productRate"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -66,6 +68,7 @@
                 android:layout_width="238dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="8dp"
+                android:contentDescription="@string/rating"
                 android:layout_marginBottom="4dp"
                 android:scaleX="0.5"
                 android:shadowColor="@color/ratingColor"
@@ -83,7 +86,7 @@
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="4dp"
-
+                android:text="@{String.valueOf(product.price)}"
                 style="@style/categoryText"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -95,10 +98,11 @@
 
             <ImageButton
                 android:id="@+id/productFav"
-                android:layout_width="26dp"
-                android:layout_height="26dp"
-                android:elevation="20dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:background="@drawable/fav_shape"
+                android:contentDescription="@string/fav"
+                android:elevation="20dp"
                 android:src="@drawable/baseline_favorite_border_24"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

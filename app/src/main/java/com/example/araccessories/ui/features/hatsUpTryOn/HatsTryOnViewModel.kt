@@ -52,7 +52,7 @@ class HatsTryOnViewModel (): ViewModel()  {
         sceneView.session!!.configure(config)
 
     }
-    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String){
+    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String?){
         val faceNode = HatFaceNode(face, context,
             localScale,
             localPosition,
@@ -75,7 +75,7 @@ class HatsTryOnViewModel (): ViewModel()  {
             }
         }
     }
-    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String) {
+    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String?) {
         configureArSession(productModel, arFragment)
         scene.addOnUpdateListener {
                 sceneView.session

@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.glassesTryOn
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.araccessories.R
 import com.example.araccessories.ui.core.HelperFunctions
 import com.google.ar.core.AugmentedFace
+import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
@@ -21,6 +23,7 @@ class GlassesTryOn : Fragment() {
     private lateinit var arFragment: ArFragment
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private val viewModel: GlassesTryOnViewModel by viewModels()
+
     private lateinit var captureShot: ImageButton
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,7 +36,7 @@ class GlassesTryOn : Fragment() {
             childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment
                 ?: return view
         captureShot = view.findViewById(R.id.captureImageGlasses)
-        viewModel.tryOnProduct(args.product.productModel, arFragment)
+        initializeModel()
         takeSnapShot()
         return view
     }
@@ -41,6 +44,18 @@ class GlassesTryOn : Fragment() {
         captureShot.setOnClickListener {
             viewModel.takeSnapShot(requireContext())
         }
+    }
+    private fun initializeModel (){
+        ModelRenderable.builder()
+            .setSource(this.activity, Uri.parse(args.products.modelLink))
+            .build()
+            .thenAccept { modelRenderable ->
+                modelRenderable.isShadowCaster = false
+                modelRenderable.isShadowReceiver = false
+                val productModelRenderable :  ModelRenderable=modelRenderable
+                viewModel.tryOnProduct(productModelRenderable, arFragment)
+            }
+
     }
 
 

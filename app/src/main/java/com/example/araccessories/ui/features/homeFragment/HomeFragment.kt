@@ -45,13 +45,17 @@ class HomeFragment : Fragment() {
         initializeAdsRecyclerView()
         initializeCategoriesRecyclerView()
         initializeProductsRecyclerView()
-        initializeProductsRemote()
+
         return binding.root
     }
     private fun initializeProductsRemote(){
         viewModel.getAllProducts("Bearer ${
             SharedPreference.readStringFromSharedPreference("token", "").toString()
         }")
+        viewModel.productList.observe(viewLifecycleOwner){
+            productRecyclerViewAdapter.submitList(viewModel.productList.value)
+            binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
+        }
     }
     private fun initializeAdsRecyclerView(){
         initializeAds()
@@ -130,9 +134,11 @@ class HomeFragment : Fragment() {
 
     }
     private fun initializeProductsRecyclerView(){
-        initializeProducts()
-        productRecyclerViewAdapter.submitList(productList)
-        binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
+      //  initializeProducts()
+        initializeProductsRemote()
+       // productRecyclerViewAdapter.submitList(viewModel.productList.value)
+     //   binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
+
     }
 
 }
