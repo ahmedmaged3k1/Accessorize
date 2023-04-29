@@ -28,7 +28,6 @@ import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adList: List<Ad>
     private lateinit var categoryList: List<Category>
@@ -107,14 +106,9 @@ class HomeFragment : Fragment() {
             Products("2","Fox Make Up",listOf(R.drawable.fox_face_mesh_texture,R.drawable.fox_face_mesh_texture,R.drawable.fox_face_mesh_texture),450.0,3.0,3,0,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
 
             )
-
-
-
         initializingModelRenderable()
-
     }
     private fun initializingModelRenderable(){
-
         ModelRenderable.builder()
             .setSource(this.activity, Uri.parse("shady2.sfb"))
             .build()
@@ -140,8 +134,5 @@ class HomeFragment : Fragment() {
         productRecyclerViewAdapter.submitList(productList)
         binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
     }
-
-
-
 
 }

@@ -1,9 +1,14 @@
 package com.example.araccessories.di
 
+import android.app.Application
+import com.example.araccessories.data.dataSource.localDataSource.room.cacheDatabase.ProductsDao
+import com.example.araccessories.data.dataSource.localDataSource.room.cacheDatabase.ProductsOfflineDatabase
 import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
 import com.example.araccessories.data.dataSource.remoteDataSource.ApiService
 import com.example.araccessories.data.network.Credentials
+import com.example.araccessories.domain.repositories.LocalRepository
 import com.example.araccessories.domain.repositories.RemoteRepository
+import com.example.araccessories.domain.useCases.CacheProductsUseCase
 import com.example.araccessories.domain.useCases.ProductsUseCase
 import com.example.araccessories.domain.useCases.UserAccountUseCase
 import dagger.Module
@@ -19,6 +24,23 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
+    @Provides
+    @Singleton
+    fun provideCacheProductsUseCase(localRepository: LocalRepository): CacheProductsUseCase {
+        return CacheProductsUseCase(localRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideRoomDb(context: Application): ProductsOfflineDatabase {
+        return ProductsOfflineDatabase.getInstance(context)
+    }
+    @Provides
+    @Singleton
+    fun provideRoomDao(coffeeDatabase: ProductsOfflineDatabase): ProductsDao {
+        return coffeeDatabase.productDao
+
+    }
     @Provides
     @Singleton
     fun provideUserLoginUseCase(remoteRepository: RemoteRepository): UserAccountUseCase {

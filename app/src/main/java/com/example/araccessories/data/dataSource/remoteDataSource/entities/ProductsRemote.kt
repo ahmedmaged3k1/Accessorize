@@ -1,9 +1,17 @@
 package com.example.araccessories.data.dataSource.remoteDataSource.entities
 
+import androidx.annotation.NonNull
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.example.araccessories.data.dataSource.localDataSource.entities.Converters
 import com.google.gson.annotations.SerializedName
-
+@Entity
+@TypeConverters(Converters::class)
 data class ProductsRemote(
-    @SerializedName("_id"         ) var Id          : String?           = null,
+    @PrimaryKey
+    @NonNull
+    @SerializedName("_id"         ) var Id          : String         ,
     @SerializedName("name"        ) var name        : String?           = null,
     @SerializedName("price"       ) var price       : Int?              = null,
     @SerializedName("stock"       ) var stock       : Int?              = null,

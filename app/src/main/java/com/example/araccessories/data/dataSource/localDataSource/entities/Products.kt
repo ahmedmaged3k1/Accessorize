@@ -1,13 +1,15 @@
 package com.example.araccessories.data.dataSource.localDataSource.entities
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.TypeConverters
 import com.google.ar.sceneform.rendering.ModelRenderable
 import kotlinx.android.parcel.Parcelize
 import kotlinx.android.parcel.RawValue
 
 @Parcelize
 
-data class Products(
+ data class Products(
     var productId: String,
     var productName: String,
     var productImage: List<Int>,

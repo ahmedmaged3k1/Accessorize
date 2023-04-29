@@ -107,6 +107,11 @@ dependencies {
     // tensorflow dependencies
     implementation 'org.tensorflow:tensorflow-lite:2.6.0'
     implementation 'org.tensorflow:tensorflow-lite-gpu:2.6.0'
+    //Room
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
 
 
 }

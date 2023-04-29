@@ -1,6 +1,8 @@
 package com.example.araccessories.di
 
+import com.example.araccessories.data.dataSource.localDataSource.LocalRepositoryImp
 import com.example.araccessories.data.dataSource.remoteDataSource.RemoteRepositoryImp
+import com.example.araccessories.domain.repositories.LocalRepository
 import com.example.araccessories.domain.repositories.RemoteRepository
 import dagger.Binds
 import dagger.Module
@@ -16,4 +18,10 @@ import javax.inject.Singleton
      abstract fun bindMyProductsRepository(
          myRepositoryImpl: RemoteRepositoryImp
      ): RemoteRepository
+    @Binds
+    @Singleton
+    abstract fun bindMyLocalRepository(
+        myRepositoryLocalImpl: LocalRepositoryImp
+    ): LocalRepository
+
 }
