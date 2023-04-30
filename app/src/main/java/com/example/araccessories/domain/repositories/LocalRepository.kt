@@ -1,21 +1,28 @@
 package com.example.araccessories.domain.repositories
 
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.example.araccessories.data.dataSource.localDataSource.room.cacheDatabase.ProductsDao
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 
 interface LocalRepository {
-    suspend fun insert(product: ProductsDao)
 
 
-    suspend fun update(product: ProductsDao)
+    suspend fun insertAll(products: List<ProductsRemote>)
 
 
-    suspend fun delete(product: ProductsDao)
+
+    suspend fun getAllProducts(): List<ProductsRemote>?
+    suspend fun insertUser(user: User)
 
 
-    suspend fun getProduct(name: String): List<ProductsDao>?
+    suspend fun updateUser(user: User)
 
 
-    suspend fun insertAllCacheProducts(product: List<ProductsDao>)
+    suspend fun deleteUser(user: User)
 
-    suspend fun getCacheProduct(): List<ProductsDao>?
+
+    suspend fun getUserByEmail(name: String): List<User>?
 }

@@ -1,0 +1,100 @@
+{
+  materials: [
+    {
+      name: 'JokerMat.001',
+      parameters: [
+        {
+          baseColorFactor: [
+            1,
+            1,
+            1,
+            1,
+          ],
+        },
+        {
+          baseColor: '8faa9190e882ff141ebb775e334f4f404226907c',
+        },
+        {
+          diffuseColorFactor: null,
+        },
+        {
+          diffuseColor: null,
+        },
+        {
+          normal: 'bbe66d27d3770f4b1629b2fc6bb5eb7b1bab1ee7',
+        },
+        {
+          metallicFactor: 0.096121999999999999,
+        },
+        {
+          roughnessFactor: 1,
+        },
+        {
+          specularFactor: null,
+        },
+        {
+          glossinessFactor: null,
+        },
+        {
+          specularGlossiness: null,
+        },
+        {
+          specularGlossinessCalculation: null,
+        },
+        {
+          metallicRoughness: '870a661dccb4669ddc667bd0e36428fed057d26c',
+        },
+        {
+          occlusion: null,
+        },
+        {
+          emissiveFactor: [
+            0,
+            0,
+            0,
+            1,
+          ],
+        },
+        {
+          emissive: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/gltf_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+    ],
+    collision: {},
+    file: 'sampledata/clownMask.glb',
+    name: 'clownMask',
+    recenter: 'root',
+  },
+  samplers: [
+    {
+      name: '8faa9190e882ff141ebb775e334f4f404226907c',
+      pipeline_name: '*0',
+    },
+    {
+      name: '870a661dccb4669ddc667bd0e36428fed057d26c',
+      params: {
+        usage_type: 'Data',
+      },
+      pipeline_name: '*1',
+    },
+    {
+      name: 'bbe66d27d3770f4b1629b2fc6bb5eb7b1bab1ee7',
+      params: {
+        usage_type: 'Normal',
+      },
+      pipeline_name: '*2',
+    },
+  ],
+  version: '0.54:2',
+}

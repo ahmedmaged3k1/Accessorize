@@ -1,30 +1,45 @@
 package com.example.araccessories.data.dataSource.localDataSource
 
 import com.example.araccessories.data.dataSource.localDataSource.room.cacheDatabase.ProductsDao
+import com.example.araccessories.data.dataSource.localDataSource.room.userDatabase.UserDao
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 import com.example.araccessories.domain.repositories.LocalRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class LocalRepositoryImp : LocalRepository {
-    override suspend fun insert(product: ProductsDao) {
-        TODO("Not yet implemented")
+class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDao, private val userDao: UserDao) : LocalRepository {
+    override suspend fun insertAll(products: List<ProductsRemote>) {
+        withContext(Dispatchers.IO){
+            productsDao.insertAll(products)
+        }
     }
 
-    override suspend fun update(product: ProductsDao) {
-        TODO("Not yet implemented")
+    override suspend fun getAllProducts(): List<ProductsRemote>? {
+        return productsDao.getAllProducts()
     }
 
-    override suspend fun delete(product: ProductsDao) {
-        TODO("Not yet implemented")
+    override suspend fun insertUser(user: User) {
+        withContext(Dispatchers.IO) {
+            userDao.insert(user)
+        }
     }
 
-    override suspend fun getProduct(name: String): List<ProductsDao>? {
-        TODO("Not yet implemented")
+    override suspend fun updateUser(user: User) {
+        withContext(Dispatchers.IO) {
+            userDao.update(user)
+        }
     }
 
-    override suspend fun insertAllCacheProducts(product: List<ProductsDao>) {
-        TODO("Not yet implemented")
+    override suspend fun deleteUser(user: User) {
+        withContext(Dispatchers.IO) {
+            userDao.delete(user)
+        }
     }
 
-    override suspend fun getCacheProduct(): List<ProductsDao>? {
-        TODO("Not yet implemented")
+    override suspend fun getUserByEmail(name: String): List<User>? {
+       return userDao.getUserByEmail(name)
     }
+
 }

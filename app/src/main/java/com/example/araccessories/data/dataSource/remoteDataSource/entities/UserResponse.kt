@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data  class UserResponse (
     @SerializedName("token" ) var token : String? = null,
-    @SerializedName("user"  ) var user  : User?   = User()
+    @SerializedName("user"  ) var user  : User?   = User(email = ".")
 
 )

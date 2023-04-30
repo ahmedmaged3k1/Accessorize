@@ -37,8 +37,8 @@ object AppModule {
     }
     @Provides
     @Singleton
-    fun provideRoomDao(coffeeDatabase: ProductsOfflineDatabase): ProductsDao {
-        return coffeeDatabase.productDao
+    fun provideRoomDao(productsDatabase: ProductsOfflineDatabase): ProductsDao {
+        return productsDatabase.productDao
 
     }
     @Provides

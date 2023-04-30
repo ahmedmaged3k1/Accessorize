@@ -1,0 +1,62 @@
+{
+  animations: [
+    {
+      path: 'sampledata/baroka.fbx',
+    },
+  ],
+  materials: [
+    {
+      name: 'HairMatAniso_mesh',
+      parameters: [
+        {
+          baseColor: [
+            0.048390000000000002,
+            0.0099699999999999997,
+            0.19711500000000001,
+            1,
+          ],
+        },
+        {
+          baseColorMap: null,
+        },
+        {
+          normalMap: null,
+        },
+        {
+          interpolatedColor: null,
+        },
+        {
+          metallic: 0,
+        },
+        {
+          metallicMap: null,
+        },
+        {
+          roughness: 1,
+        },
+        {
+          roughnessMap: null,
+        },
+        {
+          opacity: null,
+        },
+      ],
+      source: 'build/sceneform_sdk/default_materials/fbx_material.sfm',
+    },
+  ],
+  model: {
+    attributes: [
+      'Position',
+      'TexCoord',
+      'Orientation',
+      'BoneIndices',
+      'BoneWeights',
+    ],
+    collision: {},
+    file: 'sampledata/baroka.fbx',
+    name: 'baroka',
+    recenter: 'root',
+    scale: 0.23491000000000001,
+  },
+  version: '0.54:2',
+}
