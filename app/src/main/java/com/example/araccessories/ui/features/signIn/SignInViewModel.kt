@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.UserLogin
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.UserResponse
 import com.example.araccessories.domain.useCases.UserAccountUseCase
@@ -16,10 +17,11 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
     ViewModel() {
     var userEmail = MutableLiveData<String>("")
     var userPassword = MutableLiveData<String>("")
-    private var confirmedUser = UserResponse()
+    var confirmedUser = UserResponse()
     var observer = MutableLiveData(1)
     var validator = MutableLiveData(1)
     var badRequest = MutableLiveData(1)
+    lateinit var userData : User
 
 
     fun login() {
@@ -37,6 +39,7 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
                         "token",
                         confirmedUser.token.toString()
                     )
+                    userData= loginUseCase.loginUser(user)!!.user!!
                     resetData()
                     manipulateLiveData(observer)
                 } else {

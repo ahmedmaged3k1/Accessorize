@@ -1,12 +1,16 @@
 package com.example.araccessories.data.dataSource.remoteDataSource.entities
 
+import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
 @Entity
+@Parcelize
 @TypeConverters(UserConverter::class)
 data class User(
     @SerializedName("_id"         ) var Id          : String?  = ".",
@@ -19,9 +23,9 @@ data class User(
     @SerializedName("email"       ) var email       : String,
     @SerializedName("password"    ) var password    : String?  = ".",
     @SerializedName("phoneNumber" ) var phoneNumber : String?  = ".",
-    @SerializedName("address"     ) var address     : Address? = Address(),
+    @SerializedName("address"     ) var address     : @RawValue Address? = Address(),
     @SerializedName("createdAt"   ) var createdAt   : String?  = ".",
     @SerializedName("updatedAt"   ) var updatedAt   : String?  = ".",
     @SerializedName("__v"         ) var _v          : Int?     = 0,
     var productsList : List<ProductsRemote>?=null
-)
+): Parcelable

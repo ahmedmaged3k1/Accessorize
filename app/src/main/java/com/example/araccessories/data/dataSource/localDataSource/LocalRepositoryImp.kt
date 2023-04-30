@@ -16,6 +16,12 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
         }
     }
 
+    override suspend fun insertAll(user: User) {
+        withContext(Dispatchers.IO) {
+            userDao.insertAll(user)
+        }
+    }
+
     override suspend fun getAllProducts(): List<ProductsRemote>? {
         return productsDao.getAllProducts()
     }
@@ -38,7 +44,7 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
         }
     }
 
-    override suspend fun getUserByEmail(name: String): List<User>? {
+    override suspend fun getUserByEmail(name: String): User? {
        return userDao.getUserByEmail(name)
     }
 

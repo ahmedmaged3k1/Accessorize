@@ -12,8 +12,6 @@ interface LocalRepository {
 
     suspend fun insertAll(products: List<ProductsRemote>)
 
-
-
     suspend fun getAllProducts(): List<ProductsRemote>?
     suspend fun insertUser(user: User)
 
@@ -24,5 +22,8 @@ interface LocalRepository {
     suspend fun deleteUser(user: User)
 
 
-    suspend fun getUserByEmail(name: String): List<User>?
+    suspend fun getUserByEmail(name: String): User?
+
+    suspend fun insertAll(user: User)
+
 }

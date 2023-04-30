@@ -3,6 +3,8 @@ package com.example.araccessories.di
 import android.app.Application
 import com.example.araccessories.data.dataSource.localDataSource.room.cacheDatabase.ProductsDao
 import com.example.araccessories.data.dataSource.localDataSource.room.cacheDatabase.ProductsOfflineDatabase
+import com.example.araccessories.data.dataSource.localDataSource.room.userDatabase.UserDao
+import com.example.araccessories.data.dataSource.localDataSource.room.userDatabase.UserDatabase
 import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
 import com.example.araccessories.data.dataSource.remoteDataSource.ApiService
 import com.example.araccessories.data.network.Credentials
@@ -39,6 +41,17 @@ object AppModule {
     @Singleton
     fun provideRoomDao(productsDatabase: ProductsOfflineDatabase): ProductsDao {
         return productsDatabase.productDao
+
+    }
+    @Provides
+    @Singleton
+    fun provideUserRoomDb(context: Application): UserDatabase {
+        return UserDatabase.getInstance(context)
+    }
+    @Provides
+    @Singleton
+    fun provideUserRoomDao(userDatabase: UserDatabase): UserDao {
+        return userDatabase.userDao
 
     }
     @Provides

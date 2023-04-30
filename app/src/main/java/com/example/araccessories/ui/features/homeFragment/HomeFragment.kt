@@ -2,10 +2,10 @@ package com.example.araccessories.ui.features.homeFragment
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +17,7 @@ import com.example.araccessories.data.dataSource.localDataSource.entities.Positi
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.AdsRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.CategoryRecyclerViewAdapter
@@ -24,7 +25,8 @@ import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyc
 import com.example.araccessories.ui.features.signIn.SignInViewModel
 import com.google.ar.sceneform.rendering.ModelRenderable
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
+import java.util.Timer
+import java.util.TimerTask
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -36,12 +38,15 @@ class HomeFragment : Fragment() {
     private val categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter()
     private val productRecyclerViewAdapter = ProductsRecyclerViewAdapter()
     private val viewModel: HomeFragmentViewModel by viewModels()
+    private val sharedViewModel: SignInViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+
         initializeAdsRecyclerView()
         initializeCategoriesRecyclerView()
         initializeProductsRecyclerView()
@@ -54,6 +59,7 @@ class HomeFragment : Fragment() {
         }")
         viewModel.productList.observe(viewLifecycleOwner){
             productRecyclerViewAdapter.submitList(viewModel.productList.value)
+            viewModel.saveProducts(sharedViewModel.userData,viewModel.productList.value as List<ProductsRemote>)
             binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
         }
     }

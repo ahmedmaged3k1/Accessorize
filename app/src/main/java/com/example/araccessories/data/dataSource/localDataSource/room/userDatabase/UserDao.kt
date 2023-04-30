@@ -3,6 +3,7 @@ package com.example.araccessories.data.dataSource.localDataSource.room.userDatab
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
@@ -21,5 +22,8 @@ interface UserDao {
 
 
     @Query("SELECT * FROM  User where email =  :name  ")
-    suspend fun getUserByEmail(name: String): List<User>?
+    suspend fun getUserByEmail(name: String): User?
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(user: User)
+
 }
