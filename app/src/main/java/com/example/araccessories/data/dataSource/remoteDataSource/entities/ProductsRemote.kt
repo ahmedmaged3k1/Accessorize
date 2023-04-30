@@ -17,7 +17,6 @@ import kotlinx.android.parcel.RawValue
 @TypeConverters(Converters::class)
 data class ProductsRemote(
     @PrimaryKey
-
     @SerializedName("_id"           ) var Id            : String,
     @SerializedName("name"          ) var name          : String,
     @SerializedName("brand"         ) var brand         : String,
@@ -36,5 +35,6 @@ data class ProductsRemote(
     @SerializedName("isFavourite"   ) var isFavourite   : Boolean,
     @SerializedName("isCart"        ) var isCart        : Boolean,
     @SerializedName("__v"           ) var _v            : Int,
-    @SerializedName("modelLink"     ) var modelLink     : String
+    @SerializedName("modelLink"     ) var modelLink     : String,
+    var userEmail : String ="."
 ): Parcelable

@@ -16,14 +16,23 @@ interface LocalRepository {
     suspend fun insertUser(user: User)
 
 
-    suspend fun updateUser(user: User)
+    suspend fun updateUser(user: User, newProductsRemote: List<ProductsRemote>)
 
 
     suspend fun deleteUser(user: User)
 
+    suspend fun insertProduct(productsRemote: ProductsRemote)
+
+
+    suspend fun updateProduct(productsRemote: ProductsRemote)
+
+
+    suspend fun deleteProduct(productsRemote: ProductsRemote)
+
+    suspend fun getProductsByEmail(name: String): List<ProductsRemote>?
 
     suspend fun getUserByEmail(name: String): User?
 
-    suspend fun insertAll(user: User)
+    suspend fun insertAllUsers(user: User)
 
 }

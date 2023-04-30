@@ -1,7 +1,9 @@
 package com.example.araccessories.ui.features.homeFragment
 
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,14 +31,14 @@ import java.util.Timer
 import java.util.TimerTask
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickListener {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adList: List<Ad>
     private lateinit var categoryList: List<Category>
     private lateinit var productList: List<Products>
     private val adsRecyclerViewAdapter = AdsRecyclerViewAdapter()
     private val categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter()
-    private val productRecyclerViewAdapter = ProductsRecyclerViewAdapter()
+    private val productRecyclerViewAdapter = ProductsRecyclerViewAdapter(this)
     private val viewModel: HomeFragmentViewModel by viewModels()
     private val sharedViewModel: SignInViewModel by activityViewModels()
 
@@ -58,8 +60,9 @@ class HomeFragment : Fragment() {
             SharedPreference.readStringFromSharedPreference("token", "").toString()
         }")
         viewModel.productList.observe(viewLifecycleOwner){
+
+            viewModel.saveAllCartProducts(viewModel.productList.value as List<ProductsRemote>)
             productRecyclerViewAdapter.submitList(viewModel.productList.value)
-            viewModel.saveProducts(sharedViewModel.userData,viewModel.productList.value as List<ProductsRemote>)
             binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
         }
     }
@@ -103,6 +106,14 @@ class HomeFragment : Fragment() {
             Category("Earings",5)
         )
     }
+    private fun initializeProductsRecyclerView(){
+        //  initializeProducts()
+        initializeProductsRemote()
+        // productRecyclerViewAdapter.submitList(viewModel.productList.value)
+        //   binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
+
+    }
+    // For local and offline try
     private fun initializeProducts(){
         productList = listOf(
             Products("1","Yellow Glasses",listOf(R.drawable.y1,R.drawable.y2,R.drawable.y3),250.0, 2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
@@ -117,6 +128,33 @@ class HomeFragment : Fragment() {
 
             )
         initializingModelRenderable()
+    }
+    override fun onProductAdd(position: Int) {
+
+        sharedViewModel.userData.productsList?.get(position)!!.isFavourite=true
+        sharedViewModel.userData.productsList?.get(position)!!.userEmail=sharedViewModel.userData.email
+        viewModel.saveCartProduct(sharedViewModel.userData.productsList?.get(position)!!)
+        viewModel.updateUserProducts(sharedViewModel.userData,
+            sharedViewModel.userData.productsList!!
+        )
+        viewModel.getAllCartProducts()
+        Log.d(TAG, "onProductAdd: $position")
+        Log.d(TAG, "onProductAdd: ${sharedViewModel.userData.productsList!![position].isFavourite}")
+
+    }
+
+    override fun onProductRemove(position: Int) {
+        sharedViewModel.userData.productsList?.get(position)!!.isFavourite=false
+        sharedViewModel.userData.productsList?.get(position)!!.userEmail=sharedViewModel.userData.email
+
+        viewModel.deleteCartProduct(sharedViewModel.userData.productsList?.get(position)!!)
+
+        viewModel.updateUserProducts(sharedViewModel.userData, sharedViewModel.userData.productsList!!)
+        viewModel.getAllCartProducts()
+        Log.d(TAG, "onProductDel: $position")
+        Log.d(TAG, "onProductDel: ${sharedViewModel.userData.productsList!![position].isFavourite}")
+
+
     }
     private fun initializingModelRenderable(){
         ModelRenderable.builder()
@@ -139,12 +177,8 @@ class HomeFragment : Fragment() {
             }
 
     }
-    private fun initializeProductsRecyclerView(){
-      //  initializeProducts()
-        initializeProductsRemote()
-       // productRecyclerViewAdapter.submitList(viewModel.productList.value)
-     //   binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
 
-    }
+
+
 
 }

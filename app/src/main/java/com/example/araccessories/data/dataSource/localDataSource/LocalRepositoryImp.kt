@@ -16,7 +16,7 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
         }
     }
 
-    override suspend fun insertAll(user: User) {
+    override suspend fun insertAllUsers(user: User) {
         withContext(Dispatchers.IO) {
             userDao.insertAll(user)
         }
@@ -26,14 +26,16 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
         return productsDao.getAllProducts()
     }
 
+
     override suspend fun insertUser(user: User) {
         withContext(Dispatchers.IO) {
             userDao.insert(user)
         }
     }
 
-    override suspend fun updateUser(user: User) {
+    override suspend fun updateUser(user: User, newProductsRemote: List<ProductsRemote>) {
         withContext(Dispatchers.IO) {
+            user.productsList=newProductsRemote
             userDao.update(user)
         }
     }
@@ -42,6 +44,28 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
         withContext(Dispatchers.IO) {
             userDao.delete(user)
         }
+    }
+
+    override suspend fun insertProduct(productsRemote: ProductsRemote) {
+        withContext(Dispatchers.IO){
+            productsDao.insert(productsRemote)
+        }
+    }
+
+    override suspend fun updateProduct(productsRemote: ProductsRemote) {
+        withContext(Dispatchers.IO){
+            productsDao.update(productsRemote)
+        }
+    }
+
+    override suspend fun deleteProduct(productsRemote: ProductsRemote) {
+        withContext(Dispatchers.IO){
+            productsDao.delete(productsRemote)
+        }
+    }
+
+    override suspend fun getProductsByEmail(name: String): List<ProductsRemote>? {
+        return productsDao.getProductsByEmail(name)
     }
 
     override suspend fun getUserByEmail(name: String): User? {

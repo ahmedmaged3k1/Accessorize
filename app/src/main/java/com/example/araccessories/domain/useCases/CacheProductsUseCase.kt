@@ -1,8 +1,10 @@
 package com.example.araccessories.domain.useCases
 
-import com.example.araccessories.data.dataSource.localDataSource.LocalRepositoryImp
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 import com.example.araccessories.domain.repositories.LocalRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class CacheProductsUseCase@Inject constructor(private val localRepository: LocalRepository) {
@@ -10,13 +12,26 @@ class CacheProductsUseCase@Inject constructor(private val localRepository: Local
     suspend fun insertUser(user: User){
         localRepository.insertUser(user)
     }
+    suspend fun insertProduct(productsRemote: ProductsRemote){
+        localRepository.insertProduct(productsRemote)
+    }
+    suspend fun updateProduct(productsRemote: ProductsRemote){
+        localRepository.updateProduct(productsRemote)
+    }
+    suspend fun deleteProduct(productsRemote: ProductsRemote){
+        localRepository.deleteProduct(productsRemote)
+    }
+    suspend fun getAllProducts() : List<ProductsRemote>?  {
+
+        return localRepository.getAllProducts()
+    }
     suspend fun overWriteUser(user: User){
-        localRepository.insertAll(user)
+        localRepository.insertAllUsers(user)
     }
 
 
-    suspend fun updateUser(user: User){
-        localRepository.updateUser(user)
+    suspend fun updateUser(user: User, newProductsRemote: List<ProductsRemote>){
+        localRepository.updateUser(user,newProductsRemote)
 
     }
 
@@ -29,5 +44,10 @@ class CacheProductsUseCase@Inject constructor(private val localRepository: Local
 
     suspend fun getUserByEmail(name: String): User?{
         return localRepository.getUserByEmail(name)
+    }
+    suspend fun insertAllProducts(products: List<ProductsRemote>) {
+        withContext(Dispatchers.IO){
+            localRepository.insertAll(products)
+        }
     }
 }

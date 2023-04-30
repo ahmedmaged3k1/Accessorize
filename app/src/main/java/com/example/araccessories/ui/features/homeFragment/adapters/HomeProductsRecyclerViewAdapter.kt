@@ -1,5 +1,7 @@
 package com.example.araccessories.ui.features.homeFragment.adapters
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -13,8 +15,13 @@ import com.example.araccessories.ui.features.mainNavigation.MainNavigationDirect
 import kotlinx.android.synthetic.main.product_item.view.product_item
 
 
-class ProductsRecyclerViewAdapter :
+class ProductsRecyclerViewAdapter(private val listener: ProductFavClickListener) :
     ListAdapter<ProductsRemote, ProductsRecyclerViewAdapter.ProductViewHolder>(diffCallback) {
+    interface ProductFavClickListener {
+        fun onProductAdd(position: Int)
+        fun onProductRemove(position: Int)
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return from(parent)
     }
@@ -25,25 +32,27 @@ class ProductsRecyclerViewAdapter :
     }
     inner class ProductViewHolder constructor(private val binding: ProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
             fun bind (product : ProductsRemote){
                 binding.product=product
-
-
-                if (!product.isFavourite){
-                    binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                Log.d(TAG, "onProductFav:  ${product.isFavourite}")
+                if (product.isFavourite){
+                    binding.productFav.setImageResource(R.drawable.baseline_favorite_24)
                 }
                 else {
-                    binding.productFav.setImageResource(R.drawable.baseline_favorite_24)
+                    binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
 
                 }
                 binding.productFav.setOnClickListener {
-                    if (!product.isFavourite){
+                    if (product.isFavourite){
                         binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
-                        product.isFavourite=true
+                        product.isFavourite=false
+                        listener.onProductRemove(position)
                     }
                     else {
                         binding.productFav.setImageResource(R.drawable.baseline_favorite_24)
-                        product.isFavourite=false
+                        listener.onProductAdd(position)
+                        product.isFavourite=true
 
                     }
                 }
@@ -63,6 +72,8 @@ class ProductsRecyclerViewAdapter :
         init {
 
         }
+
+
 
     }
     fun from(parent: ViewGroup): ProductViewHolder {
