@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.ProductHistoryBinding
 
 
 class HistoryRecyclerViewAdapter :
-    ListAdapter<Products, HistoryRecyclerViewAdapter.HistoryViewHolder>(diffCallbackHistory) {
+    ListAdapter<ProductsRemote, HistoryRecyclerViewAdapter.HistoryViewHolder>(diffCallbackHistory) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         return from(parent)
     }
@@ -22,11 +23,9 @@ class HistoryRecyclerViewAdapter :
 
     inner class HistoryViewHolder constructor(private val binding: ProductHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(products: Products) {
+        fun bind(products: ProductsRemote) {
             binding.product = products
-            binding.productName.text=products.productName
-            binding.productPrice.text = "${products.productPrice} Egp"
-            binding.productImage.setImageResource(products.productImage[0])
+
 
             binding.executePendingBindings()
         }
@@ -44,13 +43,13 @@ class HistoryRecyclerViewAdapter :
     }
 }
 
-val diffCallbackHistory = object : DiffUtil.ItemCallback<Products>() {
-    override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
+val diffCallbackHistory = object : DiffUtil.ItemCallback<ProductsRemote>() {
+    override fun areItemsTheSame(oldItem: ProductsRemote, newItem: ProductsRemote): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Products, newItem: Products): Boolean {
-        return oldItem.productId == newItem.productId
+    override fun areContentsTheSame(oldItem: ProductsRemote, newItem: ProductsRemote): Boolean {
+        return oldItem.Id == newItem.Id
 
 
     }

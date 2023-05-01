@@ -1,22 +1,26 @@
 package com.example.araccessories.ui.features.historyFragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.databinding.FragmentHistoryBinding
 import com.example.araccessories.ui.features.historyFragment.adapters.HistoryRecyclerViewAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class HistoryFragment : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private val historyRecyclerViewAdapter = HistoryRecyclerViewAdapter()
     private lateinit var productList: List<Products>
+    private val viewModel: HistoryFragmentViewModel by viewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,14 +28,10 @@ class HistoryFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        initializeProductsRecyclerView()
+        initializeProductsHist()
         return binding.root
     }
-    private fun initializeProductsRecyclerView(){
-        initializeProducts()
-        historyRecyclerViewAdapter.submitList(productList)
-        binding.cartRecyclerView.adapter=historyRecyclerViewAdapter
-    }
+
     private fun initializeProducts(){
         productList = listOf(
             Products("mask.sfb","Mask",listOf(R.drawable.mask1,R.drawable.mask2,R.drawable.mask3),450.0,3.0,4,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(2f, 2f, 2f), Position(0f, -0.005f, 0.017f)),
@@ -40,6 +40,14 @@ class HistoryFragment : Fragment() {
             Products("2","Fox Make Up",listOf(R.drawable.fox_face_mesh_texture,R.drawable.fox_face_mesh_texture,R.drawable.fox_face_mesh_texture),450.0,3.0,3,0,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
 
             )
+    }
+    private fun initializeProductsHist() {
+        viewModel.getAllProducts()
+        viewModel.productList.observe(viewLifecycleOwner){
+
+            historyRecyclerViewAdapter.submitList(viewModel.productList.value)
+            binding.cartRecyclerView.adapter=historyRecyclerViewAdapter
+        }
     }
 
 }

@@ -4,7 +4,7 @@
     <data>
         <variable
             name="product"
-            type="com.example.araccessories.data.dataSource.localDataSource.entities.Products" />
+            type="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/product_item"
@@ -35,6 +35,8 @@
                 android:contentDescription="@string/productImage"
                 android:elevation="20dp"
                 android:scaleType="fitXY"
+                app:productImage="@{product}"
+
                 android:src="@drawable/fox_face_mesh_texture"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
@@ -51,6 +53,8 @@
                 android:layout_width="132dp"
                 android:layout_height="25dp"
                 android:layout_marginStart="8dp"
+                android:text="@{product.name}"
+
                 android:layout_marginTop="4dp"
                 android:gravity="center"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -63,6 +67,7 @@
             <TextView
                 android:id="@+id/productPrice"
                 style="@style/categoryText"
+                android:text="@{String.valueOf(product.price)}"
 
                 android:layout_width="120dp"
                 android:layout_height="25dp"

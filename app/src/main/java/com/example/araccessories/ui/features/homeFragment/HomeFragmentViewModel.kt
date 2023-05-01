@@ -61,6 +61,20 @@ class HomeFragmentViewModel@Inject constructor(private val productsUseCase: Prod
 
         }
     }
+    fun addToFavProduct(productsRemote: ProductsRemote){
+        viewModelScope.launch{
+            productsRemote.isFavourite=true
+            userAccountUseCase.updateProduct(productsRemote)
+
+        }
+    }
+    fun deleteFromFavProduct(productsRemote: ProductsRemote){
+        viewModelScope.launch{
+            productsRemote.isFavourite=false
+            userAccountUseCase.updateProduct(productsRemote)
+
+        }
+    }
     fun updateUserProducts(user: User, newProductsRemote: List<ProductsRemote>){
         viewModelScope.launch {
             userAccountUseCase.updateUser(user,newProductsRemote)

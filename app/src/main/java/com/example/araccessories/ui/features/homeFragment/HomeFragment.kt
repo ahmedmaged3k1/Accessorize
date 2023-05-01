@@ -129,25 +129,14 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
         initializingModelRenderable()
     }
     override fun onProductAdd(position: Int) {
-        viewModel.productList.value?.get(position)?.isFavourite=true
-        Log.d(TAG, "getAllProductsLocal Before Add: ")
-        viewModel.getAllProductsLocal()
-        viewModel.updateProduct(viewModel.productList.value!![position])
-        Log.d(TAG, "getAllProductsLocal After Add: ")
-        viewModel.getAllProductsLocal()
+
+        viewModel.addToFavProduct(viewModel.productList.value!![position])
+
 
     }
 
     override fun onProductRemove(position: Int) {
-        viewModel.productList.value?.get(position)?.isFavourite=false
-        Log.d(TAG, "getAllProductsLocal Before Del: ")
-        viewModel.getAllProductsLocal()
-        viewModel.updateProduct(viewModel.productList.value!![position])
-        viewModel.getAllProductsLocal()
-        Log.d(TAG, "getAllProductsLocal After Del: ")
-        viewModel.getAllProductsLocal()
-
-
+        viewModel.deleteFromFavProduct(viewModel.productList.value!![position])
 
     }
     private fun initializingModelRenderable(){
