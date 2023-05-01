@@ -36,5 +36,5 @@ data class ProductsRemote(
     @SerializedName("isCart"        ) var isCart        : Boolean,
     @SerializedName("__v"           ) var _v            : Int,
     @SerializedName("modelLink"     ) var modelLink     : String,
-    var userEmail : String ="."
+    var userEmail : String
 ): Parcelable

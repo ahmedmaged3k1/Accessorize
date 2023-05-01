@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
@@ -12,6 +13,7 @@ import com.example.araccessories.data.dataSource.localDataSource.entities.Produc
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.databinding.FragmentHistoryBinding
 import com.example.araccessories.ui.features.historyFragment.adapters.HistoryRecyclerViewAdapter
+import com.example.araccessories.ui.features.signIn.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,6 +22,8 @@ class HistoryFragment : Fragment() {
     private val historyRecyclerViewAdapter = HistoryRecyclerViewAdapter()
     private lateinit var productList: List<Products>
     private val viewModel: HistoryFragmentViewModel by viewModels()
+    private val sharedViewModel: SignInViewModel by activityViewModels()
+
 
 
     override fun onCreateView(
@@ -28,7 +32,7 @@ class HistoryFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
-        initializeProductsHist()
+        initializeProductsHist(sharedViewModel.userData.email)
         return binding.root
     }
 
@@ -41,8 +45,8 @@ class HistoryFragment : Fragment() {
 
             )
     }
-    private fun initializeProductsHist() {
-        viewModel.getAllProducts()
+    private fun initializeProductsHist(userEmail : String) {
+        viewModel.getAllProducts(userEmail)
         viewModel.productList.observe(viewLifecycleOwner){
 
             historyRecyclerViewAdapter.submitList(viewModel.productList.value)

@@ -41,7 +41,9 @@ class CacheProductsUseCase@Inject constructor(private val localRepository: Local
 
     }
 
-
+    suspend fun getProductsByEmail(name: String): List<ProductsRemote>? {
+        return localRepository.getProductsByEmail(name)
+    }
     suspend fun getUserByEmail(name: String): User?{
         return localRepository.getUserByEmail(name)
     }

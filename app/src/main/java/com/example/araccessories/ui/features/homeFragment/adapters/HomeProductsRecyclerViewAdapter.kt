@@ -60,7 +60,7 @@ class ProductsRecyclerViewAdapter(private val listener: ProductFavClickListener)
                 binding.root.product_item.setOnClickListener {
                     val action =
                         MainNavigationDirections.actionMainNavigationToProductDetailsFragment(
-                            getItem(position)
+                            getItem(position),position
                         )
                     binding.root.findNavController()
                         .navigate(action)

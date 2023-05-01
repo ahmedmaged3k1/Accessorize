@@ -148,6 +148,9 @@
         <argument
             android:name="Products"
             app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/glassesTryOn"

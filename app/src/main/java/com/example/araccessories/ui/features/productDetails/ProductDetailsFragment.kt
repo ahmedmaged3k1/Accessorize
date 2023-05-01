@@ -11,8 +11,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentProductDetailsBinding
 import com.example.araccessories.ui.features.productDetails.adapters.ProductImageRecyclerViewAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class ProductDetailsFragment : Fragment() , java.io.Serializable{
     private lateinit var binding: FragmentProductDetailsBinding
     private val args by navArgs<ProductDetailsFragmentArgs>()
@@ -31,6 +32,7 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
         backButton()
         initializeArgs()
       //  initializeImageList()
+        addToHistory()
         tryOnProduct()
         initializeProductDetailsRecyclerView()
 
@@ -59,6 +61,9 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
             R.drawable.sunglasses,
             R.drawable.sunglasses
             )
+    }
+    private fun addToHistory(){
+        viewModel.addToFavProduct(args.products)
     }
 
     private fun tryOnProduct(){

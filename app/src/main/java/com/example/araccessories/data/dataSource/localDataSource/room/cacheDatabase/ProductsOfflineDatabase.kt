@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 
-@Database(entities = [ProductsRemote::class], version = 7, exportSchema = false)
+@Database(entities = [ProductsRemote::class], version = 16, exportSchema = false)
 abstract class ProductsOfflineDatabase : RoomDatabase() {
     abstract val productDao :ProductsDao
     companion object {

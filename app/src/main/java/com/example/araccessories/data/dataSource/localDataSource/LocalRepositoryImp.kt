@@ -15,15 +15,12 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
 
     override suspend fun insertProduct(productsRemote: ProductsRemote) {
         withContext(Dispatchers.IO){
-            productsRemote.userEmail=".`"
             productsDao.insertProduct(productsRemote)
         }
     }
     override suspend fun insertAllProducts(products: List<ProductsRemote>) {
         withContext(Dispatchers.IO){
-            products.forEach {
-                it.userEmail="."
-            }
+
                 productsDao.insertAllProducts(products)
 
         }

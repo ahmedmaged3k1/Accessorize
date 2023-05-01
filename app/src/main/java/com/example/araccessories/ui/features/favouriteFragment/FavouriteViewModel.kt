@@ -13,9 +13,9 @@ import javax.inject.Inject
 @HiltViewModel
 class FavouriteViewModel@Inject constructor( private val userAccountUseCase: CacheProductsUseCase) :  ViewModel(){
     val productList = MutableLiveData<ArrayList<ProductsRemote>>()
-    fun getAllProducts() {
+    fun getAllProducts(userEmail: String) {
         viewModelScope.launch {
-            productList.postValue(userAccountUseCase.getAllProducts()?.filter { it.isFavourite } as ArrayList<ProductsRemote>?)
+            productList.postValue(userAccountUseCase.getProductsByEmail(userEmail)?.filter { it.isFavourite } as ArrayList<ProductsRemote>?)
         }
 
     }

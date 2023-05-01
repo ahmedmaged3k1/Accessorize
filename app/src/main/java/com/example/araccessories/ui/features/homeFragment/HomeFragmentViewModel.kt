@@ -18,49 +18,15 @@ import javax.inject.Inject
 class HomeFragmentViewModel@Inject constructor(private val productsUseCase: ProductsUseCase,private val userAccountUseCase: CacheProductsUseCase) :  ViewModel(){
      val productList = MutableLiveData<ArrayList<ProductsRemote>>()
 
-    fun getAllProducts(authToken: String) {
+    fun getAllProducts(authToken: String,userEmail : String) {
         viewModelScope.launch {
-            productList.postValue(productsUseCase.getAllProducts(authToken) as ArrayList<ProductsRemote>?)
+            productsUseCase.getAllProducts(authToken,userEmail)
+            Log.d(TAG, "getAllProducts asd: $userEmail ")
+            productList.postValue(  productsUseCase.getAllProducts(authToken,userEmail) as ArrayList<ProductsRemote>?)
         }
 
     }
-     fun saveProducts(user: User,productList: List<ProductsRemote>){
-        viewModelScope.launch {
-                user.productsList=productList
-                userAccountUseCase.overWriteUser(user)
-        }
-    }
-    fun saveCartProduct(productsRemote: ProductsRemote){
-        viewModelScope.launch {
-            userAccountUseCase.insertProduct(productsRemote)
-        }
-    }
-    fun deleteCartProduct(productsRemote: ProductsRemote){
-        viewModelScope.launch {
-            userAccountUseCase.deleteProduct(productsRemote)
-        }
-    }
-     fun getAllProductsLocal()  {
 
-           viewModelScope.launch{
-               Log.d(TAG, "getAllProductsLocal: ${ userAccountUseCase.getAllProducts()} ")
-           }
-
-
-    }
-    fun saveAllCartProducts(){
-        viewModelScope.launch {
-            //userAccountUseCase.insertAllProducts(cachedProducts)
-
-
-        }
-    }
-    fun updateProduct(productsRemote: ProductsRemote){
-        viewModelScope.launch{
-            userAccountUseCase.updateProduct(productsRemote)
-
-        }
-    }
     fun addToFavProduct(productsRemote: ProductsRemote){
         viewModelScope.launch{
             productsRemote.isFavourite=true
@@ -75,10 +41,6 @@ class HomeFragmentViewModel@Inject constructor(private val productsUseCase: Prod
 
         }
     }
-    fun updateUserProducts(user: User, newProductsRemote: List<ProductsRemote>){
-        viewModelScope.launch {
-            userAccountUseCase.updateUser(user,newProductsRemote)
-        }
-    }
+
 
 }

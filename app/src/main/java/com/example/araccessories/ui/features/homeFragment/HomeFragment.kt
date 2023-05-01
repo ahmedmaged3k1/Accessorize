@@ -57,7 +57,7 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
     private fun initializeProductsRemote(){
         viewModel.getAllProducts("Bearer ${
             SharedPreference.readStringFromSharedPreference("token", "").toString()
-        }")
+        }",sharedViewModel.userData.email)
         //viewModel.saveAllCartProducts()
 
         viewModel.productList.observe(viewLifecycleOwner){
