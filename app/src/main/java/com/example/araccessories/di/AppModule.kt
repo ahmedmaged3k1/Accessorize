@@ -61,8 +61,8 @@ object AppModule {
     }
     @Provides
     @Singleton
-    fun provideProductUseCase(remoteRepository: RemoteRepository): ProductsUseCase {
-        return ProductsUseCase(remoteRepository)
+    fun provideProductUseCase(remoteRepository: RemoteRepository, localRepository: LocalRepository): ProductsUseCase {
+        return ProductsUseCase(remoteRepository,localRepository)
     }
 
     @Singleton

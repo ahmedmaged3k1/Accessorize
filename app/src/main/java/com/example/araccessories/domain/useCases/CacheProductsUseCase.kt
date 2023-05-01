@@ -47,7 +47,8 @@ class CacheProductsUseCase@Inject constructor(private val localRepository: Local
     }
     suspend fun insertAllProducts(products: List<ProductsRemote>) {
         withContext(Dispatchers.IO){
-            localRepository.insertAll(products)
+
+            localRepository.insertAllProducts(products)
         }
     }
 }

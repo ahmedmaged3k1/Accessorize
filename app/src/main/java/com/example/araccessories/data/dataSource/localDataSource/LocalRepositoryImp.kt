@@ -1,5 +1,7 @@
 package com.example.araccessories.data.dataSource.localDataSource
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.example.araccessories.data.dataSource.localDataSource.room.cacheDatabase.ProductsDao
 import com.example.araccessories.data.dataSource.localDataSource.room.userDatabase.UserDao
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
@@ -10,9 +12,20 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDao, private val userDao: UserDao) : LocalRepository {
-    override suspend fun insertAll(products: List<ProductsRemote>) {
+
+    override suspend fun insertProduct(productsRemote: ProductsRemote) {
         withContext(Dispatchers.IO){
-            productsDao.insertAll(products)
+            productsRemote.userEmail=".`"
+            productsDao.insertProduct(productsRemote)
+        }
+    }
+    override suspend fun insertAllProducts(products: List<ProductsRemote>) {
+        withContext(Dispatchers.IO){
+            products.forEach {
+                it.userEmail="."
+            }
+                productsDao.insertAllProducts(products)
+
         }
     }
 
@@ -46,11 +59,7 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
         }
     }
 
-    override suspend fun insertProduct(productsRemote: ProductsRemote) {
-        withContext(Dispatchers.IO){
-            productsDao.insert(productsRemote)
-        }
-    }
+
 
     override suspend fun updateProduct(productsRemote: ProductsRemote) {
         withContext(Dispatchers.IO){

@@ -19,7 +19,6 @@ import com.example.araccessories.data.dataSource.localDataSource.entities.Positi
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
-import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.AdsRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.CategoryRecyclerViewAdapter
@@ -59,9 +58,9 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
         viewModel.getAllProducts("Bearer ${
             SharedPreference.readStringFromSharedPreference("token", "").toString()
         }")
-        viewModel.productList.observe(viewLifecycleOwner){
+        //viewModel.saveAllCartProducts()
 
-            viewModel.saveAllCartProducts(viewModel.productList.value as List<ProductsRemote>)
+        viewModel.productList.observe(viewLifecycleOwner){
             productRecyclerViewAdapter.submitList(viewModel.productList.value)
             binding.productsHomeRecyclerView.adapter=productRecyclerViewAdapter
         }
@@ -130,29 +129,24 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
         initializingModelRenderable()
     }
     override fun onProductAdd(position: Int) {
-
-        sharedViewModel.userData.productsList?.get(position)!!.isFavourite=true
-        sharedViewModel.userData.productsList?.get(position)!!.userEmail=sharedViewModel.userData.email
-        viewModel.saveCartProduct(sharedViewModel.userData.productsList?.get(position)!!)
-        viewModel.updateUserProducts(sharedViewModel.userData,
-            sharedViewModel.userData.productsList!!
-        )
-        viewModel.getAllCartProducts()
-        Log.d(TAG, "onProductAdd: $position")
-        Log.d(TAG, "onProductAdd: ${sharedViewModel.userData.productsList!![position].isFavourite}")
+        viewModel.productList.value?.get(position)?.isFavourite=true
+        Log.d(TAG, "getAllProductsLocal Before Add: ")
+        viewModel.getAllProductsLocal()
+        viewModel.updateProduct(viewModel.productList.value!![position])
+        Log.d(TAG, "getAllProductsLocal After Add: ")
+        viewModel.getAllProductsLocal()
 
     }
 
     override fun onProductRemove(position: Int) {
-        sharedViewModel.userData.productsList?.get(position)!!.isFavourite=false
-        sharedViewModel.userData.productsList?.get(position)!!.userEmail=sharedViewModel.userData.email
+        viewModel.productList.value?.get(position)?.isFavourite=false
+        Log.d(TAG, "getAllProductsLocal Before Del: ")
+        viewModel.getAllProductsLocal()
+        viewModel.updateProduct(viewModel.productList.value!![position])
+        viewModel.getAllProductsLocal()
+        Log.d(TAG, "getAllProductsLocal After Del: ")
+        viewModel.getAllProductsLocal()
 
-        viewModel.deleteCartProduct(sharedViewModel.userData.productsList?.get(position)!!)
-
-        viewModel.updateUserProducts(sharedViewModel.userData, sharedViewModel.userData.productsList!!)
-        viewModel.getAllCartProducts()
-        Log.d(TAG, "onProductDel: $position")
-        Log.d(TAG, "onProductDel: ${sharedViewModel.userData.productsList!![position].isFavourite}")
 
 
     }

@@ -10,17 +10,7 @@ import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 interface LocalRepository {
 
 
-    suspend fun insertAll(products: List<ProductsRemote>)
-
-    suspend fun getAllProducts(): List<ProductsRemote>?
-    suspend fun insertUser(user: User)
-
-
-    suspend fun updateUser(user: User, newProductsRemote: List<ProductsRemote>)
-
-
-    suspend fun deleteUser(user: User)
-
+    suspend fun insertAllProducts(products: List<ProductsRemote>)
     suspend fun insertProduct(productsRemote: ProductsRemote)
 
 
@@ -30,6 +20,17 @@ interface LocalRepository {
     suspend fun deleteProduct(productsRemote: ProductsRemote)
 
     suspend fun getProductsByEmail(name: String): List<ProductsRemote>?
+
+    suspend fun getAllProducts(): List<ProductsRemote>?
+
+    suspend fun insertUser(user: User)
+
+
+    suspend fun updateUser(user: User, newProductsRemote: List<ProductsRemote>)
+
+
+    suspend fun deleteUser(user: User)
+
 
     suspend fun getUserByEmail(name: String): User?
 

@@ -12,22 +12,26 @@ import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 
 @Dao
 interface ProductsDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(products: List<ProductsRemote>)
+  /*  @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(products: ProductsRemote)*/
+
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  suspend fun insertAllProducts(productsRemoteList: List<ProductsRemote>)
+  @Insert
+  suspend fun insertProduct( productsRemote: ProductsRemote)
+
+  @Delete
+  suspend fun delete(productsRemote: ProductsRemote)
+
+  @Update
+  suspend fun update(productsRemote: ProductsRemote)
     @Query("SELECT * FROM  ProductsRemote where userEmail =  :name  ")
     suspend fun getProductsByEmail(name: String): List<ProductsRemote>?
 
     @Query("SELECT * FROM  ProductsRemote ")
     suspend fun getAllProducts(): List<ProductsRemote>?
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(productsRemote: ProductsRemote)
-
-    @Delete
-    suspend fun delete(productsRemote: ProductsRemote)
-
-    @Update
-    suspend fun update(productsRemote: ProductsRemote)
 
 
 

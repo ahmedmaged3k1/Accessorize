@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 
-@Database(entities = [User::class], version = 2, exportSchema = false)
+@Database(entities = [User::class], version = 3, exportSchema = false)
 
 abstract class UserDatabase : RoomDatabase() {
     abstract val userDao : UserDao

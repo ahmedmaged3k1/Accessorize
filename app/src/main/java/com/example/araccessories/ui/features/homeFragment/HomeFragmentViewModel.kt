@@ -9,7 +9,6 @@ import com.example.araccessories.data.dataSource.remoteDataSource.entities.Produ
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.User
 import com.example.araccessories.domain.useCases.CacheProductsUseCase
 import com.example.araccessories.domain.useCases.ProductsUseCase
-import com.example.araccessories.domain.useCases.UserAccountUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,8 +20,7 @@ class HomeFragmentViewModel@Inject constructor(private val productsUseCase: Prod
 
     fun getAllProducts(authToken: String) {
         viewModelScope.launch {
-            //productList.postValue(productsUseCase.getAllProducts(authToken) as ArrayList<ProductsRemote>?)
-            userAccountUseCase.insertAllProducts(productsUseCase.getAllProducts(authToken))
+            productList.postValue(productsUseCase.getAllProducts(authToken) as ArrayList<ProductsRemote>?)
         }
 
     }
@@ -42,14 +40,25 @@ class HomeFragmentViewModel@Inject constructor(private val productsUseCase: Prod
             userAccountUseCase.deleteProduct(productsRemote)
         }
     }
-     fun getAllCartProducts() {
-     viewModelScope.launch {
-         productList.postValue(userAccountUseCase.getAllProducts() as ArrayList<ProductsRemote>?)
-     }
+     fun getAllProductsLocal()  {
+
+           viewModelScope.launch{
+               Log.d(TAG, "getAllProductsLocal: ${ userAccountUseCase.getAllProducts()} ")
+           }
+
+
     }
-    fun saveAllCartProducts(productList: List<ProductsRemote>){
+    fun saveAllCartProducts(){
         viewModelScope.launch {
-           userAccountUseCase.insertAllProducts(productList)
+            //userAccountUseCase.insertAllProducts(cachedProducts)
+
+
+        }
+    }
+    fun updateProduct(productsRemote: ProductsRemote){
+        viewModelScope.launch{
+            userAccountUseCase.updateProduct(productsRemote)
+
         }
     }
     fun updateUserProducts(user: User, newProductsRemote: List<ProductsRemote>){

@@ -5,8 +5,10 @@ import com.example.araccessories.data.dataSource.remoteDataSource.entities.Produ
 import com.example.araccessories.domain.repositories.LocalRepository
 import com.example.araccessories.domain.repositories.RemoteRepository
 
-class ProductsUseCase(private val remoteRepositoryImp: RemoteRepository) {
-    suspend fun getAllProducts(authToken : String) : List<ProductsRemote>{
-        return remoteRepositoryImp.getAllProducts(authToken)
+class ProductsUseCase(private val remoteRepositoryImp: RemoteRepository,private val localRepository: LocalRepository) {
+    suspend fun getAllProducts(authToken : String) : List<ProductsRemote>?{
+       // localRepository.insertAll(remoteRepositoryImp.getAllProducts(authToken))
+        localRepository.insertAllProducts(remoteRepositoryImp.getAllProducts(authToken))
+        return localRepository.getAllProducts()
     }
 }
