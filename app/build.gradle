@@ -209,3 +209,34 @@ sceneform.asset('sampledata/maskamirat.fbx',
         'default',
         'sampledata/maskamirat.sfa',
         'src/main/assets/maskamirat')
+sceneform.asset('sampledata/greenglasses.fbx',
+        'default',
+        'sampledata/greenGlasses.sfa',
+        'src/main/assets/greenGlasses')
+sceneform.asset('sampledata/greyGlasses.fbx',
+        'default',
+        'sampledata/greyGlasses.sfa',
+        'src/main/assets/greyGlasses')
+sceneform.asset('sampledata/orangeGlasses.fbx',
+        'default',
+        'sampledata/orangeGlasses.sfa',
+        'src/main/assets/orangeGlasses')
+sceneform.asset('sampledata/rayban.fbx',
+        'default',
+        'sampledata/rayban.sfa',
+        'src/main/assets/rayban')
+sceneform.asset('sampledata/raybanGrey.fbx',
+        'default',
+        'sampledata/raybanGrey.sfa',
+        'src/main/assets/raybanGrey')
+sceneform.asset('sampledata/sunglasses2.fbx',
+        'default',
+        'sampledata/sunglasses2.sfa',
+        'src/main/assets/sunglasses2')
+sceneform.asset('sampledata/greenSunglasses.fbx',
+        'default',
+        'sampledata/greenSunglasses.sfa',
+        'src/main/assets/greenSunglasses')
+
+
+

@@ -5,12 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.araccessories.data.dataSource.localDataSource.entities.Products
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.ProductCartBinding
 
 
-class CartFragmentRecyclerView :
-    ListAdapter<Products, CartFragmentRecyclerView.CartViewHolder>(diffCallbackCart) {
+class CartFragmentRecyclerView (private val listener: CartFragmentRecyclerView.ProductCartClickListener):
+    ListAdapter<ProductsRemote, CartFragmentRecyclerView.CartViewHolder>(diffCallbackCart) {
+    interface ProductCartClickListener {
+        fun onProductInc(position: Int)
+        fun onProductDec(position: Int)
+        fun orderPrice (price :  Int)
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
         return from(parent)
     }
@@ -22,23 +28,29 @@ class CartFragmentRecyclerView :
 
     inner class CartViewHolder constructor(private val binding: ProductCartBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(products: Products) {
+        var orderTotal = 0
+
+        fun bind(products: ProductsRemote) {
             var cartCount =1
             binding.product = products
-            binding.productName.text=products.productName
-            binding.productPrice.text = "${products.productPrice} Egp"
-            binding.productImage.setImageResource(products.productImage[0])
-            binding.productCartCount.text="$cartCount"
+            orderTotal+=products.price
             binding.increaseCount.setOnClickListener {
                 cartCount++
-                binding.productCartCount.text="${cartCount  }"
+                binding.productCartCount.text="$cartCount"
+                orderTotal+=products.price
+                listener.orderPrice(orderTotal)
 
+                listener.onProductInc(position)
             }
             binding.decreaseCount.setOnClickListener {
                 if (cartCount==1)return@setOnClickListener
                 else{
+                    orderTotal-=products.price
+                   listener.onProductDec(position)
+                    listener.orderPrice(orderTotal)
+
                     cartCount--
-                    binding.productCartCount.text="${cartCount}"
+                    binding.productCartCount.text="$cartCount"
                 }
             }
 
@@ -60,13 +72,13 @@ class CartFragmentRecyclerView :
     }
 }
 
-val diffCallbackCart = object : DiffUtil.ItemCallback<Products>() {
-    override fun areItemsTheSame(oldItem: Products, newItem: Products): Boolean {
+val diffCallbackCart = object : DiffUtil.ItemCallback<ProductsRemote>() {
+    override fun areItemsTheSame(oldItem: ProductsRemote, newItem: ProductsRemote): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Products, newItem: Products): Boolean {
-        return oldItem.productId == newItem.productId
+    override fun areContentsTheSame(oldItem: ProductsRemote, newItem: ProductsRemote): Boolean {
+        return oldItem.Id == newItem.Id
 
 
     }

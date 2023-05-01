@@ -47,7 +47,8 @@ class GlassesTryOn : Fragment() {
     }
     private fun initializeModel (){
         ModelRenderable.builder()
-            .setSource(this.activity, Uri.parse(args.products.modelLink))
+                //args.products.modelLink
+            .setSource(this.activity, Uri.parse("greenSunglasses.sfb"))
             .build()
             .thenAccept { modelRenderable ->
                 modelRenderable.isShadowCaster = false

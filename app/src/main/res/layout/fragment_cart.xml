@@ -1,7 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="product"
+            type="com.example.araccessories.ui.features.cartFragment.CartFragmentViewModel" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.features.cartFragment.CartFragment">
@@ -66,7 +71,8 @@
         android:layout_marginStart="176dp"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:text="@string/_1975_egp"
+        android:text="@{String.valueOf(product.orderTotal)}"
+
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/signIn"
         app:layout_constraintEnd_toEndOf="parent"
@@ -102,3 +108,5 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

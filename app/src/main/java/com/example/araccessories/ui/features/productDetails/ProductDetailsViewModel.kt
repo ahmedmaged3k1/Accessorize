@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.domain.useCases.CacheProductsUseCase
-import com.example.araccessories.domain.useCases.ProductsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,9 +14,16 @@ class ProductDetailsViewModel @Inject constructor( private val userAccountUseCas
     var productDescription = MutableLiveData<String>("")
     var productPrice = MutableLiveData<String>("")
 
-    fun addToFavProduct(productsRemote: ProductsRemote){
+    fun addToHistoryProduct(productsRemote: ProductsRemote){
         viewModelScope.launch{
             productsRemote.isTried=true
+            userAccountUseCase.updateProduct(productsRemote)
+
+        }
+    }
+    fun addToCartProduct(productsRemote: ProductsRemote){
+        viewModelScope.launch{
+            productsRemote.isCart=true
             userAccountUseCase.updateProduct(productsRemote)
 
         }

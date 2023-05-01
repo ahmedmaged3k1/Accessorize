@@ -1,25 +1,34 @@
 package com.example.araccessories.ui.features.cartFragment
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.databinding.FragmentCartBinding
 import com.example.araccessories.ui.features.cartFragment.adapters.CartFragmentRecyclerView
+import com.example.araccessories.ui.features.favouriteFragment.FavouriteViewModel
+import com.example.araccessories.ui.features.signIn.SignInViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
-class CartFragment : Fragment() {
+@AndroidEntryPoint
+class CartFragment : Fragment(), CartFragmentRecyclerView.ProductCartClickListener {
 
 
 
     private lateinit var binding: FragmentCartBinding
-    private val cartRecyclerViewAdapter = CartFragmentRecyclerView()
+    private val cartRecyclerViewAdapter = CartFragmentRecyclerView(this)
     private lateinit var productList: List<Products>
+    private val viewModel: CartFragmentViewModel by viewModels()
+    private val sharedViewModel: SignInViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -28,13 +37,22 @@ class CartFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentCartBinding.inflate(inflater, container, false)
-        initializeProductsRecyclerView()
+        initializeProductsRecyclerView(sharedViewModel.userData.email)
         return binding.root
     }
-    private fun initializeProductsRecyclerView(){
-        initializeProducts()
-        cartRecyclerViewAdapter.submitList(productList)
-        binding.cartRecyclerView.adapter=cartRecyclerViewAdapter
+    private fun initializeProductsRecyclerView(userEmail: String){
+        viewModel.getAllProducts(userEmail)
+        viewModel.productList.observe(viewLifecycleOwner){
+            cartRecyclerViewAdapter.submitList(viewModel.productList.value)
+            binding.cartRecyclerView.adapter=cartRecyclerViewAdapter
+        }
+     observerOrderTotal()
+    }
+    private fun observerOrderTotal()
+    {
+        viewModel.orderTotal.observe(viewLifecycleOwner){
+            binding.orderTotal.text=viewModel.orderPrice.toString()
+        }
     }
     private fun initializeProducts(){
         productList = listOf(
@@ -52,6 +70,30 @@ class CartFragment : Fragment() {
 
     }
 
+    override fun onProductInc(position: Int) {
+        //viewModel.increasePrice(position)
+      viewModel.orderPrice +=  viewModel.productList.value?.get(position)!!.price
+        viewModel.orderTotal.value?.inc()
+        observerOrderTotal()
+
+    }
+
+    override fun onProductDec(position: Int) {
+       // viewModel.decreasePrice(position)
+        Log.d(TAG, "onProductDec: ${viewModel.orderPrice} ")
+        viewModel.orderPrice -=  viewModel.productList.value?.get(position)!!.price
+        Log.d(TAG, "onProductDec: ${viewModel.orderPrice} ")
+
+        viewModel.orderTotal.value?.inc()
+        observerOrderTotal()
+
+
+    }
+
+    override fun orderPrice(price: Int) {
+
+
+    }
 
 
 }

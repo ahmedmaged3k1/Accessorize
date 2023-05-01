@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -31,8 +32,9 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
         binding.lifecycleOwner=this
         backButton()
         initializeArgs()
+        addToCart()
       //  initializeImageList()
-        addToHistory()
+
         tryOnProduct()
         initializeProductDetailsRecyclerView()
 
@@ -63,11 +65,19 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
             )
     }
     private fun addToHistory(){
-        viewModel.addToFavProduct(args.products)
+        viewModel.addToHistoryProduct(args.products)
     }
+    private fun addToCart(){
+        binding.addToCartButton.setOnClickListener{
+            viewModel.addToCartProduct(args.products)
+            Toast.makeText(requireContext(),"Added To Cart",Toast.LENGTH_LONG).show()
+        }
+    }
+
 
     private fun tryOnProduct(){
         binding.tryOnButton.setOnClickListener {
+            addToHistory()
             if (args.products.category?.toLowerCase()=="glasses")
             {
                 val action =
@@ -108,8 +118,6 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
                 binding.root.findNavController()
                     .navigate(action)
             }
-
-
 
         }
         }

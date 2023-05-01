@@ -20,7 +20,7 @@ data class ProductsRemote(
     @SerializedName("_id"           ) var Id            : String,
     @SerializedName("name"          ) var name          : String,
     @SerializedName("brand"         ) var brand         : String,
-    @SerializedName("price"         ) var price         : Int =0,
+    @SerializedName("price"         ) var price         : Int ,
     @SerializedName("stock"         ) var stock         : Int,
     @SerializedName("sellerEmail"   ) var sellerEmail   : String,
     @SerializedName("category"      ) var category      : String,
