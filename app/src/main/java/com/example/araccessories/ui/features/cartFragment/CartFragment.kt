@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.cartFragment
 
+import android.annotation.SuppressLint
 import android.content.ContentValues.TAG
 import android.os.Bundle
 import android.util.Log
@@ -70,6 +71,7 @@ class CartFragment : Fragment(), CartFragmentRecyclerView.ProductCartClickListen
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onProductInc(position: Int) {
         //viewModel.increasePrice(position)
       viewModel.orderPrice +=  viewModel.productList.value?.get(position)!!.price

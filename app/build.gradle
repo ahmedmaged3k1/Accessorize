@@ -238,5 +238,26 @@ sceneform.asset('sampledata/greenSunglasses.fbx',
         'sampledata/greenSunglasses.sfa',
         'src/main/assets/greenSunglasses')
 
+sceneform.asset('sampledata/blackglasses.fbx',
+        'default',
+        'sampledata/blackglasses.sfa',
+        'src/main/assets/blackglasses')
+
+sceneform.asset('sampledata/circleSunglasses.fbx',
+        'default',
+        'sampledata/circleSunglasses.sfa',
+        'src/main/assets/circleSunglasses')
+sceneform.asset('sampledata/raybanSunglasses.fbx',
+        'default',
+        'sampledata/raybanSunglasses.sfa',
+        'src/main/assets/raybanSunglasses')
+sceneform.asset('sampledata/smallGreenSunglasses.fbx',
+        'default',
+        'sampledata/smallGreenSunglasses.sfa',
+        'src/main/assets/smallGreenSunglasses')
+
+
+
+
 
 

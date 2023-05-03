@@ -17,6 +17,7 @@ import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.example.araccessories.R
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
 import com.google.ar.core.TrackingState
@@ -66,13 +67,15 @@ class MakeUpTryOnViewModel : ViewModel() {
         configureArSession(productModel, arFragment)
         Log.d(TAG, "tryOnProduct: $productImage")
         scene.addOnUpdateListener {
-           /* Texture.builder()
-                .setSource(context, Uri.parse(productImage))
+           Texture.builder()
+                .setSource(context, R.drawable.nuderouge)
                 .build()
-                .thenAccept { texture -> faceMeshTexture = texture }*/
+                .thenAccept { texture ->
+                    
+                    faceMeshTexture = texture }
 
 
-            Glide.with(context)
+        /*    Glide.with(context)
                 .asBitmap()
                 .load(productImage)
                 .into(object : CustomTarget<Bitmap>() {
@@ -81,13 +84,14 @@ class MakeUpTryOnViewModel : ViewModel() {
                         transition: Transition<in Bitmap>?
                     ) {
                         Texture.builder()
+                                //resource
                             .setSource(resource)
                             .build()
                             .thenAccept { texture -> faceMeshTexture = texture }
                     }
 
                     override fun onLoadCleared(placeholder: Drawable?) {}
-                })
+                })*/
 
             faceMeshTexture.let {
                 sceneView.session
