@@ -2,61 +2,51 @@ package com.example.araccessories.ui.features.botMessaging
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.araccessories.data.dataSource.localDataSource.entities.BotResponse
 import com.example.araccessories.ui.core.utilities.Constants
 import com.example.araccessories.ui.core.utilities.Time
 import com.example.araccessories.data.dataSource.localDataSource.Message
-import com.example.araccessories.databinding.ActivityMain3Binding
-import kotlinx.android.synthetic.main.activity_main3.et_message
+import com.example.araccessories.databinding.FragmentBotBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainActivity : AppCompatActivity() {
-    private val TAG = "MainActivity"
 
-    //You can ignore this messageList if you're coming from the tutorial,
-    // it was used only for my personal debugging
-    var messagesList = mutableListOf<Message>()
-    private  lateinit var binding : ActivityMain3Binding
+class BotFragment : Fragment() {
+    private lateinit var binding: FragmentBotBinding
     private  var adapter: MessagingAdapter = MessagingAdapter()
     private val botList = listOf("Peter", "Francesca", "Luigi", "Igor")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityMain3Binding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        // Inflate the layout for this fragment
+        binding = FragmentBotBinding.inflate(inflater, container, false)
 
         recyclerView()
-
-        clickEvents()
-
-
+        onClickSendMessage()
         val random = (0..3).random()
         customBotMessage("Hello! Today you're speaking with ${botList[random]}, how may I help?")
+        return binding.root
     }
-
-    private fun clickEvents() {
-
-        //Send a message
-
+    private fun onClickSendMessage() {
         binding.btnSend.setOnClickListener {
             sendMessage()
         }
 
         //Scroll back to correct position when user clicks on text view
-        et_message.setOnClickListener {
-            GlobalScope.launch {
+        binding.etMessage.setOnClickListener {
+            CoroutineScope(Dispatchers.IO).launch {
                 delay(100)
-
                 withContext(Dispatchers.Main) {
                     binding.rvMessages.scrollToPosition(adapter.itemCount - 1)
 
@@ -64,12 +54,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun recyclerView() {
         adapter = MessagingAdapter()
 
         binding.rvMessages.adapter = adapter
-        binding.rvMessages.layoutManager = LinearLayoutManager(applicationContext)
+        binding.rvMessages.layoutManager = LinearLayoutManager(context)
 
     }
 
@@ -83,44 +72,26 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun sendMessage() {
-        val message = et_message.text.toString()
+        val message = binding.etMessage.text.toString()
         val timeStamp = Time.timeStamp()
-
         if (message.isNotEmpty()) {
-            //Adds it to our local list
-            messagesList.add(Message(message, Constants.SEND_ID, timeStamp))
             binding.etMessage.setText("")
-
             adapter.insertMessage(Message(message, Constants.SEND_ID, timeStamp))
             binding.rvMessages.scrollToPosition(adapter.itemCount - 1)
-
             botResponse(message)
         }
     }
-
     private fun botResponse(message: String) {
         val timeStamp = Time.timeStamp()
 
-        GlobalScope.launch {
-            //Fake response delay
+        CoroutineScope(Dispatchers.IO).launch {
             delay(1000)
-
             withContext(Dispatchers.Main) {
-                //Gets the response
+
                 val response = BotResponse.basicResponses(message)
-
-                //Adds it to our local list
-                messagesList.add(Message(response, Constants.RECEIVE_ID, timeStamp))
-
-                //Inserts our message into the adapter
                 adapter.insertMessage(Message(response, Constants.RECEIVE_ID, timeStamp))
-
-                //Scrolls us to the position of the latest message
                 binding.rvMessages.scrollToPosition(adapter.itemCount - 1)
-
-                //Starts Google
                 when (response) {
                     Constants.OPEN_GOOGLE -> {
                         val site = Intent(Intent.ACTION_VIEW)
@@ -129,27 +100,25 @@ class MainActivity : AppCompatActivity() {
                     }
                     Constants.OPEN_SEARCH -> {
                         val site = Intent(Intent.ACTION_VIEW)
-                        val searchTerm: String? = message.substringAfterLast("search")
+                        val searchTerm: String = message.substringAfterLast("search")
                         site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
                         startActivity(site)
                     }
-
                 }
             }
         }
     }
-
     private fun customBotMessage(message: String) {
 
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             delay(1000)
             withContext(Dispatchers.Main) {
                 val timeStamp = Time.timeStamp()
-                messagesList.add(Message(message, Constants.RECEIVE_ID, timeStamp))
                 adapter.insertMessage(Message(message, Constants.RECEIVE_ID, timeStamp))
-
                 binding.rvMessages.scrollToPosition(adapter.itemCount - 1)
             }
         }
     }
+
+
 }

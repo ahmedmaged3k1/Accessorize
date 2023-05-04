@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentMainNavigationBinding
+import com.example.araccessories.ui.features.botMessaging.BotFragment
 import com.example.araccessories.ui.features.cartFragment.CartFragment
 import com.example.araccessories.ui.features.favouriteFragment.FavouriteFragment
 import com.example.araccessories.ui.features.homeFragment.HomeFragment
@@ -31,8 +32,8 @@ class MainNavigation : Fragment() {
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
 
-                R.id.profile->{
-                    replaceFragment(ProfileFragment())
+                R.id.bot->{
+                    replaceFragment(BotFragment())
                     true
                 }
 
@@ -52,7 +53,10 @@ class MainNavigation : Fragment() {
                     replaceFragment(HomeFragment())
                     true
                 }
-
+                R.id.bot->{
+                    replaceFragment(BotFragment())
+                    true
+                }
                 else -> {
                     false
                 }

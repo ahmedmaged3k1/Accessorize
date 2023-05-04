@@ -85,4 +85,7 @@
     <string name="history">History</string>
     <string name="favourite">Favourite</string>
     <string name="rating">rating</string>
+    <string name="type_a_message">Type a message...</string>
+    <string name="send">Send</string>
+    <string name="bot">Bot</string>
 </resources>

@@ -1,7 +1,8 @@
-package com.codepalace.chatbot.utils
+package com.example.araccessories.data.dataSource.localDataSource.entities
 
-import com.codepalace.chatbot.utils.Constants.OPEN_GOOGLE
-import com.codepalace.chatbot.utils.Constants.OPEN_SEARCH
+import com.example.araccessories.ui.core.utilities.Constants.OPEN_GOOGLE
+import com.example.araccessories.ui.core.utilities.Constants.OPEN_SEARCH
+import com.example.araccessories.ui.core.utilities.SolveMath
 import java.sql.Date
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
@@ -67,12 +68,17 @@ object BotResponse {
             message.contains("open") && message.contains("google")-> {
                 OPEN_GOOGLE
             }
+            message.contains("maly")->{
+                "ziad is the number one maly in the world "
+            }
 
             //Search on the internet
             message.contains("search")-> {
                 OPEN_SEARCH
             }
-
+            message.contains("yellow sunglasses")->{
+                "People Often buy red rouge with the yellow sunglasses"
+            }
             //When the programme doesn't understand...
             else -> {
                 when (random) {

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.codepalace.chatbot.utils.Constants
+import com.example.araccessories.ui.core.utilities.Constants
 import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.Message
 import kotlinx.android.synthetic.main.message_item.view.tv_bot_message

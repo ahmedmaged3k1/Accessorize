@@ -1,4 +1,4 @@
-package com.codepalace.chatbot.utils
+package com.example.araccessories.ui.core.utilities
 
 import android.util.Log
 
