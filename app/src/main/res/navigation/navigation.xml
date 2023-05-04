@@ -154,6 +154,9 @@
         <argument
             android:name="position"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_earTryOnFragment"
+            app:destination="@id/earTryOnFragment" />
     </fragment>
     <fragment
         android:id="@+id/glassesTryOn"
@@ -208,4 +211,16 @@
         android:name="com.example.araccessories.ui.features.botMessaging.BotFragment"
         android:label="fragment_bot"
         tools:layout="@layout/fragment_bot" />
+    <fragment
+        android:id="@+id/earTryOnFragment"
+        android:name="com.example.araccessories.ui.features.earTryOn.EarTryOnFragment"
+        android:label="fragment_ear_try_on"
+        tools:layout="@layout/fragment_ear_try_on" >
+        <argument
+            android:name="products"
+            app:argType="com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote" />
+        <action
+            android:id="@+id/action_earTryOnFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
 </navigation>

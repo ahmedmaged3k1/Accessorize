@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.araccessories.R
 import com.example.araccessories.ui.core.arSession.FaceArFragment
-import com.example.araccessories.ui.core.customfacenodes.EarNode
+import com.example.araccessories.ui.features.earTryOn.faceNode.EarNode
 import com.google.ar.core.ArCoreApk
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
@@ -54,7 +54,7 @@ class EaringsActivity : AppCompatActivity() {
                     sceneView.session!!.configure(config)
                     for (augmentedFace in it) {
                         if (!faceNodeMap.containsKey(augmentedFace)) {
-                                val faceNode = EarNode(augmentedFace,this)
+                                val faceNode = EarNode(augmentedFace,this,null,null,null)
 
                             faceNode.setParent(scene)
 

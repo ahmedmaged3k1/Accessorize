@@ -1,7 +1,9 @@
-package com.example.araccessories.ui.core.customfacenodes
+package com.example.araccessories.ui.features.earTryOn.faceNode
 
 import android.content.Context
 import android.net.Uri
+import com.example.araccessories.data.dataSource.localDataSource.entities.Position
+import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.google.ar.core.AugmentedFace
 import com.google.ar.sceneform.FrameTime
 import com.google.ar.sceneform.Node
@@ -9,7 +11,11 @@ import com.google.ar.sceneform.math.Vector3
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 
-class EarNode (augmentedFace: AugmentedFace, val context: Context) : AugmentedFaceNode(augmentedFace) {
+class EarNode (augmentedFace: AugmentedFace?,
+               val context: Context,
+               val localScale: Scale?,
+               var  localPosition: Position?,
+               val model:String?) : AugmentedFaceNode(augmentedFace) {
 
     private var earNode  : Node?  = null
     var x = 0f
@@ -27,6 +33,7 @@ class EarNode (augmentedFace: AugmentedFace, val context: Context) : AugmentedFa
         earNode = Node()
         earNode?.setParent(this)
         ModelRenderable.builder()
+                //Uri.parse(model)
             .setSource(context, Uri.parse("wedn1.sfb"))
             .build()
             .thenAccept { modelRenderable ->
@@ -57,11 +64,10 @@ class EarNode (augmentedFace: AugmentedFace, val context: Context) : AugmentedFa
         if (buffer != null) {
 
             return when (region) {
-                FaceRegions.EARS->
-                    Vector3(buffer.get(147 * 3),
-                        buffer.get(147 * 3 + 1),
-                        buffer.get(147
-                                * 3 + 2))
+                FaceRegions.EARS ->
+                    Vector3(buffer.get(227 * 3),
+                        buffer.get(116 * 3 + 1),
+                        buffer.get(123 * 3 + 2))
 
 
             }
@@ -74,9 +80,9 @@ class EarNode (augmentedFace: AugmentedFace, val context: Context) : AugmentedFa
         augmentedFace.let {face ->
             getRegionPose(FaceRegions.EARS).let {
                 if (it != null) {
-                   earNode?.localPosition = Vector3(it.x, it.y-0.05f, it.z -0.09f)
+                   earNode?.localPosition = Vector3(it.x-0.01f, it.y-0.07f, it.z -0.05f)
                 }
-            //  earNode?.localScale = Vector3(0.12f, 0.05f, 0.05f)
+                earNode?.localScale = Vector3(0.12f, 0.12f, 0.12f)
             }
 
         }

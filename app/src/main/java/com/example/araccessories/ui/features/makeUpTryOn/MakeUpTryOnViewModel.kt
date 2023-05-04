@@ -36,12 +36,14 @@ class MakeUpTryOnViewModel : ViewModel() {
     private lateinit var scene: Scene
     private lateinit var config: Config
 
+
     var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
     private var faceMeshTexture: Texture? = null
     private fun configureArSession(productModel: ModelRenderable?, arFragment: ArFragment) {
         sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         scene = sceneView.scene
+
 
     }
 
@@ -68,7 +70,7 @@ class MakeUpTryOnViewModel : ViewModel() {
         Log.d(TAG, "tryOnProduct: $productImage")
         scene.addOnUpdateListener {
            Texture.builder()
-                .setSource(context, R.drawable.nuderouge)
+                .setSource(context, R.drawable.face_removebg_preview)
                 .build()
                 .thenAccept { texture ->
                     
@@ -99,7 +101,7 @@ class MakeUpTryOnViewModel : ViewModel() {
                         enableDepth()
                         for (face in it) {
                             if (!faceNodeMap.containsKey(face)) {
-                                attachModel(face)
+                                attachModel(face,context)
 
                             }
                         }
@@ -111,11 +113,20 @@ class MakeUpTryOnViewModel : ViewModel() {
         }
     }
 
-    private fun attachModel(face: AugmentedFace) {
+    private fun attachModel(face: AugmentedFace, context: Context) {
 
         val faceNode = AugmentedFaceNode(face)
         faceNode.setParent(scene)
         faceNode.faceMeshTexture = faceMeshTexture
+
+        ModelRenderable.builder()
+            .setSource(context, Uri.parse("canonical_face_mesh"))
+            .build()
+            .thenAccept { it ->
+                it.isShadowCaster = false
+                it.isShadowReceiver = false
+                faceNode.faceRegionsRenderable =it
+            }
         faceNodeMap[face] = faceNode
     }
 

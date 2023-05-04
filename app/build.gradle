@@ -255,6 +255,10 @@ sceneform.asset('sampledata/smallGreenSunglasses.fbx',
         'default',
         'sampledata/smallGreenSunglasses.sfa',
         'src/main/assets/smallGreenSunglasses')
+sceneform.asset('sampledata/canonical_face_mesh.fbx',
+        'default',
+        'sampledata/canonical_face_mesh.sfa',
+        'src/main/assets/canonical_face_mesh')
 
 
 

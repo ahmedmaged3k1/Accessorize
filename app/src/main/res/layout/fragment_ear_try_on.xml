@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/earTryOnFragment"
+    android:layout_height="match_parent"
+    tools:context=".ui.features.earTryOn.EarTryOnFragment">
+
+    <fragment
+        android:id="@+id/face_fragment_ear"
+        android:name="com.example.araccessories.ui.core.arSession.FaceArFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/captureImageEar"
+        android:layout_width="105dp"
+        android:contentDescription="@string/capture_photo"
+        android:layout_height="88dp"
+        android:layout_marginBottom="48dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/capture"
+        app:layout_constraintBottom_toBottomOf="@+id/face_fragment_ear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+    </ImageButton>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
