@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentProductDetailsBinding
+import com.example.araccessories.ui.core.utilities.NotificationUtils
 import com.example.araccessories.ui.features.productDetails.adapters.ProductImageRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -70,7 +71,8 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
     private fun addToCart(){
         binding.addToCartButton.setOnClickListener{
             viewModel.addToCartProduct(args.products)
-            Toast.makeText(requireContext(),"Added To Cart",Toast.LENGTH_LONG).show()
+            NotificationUtils.showNotification(requireContext(), "Cart", "Product Added To Cart")
+
         }
     }
 

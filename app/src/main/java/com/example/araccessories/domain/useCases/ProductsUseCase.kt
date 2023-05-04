@@ -16,6 +16,7 @@ class ProductsUseCase(private val remoteRepositoryImp: RemoteRepository,private 
             return localRepository.getProductsByEmail(userEmail)
 
         }
+        if  (userEmailList.isEmpty()) return emptyList()
         else
         {
             userEmailList.onEach { it.Id="${it.Id} : ${it.userEmail}" }
