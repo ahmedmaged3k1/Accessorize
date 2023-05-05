@@ -17,6 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeFragmentViewModel@Inject constructor(private val productsUseCase: ProductsUseCase,private val userAccountUseCase: CacheProductsUseCase) :  ViewModel(){
      val productList = MutableLiveData<ArrayList<ProductsRemote>>()
+    val filteredProductList = MutableLiveData<ArrayList<ProductsRemote>>()
+
 
     fun getAllProducts(authToken: String,userEmail : String) {
         viewModelScope.launch {

@@ -13,6 +13,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
 
+            android:id="@+id/categoryName"
             android:layout_width="111dp"
             android:layout_height="36dp"
             android:background="@drawable/category_item_shape"

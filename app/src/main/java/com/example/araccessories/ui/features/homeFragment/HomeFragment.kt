@@ -1,7 +1,9 @@
 package com.example.araccessories.ui.features.homeFragment
 
+import android.content.ContentValues.TAG
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +19,7 @@ import com.example.araccessories.data.dataSource.localDataSource.entities.Positi
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.FragmentHomeBinding
 import com.example.araccessories.ui.features.homeFragment.adapters.AdsRecyclerViewAdapter
 import com.example.araccessories.ui.features.homeFragment.adapters.CategoryRecyclerViewAdapter
@@ -28,13 +31,13 @@ import java.util.Timer
 import java.util.TimerTask
 
 @AndroidEntryPoint
-class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickListener {
+class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickListener , CategoryRecyclerViewAdapter.CategoryClickListener {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var adList: List<Ad>
     private lateinit var categoryList: List<Category>
     private lateinit var productList: List<Products>
     private val adsRecyclerViewAdapter = AdsRecyclerViewAdapter()
-    private val categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter()
+    private val categoryRecyclerViewAdapter = CategoryRecyclerViewAdapter(this)
     private val productRecyclerViewAdapter = ProductsRecyclerViewAdapter(this)
     private val viewModel: HomeFragmentViewModel by viewModels()
     private val sharedViewModel: SignInViewModel by activityViewModels()
@@ -296,6 +299,19 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
             }
 
     }
+
+    override fun onCategoryClick(category: String) {
+        viewModel.filteredProductList.postValue(viewModel.productList.value?.filter { it.category == category } as ArrayList<ProductsRemote>)
+        Log.d(TAG, "onCategoryClick: ${viewModel.filteredProductList.value.toString()}")
+        Log.d(TAG, "onCategoryClick: $category")
+
+        viewModel.filteredProductList.observe(viewLifecycleOwner) {
+            productRecyclerViewAdapter.submitList(viewModel.filteredProductList.value)
+            binding.productsHomeRecyclerView.adapter = productRecyclerViewAdapter
+        }
+
+    }
+
 
 
 }
