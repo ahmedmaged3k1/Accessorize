@@ -18,6 +18,7 @@ import javax.inject.Inject
 class HomeFragmentViewModel@Inject constructor(private val productsUseCase: ProductsUseCase,private val userAccountUseCase: CacheProductsUseCase) :  ViewModel(){
      val productList = MutableLiveData<ArrayList<ProductsRemote>>()
     val filteredProductList = MutableLiveData<ArrayList<ProductsRemote>>()
+    val searchedProductList = MutableLiveData<ArrayList<ProductsRemote>>()
 
 
     fun getAllProducts(authToken: String,userEmail : String) {
@@ -25,6 +26,8 @@ class HomeFragmentViewModel@Inject constructor(private val productsUseCase: Prod
             productsUseCase.getAllProducts(authToken,userEmail)
             Log.d(TAG, "getAllProducts asd: $userEmail ")
             productList.postValue(  productsUseCase.getAllProducts(authToken,userEmail) as ArrayList<ProductsRemote>?)
+           // filteredProductList.postValue(productList.value as ArrayList<ProductsRemote>)
+
         }
 
     }

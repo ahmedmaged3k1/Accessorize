@@ -7,6 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -52,6 +54,7 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
         initializeAdsRecyclerView()
         initializeCategoriesRecyclerView()
         initializeProductsRecyclerView()
+        searchForProduct()
 
         return binding.root
     }
@@ -302,15 +305,47 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
 
     override fun onCategoryClick(category: String) {
         viewModel.filteredProductList.postValue(viewModel.productList.value?.filter { it.category == category } as ArrayList<ProductsRemote>)
-        Log.d(TAG, "onCategoryClick: ${viewModel.filteredProductList.value.toString()}")
-        Log.d(TAG, "onCategoryClick: $category")
-
         viewModel.filteredProductList.observe(viewLifecycleOwner) {
             productRecyclerViewAdapter.submitList(viewModel.filteredProductList.value)
             binding.productsHomeRecyclerView.adapter = productRecyclerViewAdapter
         }
 
     }
+    private fun searchForProduct(){
+        binding.homeSearch.clearFocus()
+        binding.homeSearch.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filerProducts(newText)
+                return true
+            }
+
+        })
+    }
+    private fun filerProducts(text : String){
+        val filteredList = mutableListOf<ProductsRemote>()
+        viewModel.productList.value?.forEach {
+            if (it.name.toLowerCase().contains(text.toLowerCase()))
+            {
+                filteredList.add(it)
+                Log.d(TAG, "filerProducts: add data")
+            }
+        }
+        if (filteredList.isEmpty())
+        {
+            Log.d(TAG, "filerProducts: no data")
+            Toast.makeText(requireContext(),"No Data Found",Toast.LENGTH_SHORT).show()
+        }
+        else{
+            productRecyclerViewAdapter.submitList(filteredList)
+            binding.productsHomeRecyclerView.adapter = productRecyclerViewAdapter
+        }
+    }
+
 
 
 
