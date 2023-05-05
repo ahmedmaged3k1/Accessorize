@@ -64,6 +64,10 @@ class LocalRepositoryImp @Inject constructor(private val productsDao: ProductsDa
         }
     }
 
+    override suspend fun getProductsByName(name: String): List<ProductsRemote>? {
+        return productsDao.getProductsByName(name)
+    }
+
     override suspend fun deleteProduct(productsRemote: ProductsRemote) {
         withContext(Dispatchers.IO){
             productsDao.delete(productsRemote)

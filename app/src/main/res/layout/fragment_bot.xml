@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/ll_layout_bar"
-        android:layout_below="@+id/dark_divider"
+
         android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         tools:itemCount="20"

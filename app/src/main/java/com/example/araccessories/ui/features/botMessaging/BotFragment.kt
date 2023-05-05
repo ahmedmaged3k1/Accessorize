@@ -1,29 +1,42 @@
 package com.example.araccessories.ui.features.botMessaging
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.entities.BotResponse
 import com.example.araccessories.ui.core.utilities.Constants
 import com.example.araccessories.ui.core.utilities.Time
 import com.example.araccessories.data.dataSource.localDataSource.Message
 import com.example.araccessories.databinding.FragmentBotBinding
+import com.example.araccessories.ui.features.homeFragment.HomeFragmentViewModel
+import com.example.araccessories.ui.features.mainNavigation.MainNavigationDirections
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-
-class BotFragment : Fragment() {
+@AndroidEntryPoint
+class BotFragment : Fragment() ,  BotResponse.MessageClickListener {
     private lateinit var binding: FragmentBotBinding
     private  var adapter: MessagingAdapter = MessagingAdapter()
     private val botList = listOf("Peter", "Francesca", "Luigi", "Igor")
+    private var botResponse = BotResponse(this)
+    private val viewModel: BotViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +47,7 @@ class BotFragment : Fragment() {
 
         recyclerView()
         onClickSendMessage()
+
         val random = (0..3).random()
         customBotMessage("Hello! Today you're speaking with ${botList[random]}, how may I help?")
         return binding.root
@@ -56,7 +70,6 @@ class BotFragment : Fragment() {
     }
     private fun recyclerView() {
         adapter = MessagingAdapter()
-
         binding.rvMessages.adapter = adapter
         binding.rvMessages.layoutManager = LinearLayoutManager(context)
 
@@ -89,7 +102,7 @@ class BotFragment : Fragment() {
             delay(1000)
             withContext(Dispatchers.Main) {
 
-                val response = BotResponse.basicResponses(message)
+                val response = botResponse.basicResponses(message)
                 adapter.insertMessage(Message(response, Constants.RECEIVE_ID, timeStamp))
                 binding.rvMessages.scrollToPosition(adapter.itemCount - 1)
                 when (response) {
@@ -105,7 +118,17 @@ class BotFragment : Fragment() {
                         startActivity(site)
                     }
                 }
+                if (response.contains("redirect")){
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.postDelayed({
+
+                         val action = MainNavigationDirections.actionMainNavigationToProductDetailsFragment(viewModel.productRemote,0)
+                         view?.findNavController()?.navigate(action)
+                    }, 2500)
+                }
+
             }
+
         }
     }
     private fun customBotMessage(message: String) {
@@ -119,6 +142,15 @@ class BotFragment : Fragment() {
             }
         }
     }
+
+    override fun onMessageClick(name: String) {
+
+        viewModel.searchByName(name)
+
+
+
+    }
+
 
 
 }

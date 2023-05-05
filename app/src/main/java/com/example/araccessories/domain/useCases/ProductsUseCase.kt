@@ -25,6 +25,9 @@ class ProductsUseCase(private val remoteRepositoryImp: RemoteRepository,private 
         }
 
     }
+    suspend fun searchByName(name : String) : List<ProductsRemote>?{
+        return localRepository.getProductsByName(name)
+    }
     suspend fun getAllProductsByEmail(authToken : String,userEmail :String) : List<ProductsRemote>?{
         // localRepository.insertAll(remoteRepositoryImp.getAllProducts(authToken))
 

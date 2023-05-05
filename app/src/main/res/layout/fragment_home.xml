@@ -10,18 +10,17 @@
     <TextView
         android:id="@+id/homeWelcome"
         style="@style/welcome"
-        android:layout_width="321dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="318dp"
+        android:layout_height="25dp"
         android:gravity="center"
         android:text="@string/welcome_ahmed"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/homeSearch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.003"
+        app:layout_constraintHorizontal_bias="0.303"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.318">
 
     </TextView>
 

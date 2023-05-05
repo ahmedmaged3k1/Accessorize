@@ -4,7 +4,6 @@ import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
@@ -14,9 +13,6 @@ import android.view.PixelCopy
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.CustomTarget
-import com.bumptech.glide.request.transition.Transition
 import com.example.araccessories.R
 import com.google.ar.core.AugmentedFace
 import com.google.ar.core.Config
@@ -102,7 +98,6 @@ class MakeUpTryOnViewModel : ViewModel() {
                         for (face in it) {
                             if (!faceNodeMap.containsKey(face)) {
                                 attachModel(face,context)
-
                             }
                         }
                         removeRedundantModels()
@@ -122,7 +117,7 @@ class MakeUpTryOnViewModel : ViewModel() {
         ModelRenderable.builder()
             .setSource(context, Uri.parse("canonical_face_mesh"))
             .build()
-            .thenAccept { it ->
+            .thenAccept {
                 it.isShadowCaster = false
                 it.isShadowReceiver = false
                 faceNode.faceRegionsRenderable =it

@@ -16,7 +16,7 @@ interface LocalRepository {
 
     suspend fun updateProduct(productsRemote: ProductsRemote)
 
-
+    suspend fun getProductsByName(name: String): List<ProductsRemote>?
     suspend fun deleteProduct(productsRemote: ProductsRemote)
 
     suspend fun getProductsByEmail(name: String): List<ProductsRemote>?

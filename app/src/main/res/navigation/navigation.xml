@@ -210,7 +210,11 @@
         android:id="@+id/botFragment"
         android:name="com.example.araccessories.ui.features.botMessaging.BotFragment"
         android:label="fragment_bot"
-        tools:layout="@layout/fragment_bot" />
+        tools:layout="@layout/fragment_bot" >
+        <action
+            android:id="@+id/action_botFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/earTryOnFragment"
         android:name="com.example.araccessories.ui.features.earTryOn.EarTryOnFragment"

@@ -28,7 +28,8 @@ interface ProductsDao {
   suspend fun update(productsRemote: ProductsRemote)
     @Query("SELECT * FROM  ProductsRemote where userEmail =  :name  ")
     suspend fun getProductsByEmail(name: String): List<ProductsRemote>?
-
+  @Query("SELECT * FROM  ProductsRemote where  name LIKE :name  ")
+  suspend fun getProductsByName(name: String): List<ProductsRemote>?
     @Query("SELECT * FROM  ProductsRemote ")
     suspend fun getAllProducts(): List<ProductsRemote>?
 

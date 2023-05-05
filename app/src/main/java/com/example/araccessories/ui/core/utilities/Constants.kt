@@ -7,4 +7,5 @@ object Constants {
 
     const val OPEN_GOOGLE = "Opening Google..."
     const val OPEN_SEARCH = "Searching..."
+
 }
