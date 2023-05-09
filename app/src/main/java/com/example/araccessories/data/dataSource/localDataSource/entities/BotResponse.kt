@@ -7,6 +7,7 @@ import com.example.araccessories.ui.core.utilities.SolveMath
 import java.sql.Date
 import java.sql.Timestamp
 import java.text.SimpleDateFormat
+import java.util.Locale
 
 class BotResponse( private val listener: MessageClickListener) {
     interface MessageClickListener {
@@ -15,121 +16,120 @@ class BotResponse( private val listener: MessageClickListener) {
     }
 
 
+    fun basicResponses(_message: String): String {
+        RecommendProducts.initializeRecommenders()
+        val random = (0..2).random()
+        val message = _message.lowercase(Locale.getDefault())
+        if (message.contains("el nadara el gamda")) {
+            listener.onMessageClick("Rouge")
+        } else if (message.contains("rouge")) {
+            listener.onMessageClick("El Nadara El gamda")
+        } else if (message.contains("mask amirat")) {
+            listener.onMessageClick("Hat Belki")
+        } else if (message.contains("hat belki")) {
+            listener.onMessageClick("Mask Amirat")
+        }
+        return when {
 
-        fun basicResponses(_message: String): String {
-            RecommendProducts.initializeRecommenders()
-            val random = (0..2).random()
-            val message = _message.toLowerCase()
-            if (message.contains("el nadara el gamda")){
-                listener.onMessageClick("Rouge")
+            //Flips a coin
+            message.contains("flip") && message.contains("coin") -> {
+                val r = (0..1).random()
+                val result = if (r == 0) "heads" else "tails"
+
+                "I flipped a coin and it landed on $result"
             }
-            else if   (message.contains("rouge")){
-                listener.onMessageClick("El Nadara El gamda")
+
+            //Math calculations
+            message.contains("solve") -> {
+                val equation: String? = message.substringAfterLast("solve")
+                return try {
+                    val answer = SolveMath.solveMath(equation ?: "0")
+                    "$answer"
+
+                } catch (e: Exception) {
+                    "Sorry, I can't solve that."
+                }
             }
-            else if   (message.contains("mask amirat")){
-                listener.onMessageClick("Hat Belki")
+
+            //Hello
+            message.contains("hello") -> {
+                when (random) {
+                    0 -> "Hello there!"
+                    1 -> "Sup"
+                    2 -> "Buongiorno!"
+                    else -> "error"
+                }
             }
-            else if   (message.contains("hat belki")){
-                listener.onMessageClick("Mask Amirat")
+
+            //How are you?
+            message.contains("how are you") -> {
+                when (random) {
+                    0 -> "I'm doing fine, thanks!"
+                    1 -> "I'm hungry..."
+                    2 -> "Pretty good! How about you?"
+                    else -> "error"
+                }
             }
-            return when {
 
-                //Flips a coin
-                message.contains("flip") && message.contains("coin") -> {
-                    val r = (0..1).random()
-                    val result = if (r == 0) "heads" else "tails"
+            //What time is it?
+            message.contains("time") && message.contains("?") -> {
+                val timeStamp = Timestamp(System.currentTimeMillis())
+                val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
+                val date = sdf.format(Date(timeStamp.time))
 
-                    "I flipped a coin and it landed on $result"
-                }
+                date.toString()
+            }
 
-                //Math calculations
-                message.contains("solve") -> {
-                    val equation: String? = message.substringAfterLast("solve")
-                    return try {
-                        val answer = SolveMath.solveMath(equation ?: "0")
-                        "$answer"
+            //Open Google
+            message.contains("open") && message.contains("google") -> {
+                OPEN_GOOGLE
+            }
 
-                    } catch (e: Exception) {
-                        "Sorry, I can't solve that."
-                    }
-                }
-
-                //Hello
-                message.contains("hello") -> {
-                    when (random) {
-                        0 -> "Hello there!"
-                        1 -> "Sup"
-                        2 -> "Buongiorno!"
-                        else -> "error"
-                    }
-                }
-
-                //How are you?
-                message.contains("how are you") -> {
-                    when (random) {
-                        0 -> "I'm doing fine, thanks!"
-                        1 -> "I'm hungry..."
-                        2 -> "Pretty good! How about you?"
-                        else -> "error"
-                    }
-                }
-
-                //What time is it?
-                message.contains("time") && message.contains("?") -> {
-                    val timeStamp = Timestamp(System.currentTimeMillis())
-                    val sdf = SimpleDateFormat("dd/MM/yyyy HH:mm")
-                    val date = sdf.format(Date(timeStamp.time))
-
-                    date.toString()
-                }
-
-                //Open Google
-                message.contains("open") && message.contains("google") -> {
-                    OPEN_GOOGLE
-                }
-
-                message.contains("help me") && message.contains("google") -> {
-                    "I can help you by recommending for you what to buy"
-                }
+            message.contains("help") && message.contains("google") -> {
+                "I can help you by recommending for you what to buy"
+            }
 
 
-                //Search on the internet
-                message.contains("search") -> {
-                    OPEN_SEARCH
-                }
+            //Search on the internet
+            message.contains("search") -> {
+                OPEN_SEARCH
+            }
 
-                message.contains("rouge") -> {
-                    "People Often buy El Nadara El gamda   with the red rouge  \n"+
-                            "I will redirect you to this product\n"
+            message.contains("rouge") -> {
+                "People Often buy El Nadara El gamda   with the red rouge  \n" +
+                        "I will redirect you to this product\n"
 
-                }
-                message.contains("hat belki") -> {
-                    "People Often buy  mask amirat with  hat belki     \n"+
-                            "I will redirect you to this product\n"
+            }
 
-                }
-                message.contains("mask amirat") -> {
-                    "People Often buy hat belki  with mask amirat  \n"+
-                            "I will redirect you to this product\n"
+            message.contains("hat belki") -> {
+                "People Often buy  mask amirat with  hat belki     \n" +
+                        "I will redirect you to this product\n"
 
-                }
-                message.contains("el nadara el gamda") -> {
-                    "People Often buy red rouge with the  El Nadara El gamda  E\n"+
-                            "I will redirect you to this product\n"
+            }
 
-                }
+            message.contains("mask amirat") -> {
+                "People Often buy hat belki  with mask amirat  \n" +
+                        "I will redirect you to this product\n"
 
-                //When the programme doesn't understand...
-                else -> {
-                    when (random) {
-                        0 -> "I don't understand..."
-                        1 -> "Try asking me something different"
-                        2 -> "Idk"
-                        else -> "error"
-                    }
+            }
+
+            message.contains("el nadara el gamda") -> {
+                "People Often buy red rouge with the  El Nadara El gamda  E\n" +
+                        "I will redirect you to this product\n"
+
+            }
+
+            //When the programme doesn't understand...
+            else -> {
+                when (random) {
+                    0 -> "I don't understand..."
+                    1 -> "Try asking me something different"
+                    2 -> "I don't know "
+                    else -> "error"
                 }
             }
         }
+    }
 
 
 }

@@ -29,6 +29,7 @@ import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyc
 import com.example.araccessories.ui.features.signIn.SignInViewModel
 import com.google.ar.sceneform.rendering.ModelRenderable
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 import java.util.Timer
 import java.util.TimerTask
 
@@ -329,8 +330,7 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
     private fun filerProducts(text : String){
         val filteredList = mutableListOf<ProductsRemote>()
         viewModel.productList.value?.forEach {
-            if (it.name.toLowerCase().contains(text.toLowerCase()))
-            {
+            if (it.name.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
                 filteredList.add(it)
                 Log.d(TAG, "filerProducts: add data")
             }

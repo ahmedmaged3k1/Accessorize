@@ -1,10 +1,13 @@
 package com.example.araccessories.ui.features.productDetails
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -14,6 +17,11 @@ import com.example.araccessories.databinding.FragmentProductDetailsBinding
 import com.example.araccessories.ui.core.utilities.NotificationUtils
 import com.example.araccessories.ui.features.productDetails.adapters.ProductImageRecyclerViewAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
+import java.util.Locale
 
 @AndroidEntryPoint
 class ProductDetailsFragment : Fragment() , java.io.Serializable{
@@ -27,18 +35,15 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         binding.product=viewModel
         binding.lifecycleOwner=this
         backButton()
         initializeArgs()
         addToCart()
-      //  initializeImageList()
-
+        shareImage(requireContext(), args.products.images[0])
         tryOnProduct()
         initializeProductDetailsRecyclerView()
-
 
         return binding.root
     }
@@ -53,10 +58,19 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
         }
     }
+    private fun shareImage(context: Context, imageUrL: String) {
+        binding.shareDetails.setOnClickListener {
+            viewModel.shareImage(context, imageUrL)
+
+        }
+
+    }
+
     private fun initializeProductDetailsRecyclerView(){
         productRecyclerViewAdapter.submitList(args.products.images)
         binding.productDetailsRecyclerView.adapter=productRecyclerViewAdapter
     }
+    //Local Run
     private fun initializeImageList()
     {
         imageList= listOf(R.drawable.sunglasses,
@@ -80,8 +94,7 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
     private fun tryOnProduct(){
         binding.tryOnButton.setOnClickListener {
             addToHistory()
-            if (args.products.category?.toLowerCase()=="glasses")
-            {
+            if (args.products.category.lowercase(Locale.getDefault()) == "glasses") {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
                         args.products
@@ -89,9 +102,7 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
                 binding.root.findNavController()
                     .navigate(action)
-            }
-            else   if (args.products.category?.toLowerCase()=="hats")
-            {
+            } else if (args.products.category.lowercase(Locale.getDefault()) == "hats") {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToHatsTryOnFragment(
                         args.products
@@ -99,9 +110,7 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
                 binding.root.findNavController()
                     .navigate(action)
-            }
-            else   if (args.products.category?.toLowerCase()=="makeup")
-            {
+            } else if (args.products.category.lowercase(Locale.getDefault()) == "makeup") {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToMakeUpTryOnFragment(
                         args.products
@@ -109,9 +118,7 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
                 binding.root.findNavController()
                     .navigate(action)
-            }
-            else   if (args.products.category?.toLowerCase()=="masks")
-            {
+            } else if (args.products.category.lowercase(Locale.getDefault()) == "masks") {
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToMasksTryOnFragment(
                         args.products
