@@ -16,7 +16,7 @@ The three-tier architecture separates the application into three layers: the pre
 
 The MVVM architecture pattern further enhances the separation of concerns by introducing the ViewModel as a middle layer. The ViewModel is responsible for preparing and managing data for the View, while the View is responsible for displaying data and reacting to user input. The Model represents the data source, which is managed by the data management layer. The Repository pattern abstracts the data access layer, providing a clean API to the ViewModel, and the Observer pattern enables data updates and notifications between the ViewModel and the View.
 
-Features
+## Features
 - Augmented reality try-on feature for face accessories.
 - E-commerce features including product search and cart operations.
 - User authentication for secure access to application features.
@@ -47,6 +47,49 @@ Features
 - RESTful API
 - Observer Pattern
 - Repository Pattern
+
+## Modules
+
+The Accessorize app is divided into three main modules: 
+- Admin 
+- Seller  
+- User
+Each module focuses on different operations and functionalities. Here's a brief overview of each module:
+
+### 1. Admin
+
+The admin module is responsible for managing the overall administration of the Acessorize application. It includes operations such as:
+
+- Accessing and analyzing sales and user data.
+- Generating reports and insights for business analysis.
+
+Github Repository : https://github.com/ziadtarekfa/AccessorizeAdmin
+
+### 2. Seller
+
+The seller module is designed to facilitate the activities of sellers who wish to showcase and sell their accessories on the Acessorize platform. Key functionalities of the seller module include:
+
+- Adding, editing, and deleting product listings.
+- Managing inventory and stock levels.
+- Handling order fulfillment and shipping details.
+- Tracking sales and revenue.
+
+Github Repository :
+
+### 3. User
+
+The user module which is the app caters to the needs of individuals who browse and purchase accessories on the Acessorize platform. It focuses on delivering a seamless user experience and offers features such as:
+
+- Browsing and searching for accessories.
+- Adding items to the shopping cart.
+- Accessing order history 
+- Search for products 
+- Login and Register
+
+
+### User Interface Design 
+the app has an ui design and here is the link for it : https://www.figma.com/file/H5vnl8R6Vu1XHIjHhraYvQ/Ar-Accessories?type=design&node-id=0%3A1&t=tybvDr1a9rEjtsxH-1
+
 ## Contributors
 - Ahmed Maged
 - Noran Mohamed
