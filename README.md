@@ -27,7 +27,7 @@ Features
 - Clone the repository to your local machine.
 - Open the project in Android Studio.
 - Connect an Android device
-- download the backend server and run it according to the following steps `https://github.com/Nouran-Elbagory/GraduationProject`
+- download the backend server and run it according to the following steps https://github.com/Nouran-Elbagory/GraduationProject
 - Build and run the application from Android Studio.
 ## Usage
 - Launch the application on your Android device.
