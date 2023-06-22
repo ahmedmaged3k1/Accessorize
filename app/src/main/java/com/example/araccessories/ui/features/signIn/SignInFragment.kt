@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.araccessories.R
+import com.example.araccessories.data.dataSource.localDataSource.sharedPrefrence.SharedPreference
 import com.example.araccessories.databinding.FragmentSignInBinding
 import com.example.araccessories.ui.core.HelperFunctions
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,10 @@ class SignInFragment : Fragment() {
 
             if (HelperFunctions.isInternetConnected(requireActivity().applicationContext))
             {
+              /*  if (SharedPreference.readStringFromSharedPreference("token","")!="")
+                {
+
+                }*/
                 validateLogin()
                 wrongCredentials()
                 login(binding.root)
@@ -47,12 +52,13 @@ class SignInFragment : Fragment() {
     }
     private fun login(view: View) {
         viewModel.observer.observe(viewLifecycleOwner) {
+
             if (it == 2) {
                 view.findNavController()
                     .navigate(
                         SignInFragmentDirections.actionSignInFragmentToMainNavigation()
                     )
-                binding.signIn.isClickable = false
+
             }
         }
 

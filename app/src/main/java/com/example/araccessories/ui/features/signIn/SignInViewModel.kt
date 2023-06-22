@@ -32,7 +32,7 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
                 manipulateLiveData(validator)
                 return@launch
             } else {
-                val user = UserLogin(email = userEmail.value, password = userPassword.value)
+                val user = UserLogin(email = userEmail.value?.trim(), password = userPassword.value?.trim())
                 if (loginUseCase.loginUser(user) != null) {
                     confirmedUser = loginUseCase.loginUser(user)!!
                     SharedPreference.writeStringFromSharedPreference(

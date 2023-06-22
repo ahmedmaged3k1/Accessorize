@@ -15,14 +15,19 @@
         android:id="@+id/captureImageMasks"
         android:layout_width="105dp"
         android:layout_height="88dp"
+        android:background="@drawable/flag_transparent"
+
         android:contentDescription="@string/capture_photo"
-        android:scaleType="fitXY"
-        android:src="@drawable/capture"
+        android:scaleX="1.5"
+
+        android:scaleY="1.5"
+        android:src="@drawable/insta3"
+
         app:layout_constraintBottom_toBottomOf="@+id/face_fragment_masks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/face_fragment_masks"
-        app:layout_constraintVertical_bias="0.953">
+        app:layout_constraintVertical_bias="0.942">
 
     </ImageButton>
 

@@ -12,11 +12,12 @@
 
     <ImageButton
         android:id="@+id/button_next"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="24dp"
-        android:src="@drawable/ic_autorenew_black_24dp"
+        android:layout_width="79dp"
+        android:layout_height="79dp"
         android:layout_gravity="bottom|center_horizontal"
-        android:background="@null"/>
+        android:layout_margin="24dp"
+        android:background="@null"
+
+        android:src="@drawable/insta" />
 
 </FrameLayout>

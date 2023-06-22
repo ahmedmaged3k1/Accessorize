@@ -9,7 +9,7 @@ import android.widget.Toast
 import com.example.araccessories.ui.core.utilities.GlassesActivity
 import com.google.ar.core.ArCoreApk
 
-object HelperFunctions {
+object      HelperFunctions {
      fun checkIsSupportedDeviceOrFinish(context: Context?, activity : Activity?): Boolean {
         if (ArCoreApk.getInstance()
                 .checkAvailability(context) == ArCoreApk.Availability.UNSUPPORTED_DEVICE_NOT_CAPABLE

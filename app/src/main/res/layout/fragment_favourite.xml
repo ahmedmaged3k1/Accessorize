@@ -8,26 +8,25 @@ android:layout_height="match_parent"
 
     >
 
-<TextView
-    android:layout_width="176dp"
-    android:layout_height="81dp"
-    android:layout_marginTop="16dp"
-    android:fontFamily="sans-serif"
-    android:gravity="center"
-    android:text="@string/favourite"
-    android:textColor="@color/black"
-    android:textSize="40sp"
-    android:textStyle="bold"
-    app:layout_constraintBottom_toTopOf="@+id/cartRecyclerView"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.068"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.0">
+    <TextView
+        android:layout_width="361dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="@string/favourite"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/cartRecyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-</TextView>
+    </TextView>
 
-<androidx.recyclerview.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/cartRecyclerView"
     android:layout_width="match_parent"
     android:layout_height="630dp"

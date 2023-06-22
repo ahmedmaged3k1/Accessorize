@@ -3,11 +3,16 @@ package com.example.araccessories.ui.features.glassesTryOn
 import android.content.ContentValues
 import android.content.Context
 import android.graphics.Bitmap
+import android.graphics.Rect
+
+import android.media.MediaRecorder
+import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.MediaStore
 import android.view.PixelCopy
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.araccessories.ui.features.glassesTryOn.FaceNode.GlassesFaceNode
@@ -22,6 +27,10 @@ import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.coroutines.launch
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class GlassesTryOnViewModel :ViewModel() {
     private var isDepthSupported = false
@@ -116,6 +125,17 @@ class GlassesTryOnViewModel :ViewModel() {
 
 
     }
+
+    private fun createVideoFile(context: Context): File {
+        // Create a unique filename
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val videoFileName = "VIDEO_$timeStamp.mp4"
+
+        // Get the directory to save the video
+        val storageDir = context.getExternalFilesDir(Environment.DIRECTORY_MOVIES)
+        return File(storageDir, videoFileName)
+    }
+
 
 
 

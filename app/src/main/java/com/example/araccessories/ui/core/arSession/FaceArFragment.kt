@@ -13,8 +13,12 @@ import java.util.*
 public class FaceArFragment : ArFragment() {
     override fun getSessionConfiguration(session: Session?): Config {
         val config = Config(session)
-
         config.augmentedFaceMode = Config.AugmentedFaceMode.MESH3D
+      //  config.depthMode = Config.DepthMode.AUTOMATIC
+      //  config.updateMode = Config.UpdateMode.LATEST_CAMERA_IMAGE
+       // config.focusMode = Config.FocusMode.AUTO
+      //  config.lightEstimationMode = Config.LightEstimationMode.ENVIRONMENTAL_HDR
+
         return config
     }
 

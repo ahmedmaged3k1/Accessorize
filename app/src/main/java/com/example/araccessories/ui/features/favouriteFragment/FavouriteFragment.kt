@@ -39,18 +39,18 @@ class FavouriteFragment : Fragment() {
         return binding.root
     }
     private fun initializeProductsRecyclerView(){
-        initializeProducts()
+        //initializeProducts()
     //    historyRecyclerViewAdapter.submitList(productList)
         binding.cartRecyclerView.adapter=historyRecyclerViewAdapter
     }
-    private fun initializeProducts(){
+  /*  private fun initializeProducts(){
         productList = listOf(
             Products("2","Purple Rouge",listOf(R.drawable.makeup2,R.drawable.purplerouge1,R.drawable.purplerouge2,R.drawable.purplerouge3),450.0,3.0,3,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
             Products("1","Sunglasses", listOf(R.drawable.g1,R.drawable.g2),375.0,2.0,1,0,null,"The Best Sunglasses you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it",null,null),
             Products("hat.sfb","Hat",listOf(R.drawable.h1,R.drawable.h2,R.drawable.h3,R.drawable.h4),450.0,3.0,2,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
             Products("2","Red Rouge",listOf(R.drawable.makeup,R.drawable.redrouge1,R.drawable.redrouge2),450.0,3.0,3,1,null,"The Best Hat you can try on , ZARA company provides you this sunglasses and gives you 14 days return back even after you try it", Scale(0.09f, 0.07f, 0.09f), Position(0.09f, 0.07f, 0.09f)),
             )
-    }
+    }*/
     private fun initializeProductsFav(userEmail: String) {
         viewModel.getAllProducts(userEmail)
         viewModel.productList.observe(viewLifecycleOwner){

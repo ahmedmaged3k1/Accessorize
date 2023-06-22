@@ -20,18 +20,34 @@
 
     <ImageButton
         android:id="@+id/captureImageGlasses"
-        android:layout_width="105dp"
-        android:contentDescription="@string/capture_photo"
-        android:layout_height="88dp"
+        android:layout_width="162dp"
+        android:layout_height="131dp"
         android:layout_marginBottom="48dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/capture"
+        android:background="@drawable/flag_transparent"
+        android:contentDescription="@string/capture_photo"
+
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:src="@drawable/insta3"
+
         app:layout_constraintBottom_toBottomOf="@+id/face_fragment_glasses"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
     </ImageButton>
+
+    <Button
+        android:id="@+id/recordVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/record"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Button>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
