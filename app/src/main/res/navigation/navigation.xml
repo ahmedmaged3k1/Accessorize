@@ -26,7 +26,7 @@
         <action
             android:id="@+id/action_onBoardingFragment_to_signInFragment"
             app:destination="@id/signInFragment"
-            app:enterAnim="@anim/nav_default_enter_anim" />
+            app:enterAnim="@anim/fade_in_scale_up" />
     </fragment>
     <fragment
         android:id="@+id/welcomeFragment"

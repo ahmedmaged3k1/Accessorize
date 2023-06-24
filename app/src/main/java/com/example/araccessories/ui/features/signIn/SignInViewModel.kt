@@ -21,15 +21,21 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
     var observer = MutableLiveData(1)
     var validator = MutableLiveData(1)
     var badRequest = MutableLiveData(1)
+    var progressBar = MutableLiveData(1)
+
     lateinit var userData : User
 
 
     fun login() {
+        manipulateLiveData(progressBar)
 
         viewModelScope.launch {
             if (userEmail.value?.isEmpty() == true || userPassword.value?.isEmpty() == true
             ) {
                 manipulateLiveData(validator)
+                resetLiveData(progressBar)
+
+
                 return@launch
             } else {
                 val user = UserLogin(email = userEmail.value?.trim(), password = userPassword.value?.trim())
@@ -42,8 +48,11 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
                     userData= loginUseCase.loginUser(user)!!.user!!
                     resetData()
                     manipulateLiveData(observer)
+                    resetLiveData(progressBar)
+
                 } else {
                     manipulateLiveData(badRequest)
+                    resetLiveData(progressBar)
                 }
             }
 
@@ -54,6 +63,11 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
         liveData.value = liveData.value?.inc()
 
     }
+    private fun resetLiveData(liveData: MutableLiveData<Int>) {
+        liveData.value = 1
+
+    }
+
 
     private fun resetData() {
         userEmail.value = ""

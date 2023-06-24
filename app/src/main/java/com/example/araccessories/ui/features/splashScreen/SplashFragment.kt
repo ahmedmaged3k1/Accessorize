@@ -19,21 +19,22 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentSplashBinding.inflate(inflater, container, false)
-
         activity?.window?.decorView?.apply {
-            systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+            systemUiVisibility =
+                View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
         }
-
         activity?.window?.setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN,
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
+        startSplash()
+        return binding.root
+    }
 
-
+    fun startSplash() {
         binding.motionLayout.startLayoutAnimation()
-        binding.motionLayout.setTransitionListener(object :MotionLayout.TransitionListener{
+        binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
             override fun onTransitionStarted(
                 motionLayout: MotionLayout?,
                 startId: Int,
@@ -52,7 +53,8 @@ class SplashFragment : Fragment() {
             }
 
             override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-                view?.findNavController()?.navigate(R.id.action_splashFragment_to_onBoardingFragment)
+                view?.findNavController()
+                    ?.navigate(R.id.action_splashFragment_to_onBoardingFragment)
 
             }
 
@@ -66,19 +68,10 @@ class SplashFragment : Fragment() {
             }
 
         })
-
-//        val handler = Handler(Looper.getMainLooper())
-//        handler.postDelayed({
-//
-//            view?.findNavController()?.navigate(R.id.action_splashFragment_to_onBoardingFragment)
-//        }, 2300)
-        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
-        // Clear the window flags
         activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 

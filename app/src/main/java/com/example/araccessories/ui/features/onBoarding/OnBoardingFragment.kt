@@ -1,7 +1,6 @@
 package com.example.araccessories.ui.features.onBoarding
 
 import android.os.Bundle
-import android.transition.Visibility
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,8 @@ import com.example.araccessories.databinding.FragmentOnBoardingBinding
 
 
 class OnBoardingFragment : Fragment() {
-    private lateinit var onboardingItemAdapter: OnboardingItemAdapter
+    private lateinit var onBoardingItemAdapter: OnboardingItemAdapter
+
     private lateinit var binding: FragmentOnBoardingBinding
 
     override fun onCreateView(
@@ -21,7 +21,7 @@ class OnBoardingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentOnBoardingBinding.inflate(inflater, container, false)
-        setOnboardingItems()
+        setOnBoardingItems()
         skipButton()
         nextButton()
         onBoardFinished()
@@ -45,31 +45,6 @@ class OnBoardingFragment : Fragment() {
             binding.onBoardingViewPager.setCurrentItem(binding.onBoardingViewPager.currentItem+1,true)
         }
     }
-   /* private fun pointsUpdate(){
-        binding.onBoardingViewPager.registerOnPageChangeCallback(object :OnPageChangeCallback(){
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                if (position==0){
-                    binding.point1.setImageResource(R.drawable.point2)
-                    binding.point2.setImageResource(R.drawable.point1)
-                    binding.point3.setImageResource(R.drawable.point1)
-
-                }
-                else if (position==1){
-                    binding.point1.setImageResource(R.drawable.point1)
-                    binding.point2.setImageResource(R.drawable.point2)
-                    binding.point3.setImageResource(R.drawable.point1)
-
-                }
-                if (position==2){
-                    binding.point1.setImageResource(R.drawable.point1)
-                    binding.point2.setImageResource(R.drawable.point1)
-                    binding.point3.setImageResource(R.drawable.point2)
-
-                }
-            }
-        })
-    }*/
     private fun onBoardFinished(){
         binding.onBoardingViewPager.registerOnPageChangeCallback(object :OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
@@ -90,8 +65,8 @@ class OnBoardingFragment : Fragment() {
     }
 
 
-    private fun setOnboardingItems() {
-        val onboardingItems: List<OnboardingItem> = listOf(
+    private fun setOnBoardingItems() {
+        val onBoardingItems: List<OnboardingItem> = listOf(
             OnboardingItem(
                 onBoardingImage = R.drawable.onboarding2,
                 "Your New Stylist,",
@@ -110,9 +85,9 @@ class OnBoardingFragment : Fragment() {
 
             )
         )
-        onboardingItemAdapter = OnboardingItemAdapter(onboardingItems)
+        onBoardingItemAdapter = OnboardingItemAdapter(onBoardingItems)
         val onboardingViewPager = binding.onBoardingViewPager
-        onboardingViewPager.adapter = onboardingItemAdapter
+        onboardingViewPager.adapter = onBoardingItemAdapter
 
     }
 }

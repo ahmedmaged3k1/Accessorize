@@ -145,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="116dp"
-            android:text="Or login with social account"
+            android:text="@string/or_login_with_social_account"
 
             android:textColor="@color/black"
             android:textSize="14sp"
@@ -169,7 +169,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/texastView5"
-            app:layout_constraintVertical_bias="1.0">
+            app:layout_constraintVertical_bias="1.0"
+            android:contentDescription="@string/facebook">
 
         </ImageView>
 
@@ -221,6 +222,15 @@
             app:layout_constraintTop_toBottomOf="@+id/signIn"
             app:layout_constraintVertical_bias="0.444" />
 
+        <ProgressBar
+            android:layout_width="83dp"
+            android:id="@+id/progressBar"
+            android:layout_height="87dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView5">
 
+        </ProgressBar>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

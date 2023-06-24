@@ -26,17 +26,14 @@ class SignInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentSignInBinding.inflate(inflater, container, false)
         binding.user=viewModel
         binding.lifecycleOwner=this
+        binding.progressBar.visibility=View.INVISIBLE
 
-            if (HelperFunctions.isInternetConnected(requireActivity().applicationContext))
+        if (HelperFunctions.isInternetConnected(requireActivity().applicationContext))
             {
-              /*  if (SharedPreference.readStringFromSharedPreference("token","")!="")
-                {
-
-                }*/
+                progressBarController()
                 validateLogin()
                 wrongCredentials()
                 login(binding.root)
@@ -58,7 +55,6 @@ class SignInFragment : Fragment() {
                     .navigate(
                         SignInFragmentDirections.actionSignInFragmentToMainNavigation()
                     )
-
             }
         }
 
@@ -66,6 +62,7 @@ class SignInFragment : Fragment() {
     private fun validateLogin() {
         viewModel.validator.observe(viewLifecycleOwner) {
             if (it == 2) {
+
                 Toast.makeText(requireContext(),"Please Fill All Fields",Toast.LENGTH_LONG).show()
             }
 
@@ -84,6 +81,23 @@ class SignInFragment : Fragment() {
             view?.findNavController()?.navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
+    }
+    private fun progressBarController(){
+
+        viewModel.progressBar.observe(viewLifecycleOwner) {
+            if (it == 2) {
+                binding.progressBar.visibility=View.VISIBLE
+                binding.imageButton.visibility=View.INVISIBLE
+                binding.imageButton2.visibility=View.INVISIBLE
+                binding.texastView5.visibility=View.INVISIBLE
+            }
+            else  {
+                binding.progressBar.visibility=View.INVISIBLE
+                binding.imageButton.visibility=View.VISIBLE
+                binding.imageButton2.visibility=View.VISIBLE
+                binding.texastView5.visibility=View.VISIBLE
+            }
+        }
     }
 
 
