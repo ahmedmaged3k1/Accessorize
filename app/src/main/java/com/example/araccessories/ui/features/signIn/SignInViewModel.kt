@@ -34,7 +34,7 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
             ) {
                 manipulateLiveData(validator)
                 resetLiveData(progressBar)
-
+                resetLiveData(validator)
 
                 return@launch
             } else {
@@ -49,9 +49,12 @@ class SignInViewModel @Inject constructor(private val loginUseCase: UserAccountU
                     resetData()
                     manipulateLiveData(observer)
                     resetLiveData(progressBar)
+                    resetLiveData(observer)
+
 
                 } else {
                     manipulateLiveData(badRequest)
+                    resetLiveData(badRequest)
                     resetLiveData(progressBar)
                 }
             }

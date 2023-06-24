@@ -51,6 +51,7 @@ android {
 
 dependencies {
 
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.8.0'
@@ -116,6 +117,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'com.github.Spikeysanju:MotionToast:1.4'
+
 
 }
 apply plugin: 'com.google.ar.sceneform.plugin'
