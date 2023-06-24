@@ -2,6 +2,7 @@ package com.example.araccessories.ui.features.homeFragment
 
 import android.content.ContentValues.TAG
 import android.net.Uri
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -51,6 +52,7 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.productsHomeRecyclerView.visibility=View.INVISIBLE
         binding.shimmerFrameLayout.startShimmer()
         welcomeName()
         initializeAdsRecyclerView()
@@ -73,6 +75,8 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
             productRecyclerViewAdapter.submitList(viewModel.productList.value)
             binding.productsHomeRecyclerView.adapter = productRecyclerViewAdapter
             binding.shimmerFrameLayout.stopShimmer()
+            binding.productsHomeRecyclerView.visibility=View.VISIBLE
+
 
         }
     }

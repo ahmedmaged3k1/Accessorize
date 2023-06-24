@@ -95,24 +95,33 @@
             android:orientation="vertical">
 
             <!-- Place your views here -->
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/productsHomeRecyclerView"
-                android:layout_width="387dp"
-                android:layout_height="385dp"
-                android:orientation="vertical"
+            <include layout="@layout/shimmer_layout">
+            </include>
+            <include layout="@layout/shimmer_layout">
+            </include>
+            <include layout="@layout/shimmer_layout">
+            </include>
 
-                android:paddingBottom="10dp"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:layout_editor_absoluteX="24dp"
-                tools:layout_editor_absoluteY="342dp"
-                tools:listitem="@layout/product_item">
-
-            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 
     </com.facebook.shimmer.ShimmerFrameLayout>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productsHomeRecyclerView"
+        android:layout_width="387dp"
+        android:layout_height="385dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        android:paddingBottom="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="342dp"
+        tools:listitem="@layout/product_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
     <androidx.constraintlayout.widget.Guideline

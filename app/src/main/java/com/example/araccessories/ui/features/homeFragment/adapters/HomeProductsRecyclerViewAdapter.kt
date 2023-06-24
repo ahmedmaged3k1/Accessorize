@@ -56,7 +56,6 @@ class ProductsRecyclerViewAdapter(private val listener: ProductFavClickListener)
 
                     }
                 }
-                binding.productRate.numStars= product.rate.toInt()
                 binding.root.product_item.setOnClickListener {
                     val action =
                         MainNavigationDirections.actionMainNavigationToProductDetailsFragment(
