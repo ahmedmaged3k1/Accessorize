@@ -8,8 +8,21 @@
 
     <fragment android:name="com.example.araccessories.ui.core.arSession.FaceArFragment"
         android:id="@+id/face_fragment_masks"
+        android:background="@drawable/gradient_black_bg"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/maskProgressBar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/face_fragment_masks"
+        app:layout_constraintEnd_toEndOf="@+id/face_fragment_masks"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ProgressBar>
 
     <ImageButton
         android:id="@+id/captureImageMasks"

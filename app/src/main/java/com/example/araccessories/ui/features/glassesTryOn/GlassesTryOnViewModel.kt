@@ -38,37 +38,38 @@ class GlassesTryOnViewModel :ViewModel() {
     private lateinit var scene: Scene
     private lateinit var config: Config
 
-    private var faceRegionsRenderable: ModelRenderable? = null
-    var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
-    private fun configureArSession(productModel : ModelRenderable? ,arFragment: ArFragment  ){
+    private var faceRegionsRenderables: MutableList<ModelRenderable?> = mutableListOf()
+    private var faceNodeMap = HashMap<AugmentedFace, AugmentedFaceNode>()
+
+    private fun configureArSession(productModels: List<ModelRenderable?>, arFragment: ArFragment) {
         sceneView = arFragment.arSceneView
         sceneView.cameraStreamRenderPriority = Renderable.RENDER_PRIORITY_FIRST
         scene = sceneView.scene
-        faceRegionsRenderable=productModel
+        faceRegionsRenderables = productModels.toMutableList()
     }
-    private fun enableDepth(){
+
+    private fun enableDepth() {
         config = sceneView.session!!.config
-        isDepthSupported =
-            sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
+        isDepthSupported = sceneView.session!!.isDepthModeSupported(Config.DepthMode.AUTOMATIC)
         if (isDepthSupported) {
             config.setDepthMode(Config.DepthMode.AUTOMATIC)
         } else {
             config.setDepthMode(Config.DepthMode.DISABLED)
         }
         sceneView.session!!.configure(config)
-
     }
-     fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment) {
-        configureArSession(productModel, arFragment)
+
+    fun tryOnProduct(productModels: List<ModelRenderable?>, arFragment: ArFragment) {
+        configureArSession(productModels, arFragment)
         scene.addOnUpdateListener {
-            if (faceRegionsRenderable != null) {
+            if (faceRegionsRenderables.isNotEmpty()) {
                 sceneView.session
-                    ?.getAllTrackables(AugmentedFace::class.java)?.let {
+                    ?.getAllTrackables(AugmentedFace::class.java)
+                    ?.let { augmentedFaces ->
                         enableDepth()
-                        for (face in it) {
+                        for (face in augmentedFaces) {
                             if (!faceNodeMap.containsKey(face)) {
                                 attachModel(face)
-
                             }
                         }
                         removeRedundantModels()
@@ -76,29 +77,29 @@ class GlassesTryOnViewModel :ViewModel() {
             }
         }
     }
-    private fun attachModel(face : AugmentedFace){
-        val faceNodeGlasses = GlassesFaceNode(face)
-        faceNodeGlasses.isActive
+
+    private fun attachModel(face: AugmentedFace) {
+        val modelIndex = faceNodeMap.size % faceRegionsRenderables.size
         val faceNode = AugmentedFaceNode(face)
         faceNode.setParent(scene)
-        face.getRegionPose(AugmentedFace.RegionType.NOSE_TIP)
-        faceNode.faceRegionsRenderable = faceRegionsRenderable
+        faceNode.faceRegionsRenderable = faceRegionsRenderables[modelIndex]
         faceNodeMap[face] = faceNode
     }
-    private fun removeRedundantModels(){
-        // Remove any AugmentedFaceNodes associated with an AugmentedFace that stopped tracking.
-        val inter = faceNodeMap.entries.iterator()
-        while (inter.hasNext()) {
-            val entry = inter.next()
+
+    private fun removeRedundantModels() {
+        val iterator = faceNodeMap.entries.iterator()
+        while (iterator.hasNext()) {
+            val entry = iterator.next()
             val face = entry.key
             if (face.trackingState == TrackingState.STOPPED) {
                 val faceNode = entry.value
                 faceNode.setParent(null)
-                inter.remove()
+                iterator.remove()
             }
         }
     }
-     fun takeSnapShot(context : Context){
+
+    fun takeSnapShot(context : Context){
         viewModelScope.launch {
             val width =  sceneView.width
             val height =  sceneView.height

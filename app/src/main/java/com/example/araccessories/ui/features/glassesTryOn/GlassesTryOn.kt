@@ -1,12 +1,14 @@
 package com.example.araccessories.ui.features.glassesTryOn
 
 import android.Manifest
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -51,19 +53,24 @@ class GlassesTryOn : Fragment() {
         if (!HelperFunctions.checkIsSupportedDeviceOrFinish(context, activity)) {
             view?.findNavController()?.navigate(R.id.action_glassesTryOn_to_productDetailsFragment)
         }
-        arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment
-            ?: return view
+        arFragment =
+            childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment
+                ?: return view
         captureShot = view.findViewById(R.id.captureImageGlasses)
-        record = view.findViewById(R.id.recordVideo)
 
         initializeModel()
         takeSnapShot()
 
         // Check and request necessary permissions
         val permissions = arrayOf(RECORD_AUDIO_PERMISSION)
-        val permissionCheck = ContextCompat.checkSelfPermission(requireContext(), RECORD_AUDIO_PERMISSION)
+        val permissionCheck =
+            ContextCompat.checkSelfPermission(requireContext(), RECORD_AUDIO_PERMISSION)
         if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(requireActivity(), permissions, REQUEST_PERMISSION_CODE)
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                permissions,
+                REQUEST_PERMISSION_CODE
+            )
         }
 
         return view
@@ -80,14 +87,16 @@ class GlassesTryOn : Fragment() {
             .setSource(this.activity, Uri.parse(args.products.modelLink))
             .build()
             .thenAccept { modelRenderable ->
-                modelRenderable.isShadowCaster = false
-                modelRenderable.isShadowReceiver = false
-                val productModelRenderable: ModelRenderable = modelRenderable
-                viewModel.tryOnProduct(productModelRenderable, arFragment)
+                modelRenderable?.isShadowCaster = false
+                modelRenderable?.isShadowReceiver = false
+                val productModelRenderable: ModelRenderable? = modelRenderable
+                viewModel.tryOnProduct(listOf(productModelRenderable), arFragment)
+            }
+            .exceptionally {
+                Log.e(TAG, "Error loading model: ${it.localizedMessage}")
+                return@exceptionally null
             }
     }
-
-
 
 
 

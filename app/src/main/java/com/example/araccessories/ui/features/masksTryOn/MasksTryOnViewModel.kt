@@ -1,6 +1,7 @@
 package com.example.araccessories.ui.features.masksTryOn
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Handler
@@ -8,6 +9,7 @@ import android.os.Looper
 import android.provider.MediaStore
 import android.util.Log
 import android.view.PixelCopy
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -49,15 +51,17 @@ class MasksTryOnViewModel : ViewModel() {
         sceneView.session!!.configure(config)
 
     }
-    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String?){
+    private fun attachModel(face : AugmentedFace, context: Context, localScale : Scale?, localPosition: Position?, productId : String?,view :View){
         val faceNode = MaskNode(face, context,
             productId,
             localScale,
             localPosition
         )
-        Log.d(ContentValues.TAG, "attachModel: $productId")
+        faceNode.setComponentView(view)
+
         faceNode.setParent(scene)
         faceNodeMap[face] = faceNode
+        Log.d(TAG, "attachModel: $${faceNode.load}")
     }
     private fun removeRedundantModels(){
         // Remove any AugmentedFaceNodes associated with an AugmentedFace that stopped tracking.
@@ -72,7 +76,7 @@ class MasksTryOnViewModel : ViewModel() {
             }
         }
     }
-    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String?) {
+    fun tryOnProduct(productModel: ModelRenderable?, arFragment: ArFragment, context: Context, localScale : Scale?, localPosition: Position?, productId : String?,view: View) {
         configureArSession(productModel, arFragment)
         scene.addOnUpdateListener {
             sceneView.session
@@ -80,7 +84,7 @@ class MasksTryOnViewModel : ViewModel() {
                     enableDepth()
                     for (face in it) {
                         if (!faceNodeMap.containsKey(face)) {
-                            attachModel(face,context, localScale,localPosition, productId)
+                            attachModel(face,context, localScale,localPosition, productId,view)
                         }
                     }
                     removeRedundantModels()

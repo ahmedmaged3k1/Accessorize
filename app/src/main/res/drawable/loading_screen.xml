@@ -1,0 +1,40 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Semi-transparent black background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#88000000" />
+        </shape>
+    </item>
+
+    <!-- Progress bar -->
+    <item android:top="100dp" android:bottom="100dp" android:left="20dp" android:right="20dp">
+        <rotate
+            android:fromDegrees="0"
+            android:toDegrees="360"
+            android:pivotX="50%"
+            android:pivotY="50%">
+
+            <shape android:shape="ring" android:useLevel="true">
+                <size android:width="120dp" android:height="120dp" />
+                <gradient
+                    android:type="sweep"
+                    android:useLevel="false"
+                    android:startColor="#FF5722"
+                    android:centerColor="#FFC107"
+                    android:endColor="#FF5722" />
+            </shape>
+
+        </rotate>
+    </item>
+
+    <!-- Loading text -->
+    <item android:top="200dp" android:bottom="50dp" android:left="20dp" android:right="20dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Loading..."
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:gravity="center" />
+    </item>
+</layer-list>

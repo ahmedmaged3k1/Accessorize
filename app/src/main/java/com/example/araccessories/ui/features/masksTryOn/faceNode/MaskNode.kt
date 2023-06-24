@@ -2,6 +2,7 @@ package com.example.araccessories.ui.features.masksTryOn.faceNode
 
 import android.content.Context
 import android.net.Uri
+import android.view.View
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
 import com.google.ar.core.AugmentedFace
@@ -18,9 +19,11 @@ class MaskNode(augmentedFace: AugmentedFace, val context:Context, val model:Stri
 ) : AugmentedFaceNode(augmentedFace) {
 
     private var faceNode  : Node?  = null
+    private var componentView: View? = null
     var x = 0f
     var y = 0f
     var z = 0f
+    var load = false
 
     companion object{
         enum class FaceRegions{
@@ -40,6 +43,9 @@ class MaskNode(augmentedFace: AugmentedFace, val context:Context, val model:Stri
                 modelRenderable.isShadowCaster = false
                 modelRenderable.isShadowReceiver = false
                 faceNode?.renderable=modelRenderable
+                componentView?.visibility = View.INVISIBLE
+
+                load=true
             }
 //        ViewRenderable.builder()
 //            .setView(context, R.layout.element_layout)
@@ -57,6 +63,9 @@ class MaskNode(augmentedFace: AugmentedFace, val context:Context, val model:Stri
 //                    throwable
 //                )
 //            }
+    }
+    fun setComponentView(view: View) {
+        componentView = view
     }
     private fun getRegionPose(region: FaceRegions) : Vector3? {
         val buffer = augmentedFace?.meshVertices

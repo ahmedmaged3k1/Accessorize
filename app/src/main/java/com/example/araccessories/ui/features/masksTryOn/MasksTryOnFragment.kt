@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -37,7 +38,8 @@ class MasksTryOnFragment : Fragment() {
         }
         arFragment = childFragmentManager.findFragmentById(R.id.face_fragment_masks) as? ArFragment
             ?: return view
-        viewModel.tryOnProduct(null, arFragment, requireActivity().applicationContext, args.products.modelSize, args.products.modelPosition, args.products.modelLink)
+        var progressBar : ProgressBar = view.findViewById(R.id.maskProgressBar)
+        viewModel.tryOnProduct(null, arFragment, requireActivity().applicationContext, args.products.modelSize, args.products.modelPosition, args.products.modelLink,progressBar)
         captureShot = view.findViewById(R.id.captureImageMasks)
         takeSnapShot()
         return view
