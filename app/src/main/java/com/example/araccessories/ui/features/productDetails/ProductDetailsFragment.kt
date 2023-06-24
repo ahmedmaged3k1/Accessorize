@@ -9,7 +9,9 @@ import android.transition.Transition
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
@@ -19,28 +21,33 @@ import com.example.araccessories.R
 import com.example.araccessories.databinding.FragmentProductDetailsBinding
 import com.example.araccessories.ui.core.utilities.NotificationUtils
 import com.example.araccessories.ui.features.productDetails.adapters.ProductImageRecyclerViewAdapter
+import com.example.araccessories.ui.features.signIn.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 import java.io.ByteArrayOutputStream
 import java.util.Locale
 
 @AndroidEntryPoint
-class ProductDetailsFragment : Fragment() , java.io.Serializable{
+class ProductDetailsFragment : Fragment(), java.io.Serializable {
     private lateinit var binding: FragmentProductDetailsBinding
     private val args by navArgs<ProductDetailsFragmentArgs>()
     private val productRecyclerViewAdapter = ProductImageRecyclerViewAdapter()
-    private lateinit var imageList :List<Int>
+    private lateinit var imageList: List<Int>
     private val viewModel: ProductDetailsViewModel by viewModels()
+    private val sharedViewModel: SignInViewModel by activityViewModels()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
-        binding.product=viewModel
-        binding.lifecycleOwner=this
+        binding.product = viewModel
+        binding.lifecycleOwner = this
 
         backButton()
         initializeArgs()
@@ -51,17 +58,21 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
         return binding.root
     }
-    private fun initializeArgs(){
+
+    private fun initializeArgs() {
         viewModel.productName.value = args.products.name
         viewModel.productDescription.value = args.products.description
         viewModel.productPrice.value = args.products.price.toString()
     }
-     private fun backButton(){
-        binding.backDetails.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.action_productDetailsFragment_to_mainNavigation)
+
+    private fun backButton() {
+        binding.backDetails.setOnClickListener {
+            view?.findNavController()
+                ?.navigate(R.id.action_productDetailsFragment_to_mainNavigation)
 
         }
     }
+
     private fun shareImage(context: Context, imageUrL: String) {
         binding.shareDetails.setOnClickListener {
             viewModel.shareImage(context, imageUrL)
@@ -70,32 +81,65 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
 
     }
 
-    private fun initializeProductDetailsRecyclerView(){
+    private fun initializeProductDetailsRecyclerView() {
         productRecyclerViewAdapter.submitList(args.products.images)
-        binding.productDetailsRecyclerView.adapter=productRecyclerViewAdapter
+        binding.productDetailsRecyclerView.adapter = productRecyclerViewAdapter
     }
+
     //Local Run
-    private fun initializeImageList()
-    {
-        imageList= listOf(R.drawable.sunglasses,
+    private fun initializeImageList() {
+        imageList = listOf(
+            R.drawable.sunglasses,
             R.drawable.sunglasses,
             R.drawable.sunglasses,
             R.drawable.sunglasses
-            )
+        )
     }
-    private fun addToHistory(){
+
+    private fun addToHistory() {
         viewModel.addToHistoryProduct(args.products)
     }
-    private fun addToCart(){
-        binding.addToCartButton.setOnClickListener{
-            viewModel.addToCartProduct(args.products)
-            NotificationUtils.showNotification(requireContext(), "Cart", "Product Added To Cart")
+
+    private fun addToCart() {
+        binding.addToCartButton.setOnClickListener {
+            if (viewModel.checkIfAddedToCart(sharedViewModel.userData.email,args.products))
+            {
+                viewModel.addToCartProduct(args.products)
+                // NotificationUtils.showNotification(requireContext(), "Cart", "Product Added To Cart")
+                MotionToast.darkToast(
+                    requireActivity(),
+                    duration = MotionToast.LONG_DURATION,
+                    position = MotionToast.GRAVITY_BOTTOM,
+                    font = ResourcesCompat.getFont(
+                        requireContext(),
+                        www.sanju.motiontoast.R.font.helvetica_regular
+                    ),
+                    style = MotionToastStyle.SUCCESS,
+                    message = "Product Added To Cart",
+                    title = "Hey"
+                )
+            }
+            else {
+                MotionToast.darkToast(
+                    requireActivity(),
+                    duration = MotionToast.LONG_DURATION,
+                    position = MotionToast.GRAVITY_BOTTOM,
+                    font = ResourcesCompat.getFont(
+                        requireContext(),
+                        www.sanju.motiontoast.R.font.helvetica_regular
+                    ),
+                    style = MotionToastStyle.WARNING,
+                    message = "Product is already in the cart , Check it again",
+                    title = "Hey"
+                )
+            }
+
 
         }
     }
 
 
-    private fun tryOnProduct(){
+    private fun tryOnProduct() {
         binding.tryOnButton.setOnClickListener {
             addToHistory()
             if (args.products.category.lowercase(Locale.getDefault()) == "glasses") {
@@ -133,6 +177,6 @@ class ProductDetailsFragment : Fragment() , java.io.Serializable{
             }
 
         }
-        }
-
     }
+
+}

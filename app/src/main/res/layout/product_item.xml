@@ -89,7 +89,7 @@
                 android:background="@drawable/btn_sign_in_rounded_corners"
                 android:contentDescription="@string/fav"
                 android:elevation="20dp"
-                android:src="@drawable/baseline_favorite_border_24"
+                android:src="@drawable/ripple_no_heart"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.989"

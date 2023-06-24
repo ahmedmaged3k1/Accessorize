@@ -34,8 +34,9 @@ class SignInFragment : Fragment() {
         binding.lifecycleOwner=this
         binding.progressBar.visibility=View.INVISIBLE
 
-        if (HelperFunctions.isInternetConnected(requireActivity().applicationContext))
+            if (HelperFunctions.isInternetConnected(requireActivity().applicationContext))
             {
+
                 progressBarController()
                 validateLogin()
                 wrongCredentials()
@@ -43,8 +44,12 @@ class SignInFragment : Fragment() {
                 signUpButton()
             }
             else{
-                HelperFunctions.noInternetConnection(requireActivity().applicationContext)
+
+                HelperFunctions.noInternetConnection(requireActivity().applicationContext,requireActivity())
             }
+
+
+
 
 
 

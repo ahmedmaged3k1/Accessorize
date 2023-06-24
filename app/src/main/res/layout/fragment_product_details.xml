@@ -62,15 +62,15 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/productDetailsRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="413dp"
+            android:layout_width="402dp"
+            android:layout_height="433dp"
             android:layout_marginTop="4dp"
             android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline4"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/product_details_image_item">
 
         </androidx.recyclerview.widget.RecyclerView>
@@ -103,7 +103,7 @@
 
         <TextView
             android:id="@+id/productDetailsPrice"
-            style="@style/productTitles"
+            style="@style/categoryText"
             android:layout_width="148dp"
             android:layout_height="34dp"
             android:layout_marginStart="180dp"

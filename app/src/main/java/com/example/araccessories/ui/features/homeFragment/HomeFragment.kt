@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -30,6 +31,8 @@ import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyc
 import com.example.araccessories.ui.features.signIn.SignInViewModel
 import com.google.ar.sceneform.rendering.ModelRenderable
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 import java.util.Locale
 import java.util.Timer
 import java.util.TimerTask
@@ -348,8 +351,20 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
         }
         if (filteredList.isEmpty())
         {
-            Log.d(TAG, "filerProducts: no data")
-            Toast.makeText(requireContext(),"No Data Found",Toast.LENGTH_SHORT).show()
+
+
+            MotionToast.darkToast(
+                requireActivity(),
+                duration = MotionToast.SHORT_DURATION,
+                position = MotionToast.GRAVITY_BOTTOM,
+                font = ResourcesCompat.getFont(
+                    requireContext(),
+                    www.sanju.motiontoast.R.font.helvetica_regular
+                ),
+                style = MotionToastStyle.WARNING,
+                message = "No Data Found",
+                title = "Sorry"
+            )
         }
         else{
             productRecyclerViewAdapter.submitList(filteredList)

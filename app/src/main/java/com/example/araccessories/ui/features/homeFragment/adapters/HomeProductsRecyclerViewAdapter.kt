@@ -37,20 +37,20 @@ class ProductsRecyclerViewAdapter(private val listener: ProductFavClickListener)
                 binding.product=product
                 Log.d(TAG, "onProductFav:  ${product.isFavourite}")
                 if (product.isFavourite){
-                    binding.productFav.setImageResource(R.drawable.baseline_favorite_24)
+                    binding.productFav.setImageResource(R.drawable.ripple_heart)
                 }
                 else {
-                    binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                    binding.productFav.setImageResource(R.drawable.ripple_no_heart)
 
                 }
                 binding.productFav.setOnClickListener {
                     if (product.isFavourite){
-                        binding.productFav.setImageResource(R.drawable.baseline_favorite_border_24)
+                        binding.productFav.setImageResource(R.drawable.ripple_no_heart)
                         product.isFavourite=false
                         listener.onProductRemove(position)
                     }
                     else {
-                        binding.productFav.setImageResource(R.drawable.baseline_favorite_24)
+                        binding.productFav.setImageResource(R.drawable.ripple_heart)
                         listener.onProductAdd(position)
                         product.isFavourite=true
 

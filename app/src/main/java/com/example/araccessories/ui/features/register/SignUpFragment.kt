@@ -36,7 +36,7 @@ class SignUpFragment : Fragment() {
             login(binding.root)
         }
         else{
-            HelperFunctions.noInternetConnection(requireContext())
+            HelperFunctions.noInternetConnection(requireContext(),requireActivity())
         }
         login()
         return binding.root
