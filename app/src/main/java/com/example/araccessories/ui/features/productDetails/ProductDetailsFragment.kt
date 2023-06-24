@@ -1,11 +1,13 @@
 package com.example.araccessories.ui.features.productDetails
 
 import android.content.ActivityNotFoundException
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.transition.Transition
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -102,8 +104,25 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
 
     private fun addToCart() {
         binding.addToCartButton.setOnClickListener {
-            if (viewModel.checkIfAddedToCart(sharedViewModel.userData.email,args.products))
+            Log.d(TAG, "checkIfAddedToCart: function result ${viewModel.checkIfAddedToCart(sharedViewModel.userData.email,args.products)} ")
+
+            if (viewModel.checkIfAddedToCart(sharedViewModel.userData.email,args.products) == true)
             {
+                MotionToast.darkToast(
+                    requireActivity(),
+                    duration = MotionToast.LONG_DURATION,
+                    position = MotionToast.GRAVITY_BOTTOM,
+                    font = ResourcesCompat.getFont(
+                        requireContext(),
+                        www.sanju.motiontoast.R.font.helvetica_regular
+                    ),
+                    style = MotionToastStyle.WARNING,
+                    message = "Product is already in the cart , Check it again",
+                    title = "Hey"
+                )
+            }
+            else {
+
                 viewModel.addToCartProduct(args.products)
                 // NotificationUtils.showNotification(requireContext(), "Cart", "Product Added To Cart")
                 MotionToast.darkToast(
@@ -116,20 +135,6 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
                     ),
                     style = MotionToastStyle.SUCCESS,
                     message = "Product Added To Cart",
-                    title = "Hey"
-                )
-            }
-            else {
-                MotionToast.darkToast(
-                    requireActivity(),
-                    duration = MotionToast.LONG_DURATION,
-                    position = MotionToast.GRAVITY_BOTTOM,
-                    font = ResourcesCompat.getFont(
-                        requireContext(),
-                        www.sanju.motiontoast.R.font.helvetica_regular
-                    ),
-                    style = MotionToastStyle.WARNING,
-                    message = "Product is already in the cart , Check it again",
                     title = "Hey"
                 )
             }

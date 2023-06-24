@@ -40,15 +40,26 @@ class ProductDetailsViewModel @Inject constructor( private val userAccountUseCas
     var productDescription = MutableLiveData<String>("")
     var productPrice = MutableLiveData<String>("")
     val productList = MutableLiveData<ArrayList<ProductsRemote>>()
+    var bool: Boolean? = false
 
-    fun checkIfAddedToCart(userEmail: String,productsRemote: ProductsRemote) : Boolean{
+    fun checkIfAddedToCart(userEmail: String, productsRemote: ProductsRemote): Boolean? {
         viewModelScope.launch {
-            productList.postValue(userAccountUseCase.getProductsByEmail(userEmail)?.filter { it.isCart } as ArrayList<ProductsRemote>?)
-        }
-        Log.d(TAG, "checkIfAddedToCart: ${productList.value.toString()}")
-        return productList.value?.contains(productsRemote)== true
+            val cartProducts = userAccountUseCase.getProductsByEmail(userEmail)?.filter { it.isCart }
 
+            cartProducts?.forEach {
+                if (it.name.trim().equals(productsRemote.name.trim(), ignoreCase = true)) {
+                    bool = true
+                    return@launch
+                }
+                else{
+                    bool=false
+                }
+            }
+        }
+
+        return bool
     }
+
 
     fun addToHistoryProduct(productsRemote: ProductsRemote){
         viewModelScope.launch{
