@@ -54,6 +54,8 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.productsHomeRecyclerView.visibility=View.INVISIBLE
         binding.shimmerFrameLayout.startShimmer()
+        binding.shimmerFrameLayout.visibility=View.VISIBLE
+
         welcomeName()
         initializeAdsRecyclerView()
         initializeCategoriesRecyclerView()
@@ -76,6 +78,8 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
             binding.productsHomeRecyclerView.adapter = productRecyclerViewAdapter
             binding.shimmerFrameLayout.stopShimmer()
             binding.productsHomeRecyclerView.visibility=View.VISIBLE
+            binding.shimmerFrameLayout.visibility=View.INVISIBLE
+
 
 
         }
