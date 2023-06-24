@@ -99,10 +99,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
             android:hint="@string/password"
+            app:layout_constraintBottom_toTopOf="@+id/signIn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailLayout">
+            app:layout_constraintTop_toBottomOf="@+id/emailLayout"
+            app:layout_constraintVertical_bias="0.0">
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/nameSignUp"
@@ -124,7 +126,7 @@
             android:id="@+id/signIn"
             android:layout_width="338dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="36dp"
+            android:layout_marginBottom="72dp"
             android:background="@drawable/ripple_next"
             android:backgroundTint="@color/red"
             android:onClick="@{() -> user.login()}"
@@ -135,7 +137,7 @@
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.438"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -203,49 +205,21 @@
             app:layout_constraintStart_toStartOf="parent" />
 
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="32dp"
-            android:backgroundTint="@color/white"
-            android:src="@drawable/baseline_arrow_forward_24"
-            app:layout_constraintBottom_toTopOf="@+id/signIn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
-
-        </ImageView>
-
-        <TextView
-            android:id="@+id/forgetPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="188dp"
-            android:text="@string/forgot_your_password"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/signIn"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
-
         <TextView
             android:id="@+id/tv_sign_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="81dp"
+            android:layout_height="49dp"
             android:layout_marginTop="24dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginEnd="64dp"
+            android:gravity="center"
             android:text="@string/sign_up"
             android:textColor="@color/red"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/texastView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/signIn"
-            app:layout_constraintVertical_bias="0.181" />
+            app:layout_constraintVertical_bias="0.444" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
