@@ -17,10 +17,10 @@
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/homeSearch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.303"
+        app:layout_constraintHorizontal_bias="0.389"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.318">
+        app:layout_constraintVertical_bias="0.609">
 
     </TextView>
 
@@ -30,7 +30,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_search"
+        android:background="@drawable/ripple_search"
         android:drawableStart="@drawable/baseline_search_24"
         android:drawableEnd="@drawable/baseline_close_24"
         android:elevation="6dp"
@@ -67,35 +67,53 @@
         android:id="@+id/categoriesRecyclerView"
         android:layout_width="360dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="12dp"
         android:orientation="horizontal"
         android:padding="10dp"
         android:paddingEnd="20dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/productsHomeRecyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/shimmerFrameLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.257"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         tools:listitem="@layout/category_item">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/productsHomeRecyclerView"
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerFrameLayout"
         android:layout_width="387dp"
         android:layout_height="385dp"
-        android:layout_marginBottom="12dp"
-        android:orientation="vertical"
-
-        android:paddingBottom="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        tools:listitem="@layout/product_item">
+        >
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <!-- Content to apply shimmer effect to -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="10dp"
+            android:orientation="vertical">
+
+            <!-- Place your views here -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productsHomeRecyclerView"
+                android:layout_width="387dp"
+                android:layout_height="385dp"
+                android:orientation="vertical"
+
+                android:paddingBottom="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="342dp"
+                tools:listitem="@layout/product_item">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"

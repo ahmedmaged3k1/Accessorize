@@ -6,6 +6,7 @@
             name="user"
             type="com.example.araccessories.ui.features.signIn.SignInViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -61,58 +62,75 @@
 
         </TextView>
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/emailSignUp"
-            android:layout_width="362dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/input_rounded_corners"
-            android:backgroundTint="#F6F6F6"
-            android:drawableStart="@drawable/email"
-            android:drawablePadding="15dp"
-            android:elevation="5dp"
-            android:ems="10"
-            android:hint="@string/email"
-            android:inputType="text"
-            android:padding="15dp"
-            android:text="@={user.userEmail}"
-            android:textCursorDrawable="@drawable/black_cursor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.326"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailLayout"
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/nameSignUp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="362dp"
-            android:layout_height="54dp"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/input_rounded_corners"
-            android:backgroundTint="#F6F6F6"
-            android:drawableStart="@drawable/lock"
-            android:drawablePadding="15dp"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:padding="15dp"
-            android:text="@={user.userPassword}"
-            android:textCursorDrawable="@drawable/black_cursor"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:hint="@string/email"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.326"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/emailSignUp" />
+            app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/emailSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_rounded_corners_black_border"
+                android:backgroundTint="#F6F6F6"
+                android:drawableStart="@drawable/email"
+                android:drawablePadding="15dp"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="15dp"
+                android:text="@={user.userEmail}"
+                android:textCursorDrawable="@drawable/black_cursor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/passwordLayout"
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="362dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:hint="@string/password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.326"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/emailLayout">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/nameSignUp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/input_rounded_corners_black_border"
+                android:backgroundTint="#F6F6F6"
+                android:drawableStart="@drawable/lock"
+                android:drawablePadding="15dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:text="@={user.userPassword}"
+                android:textCursorDrawable="@drawable/black_cursor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/signIn"
             android:layout_width="338dp"
             android:layout_height="60dp"
             android:layout_marginBottom="36dp"
-            android:background="@drawable/btn_sign_in_rounded_corners"
+            android:background="@drawable/ripple_next"
             android:backgroundTint="@color/red"
+            android:onClick="@{() -> user.login()}"
             android:padding="10dp"
             android:text="@string/login"
             android:textAllCaps="false"
-            android:onClick="@{() -> user.login()}"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/textView5"
@@ -186,18 +204,15 @@
 
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="43dp"
+            android:layout_marginEnd="32dp"
             android:backgroundTint="@color/white"
             android:src="@drawable/baseline_arrow_forward_24"
             app:layout_constraintBottom_toTopOf="@+id/signIn"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.312"
-            app:layout_constraintStart_toEndOf="@+id/forgetPassword"
-            app:layout_constraintTop_toBottomOf="@+id/nameSignUp"
-            app:layout_constraintVertical_bias="0.235">
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout">
 
         </ImageView>
 
@@ -205,17 +220,17 @@
             android:id="@+id/forgetPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="192dp"
-            android:layout_marginTop="20dp"
 
+            android:layout_marginStart="188dp"
             android:text="@string/forgot_your_password"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/signIn"
+            app:layout_constraintEnd_toStartOf="@+id/imageView3"
+            app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameSignUp"
-            app:layout_constraintVertical_bias="0.02" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
         <TextView
             android:id="@+id/tv_sign_up"

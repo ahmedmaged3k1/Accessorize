@@ -51,6 +51,7 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.shimmerFrameLayout.startShimmer()
         welcomeName()
         initializeAdsRecyclerView()
         initializeCategoriesRecyclerView()
@@ -71,6 +72,8 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
         viewModel.productList.observe(viewLifecycleOwner) {
             productRecyclerViewAdapter.submitList(viewModel.productList.value)
             binding.productsHomeRecyclerView.adapter = productRecyclerViewAdapter
+            binding.shimmerFrameLayout.stopShimmer()
+
         }
     }
 

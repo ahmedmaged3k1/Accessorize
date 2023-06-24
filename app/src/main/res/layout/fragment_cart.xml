@@ -88,7 +88,7 @@
         android:layout_width="343dp"
         android:layout_height="48dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/btn_sign_in_rounded_corners"
+        android:background="@drawable/ripple_next"
         android:backgroundTint="@color/red"
         android:padding="10dp"
         android:text="@string/checkout"

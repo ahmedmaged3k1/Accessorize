@@ -120,7 +120,7 @@
             android:layout_width="338dp"
             android:layout_height="60dp"
             android:layout_marginTop="60dp"
-            android:background="@drawable/btn_sign_in_rounded_corners"
+            android:background="@drawable/ripple_next"
             android:backgroundTint="@color/red"
             android:padding="10dp"
             android:text="@string/sign_up"

@@ -69,4 +69,12 @@
     <style name="Theme.ArAccessories.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.ArAccessories.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="OutlinedEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/custom_outline_background</item>
+    </style>
+    <style name="CustomOutlinedEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@android:color/black</item>
+        <item name="android:textColorHint">#F6F6F6</item>
+    </style>
+
 </resources>
