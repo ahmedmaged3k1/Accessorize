@@ -10,13 +10,13 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/onBoardingViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="574dp"
-        android:layout_marginTop="4dp"
-        android:elevation="20sp"
+        android:layout_width="383dp"
+        android:layout_height="580dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/btn_sign_in_rounded_corners"
+android:elevation="15dp"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 

@@ -8,17 +8,21 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.FragmentCartBinding
 import com.example.araccessories.ui.features.cartFragment.adapters.CartFragmentRecyclerView
 import com.example.araccessories.ui.features.favouriteFragment.FavouriteViewModel
 import com.example.araccessories.ui.features.signIn.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 @AndroidEntryPoint
 class CartFragment : Fragment(), CartFragmentRecyclerView.ProductCartClickListener {
@@ -94,6 +98,21 @@ class CartFragment : Fragment(), CartFragmentRecyclerView.ProductCartClickListen
 
     override fun orderPrice(price: Int) {
 
+
+    }
+
+    override fun removeProduct(products: ProductsRemote) {
+        products.isCart=false
+        viewModel.deleteProductFromCart(products)
+        MotionToast.darkToast(requireActivity(),
+            duration = MotionToast.LONG_DURATION,
+            position = MotionToast.GRAVITY_BOTTOM,
+            font = ResourcesCompat.getFont(requireContext(),www.sanju.motiontoast.R.font.helvetica_regular),
+            style = MotionToastStyle.SUCCESS,
+            message = "Deleted From Cart",
+            title = "Item"
+        )
+        initializeProductsRecyclerView(sharedViewModel.userData.email)
 
     }
 

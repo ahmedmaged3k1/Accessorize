@@ -33,6 +33,9 @@ class HistoryRecyclerViewAdapter (private val listener: ProductRemoveClickListen
             binding.removeProduct.setOnClickListener {
                 listener.onProductRemove(products)
             }
+            binding.removeText.setOnClickListener {
+                listener.onProductRemove(products)
+            }
 
 
             binding.executePendingBindings()

@@ -41,4 +41,9 @@ class CartFragmentViewModel @Inject constructor(private val userAccountUseCase: 
         Log.d(TAG, "changeTotal:  price $price ")
 
     }
+    fun deleteProductFromCart(productsRemote: ProductsRemote) {
+        viewModelScope.launch {
+            userAccountUseCase.updateProduct(productsRemote)
+        }
+    }
 }

@@ -99,6 +99,7 @@
 
             <TextView
                 style="@style/categoryText"
+                android:id="@+id/removeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

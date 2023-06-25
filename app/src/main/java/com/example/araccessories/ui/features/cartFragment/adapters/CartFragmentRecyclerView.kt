@@ -15,6 +15,7 @@ class CartFragmentRecyclerView (private val listener: CartFragmentRecyclerView.P
         fun onProductInc(position: Int)
         fun onProductDec(position: Int)
         fun orderPrice (price :  Int)
+        fun removeProduct(products: ProductsRemote)
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -32,6 +33,15 @@ class CartFragmentRecyclerView (private val listener: CartFragmentRecyclerView.P
 
         fun bind(products: ProductsRemote) {
             var cartCount =1
+            binding.removeProduct.setOnClickListener {
+                listener.removeProduct(products)
+            }
+            binding.removeText.setOnClickListener {
+                listener.removeProduct(products)
+            }
+            binding.removeProduct.setOnClickListener {
+                listener.removeProduct(products)
+            }
             binding.product = products
             orderTotal+=products.price
             binding.increaseCount.setOnClickListener {

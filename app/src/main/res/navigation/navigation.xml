@@ -98,7 +98,8 @@
             app:destination="@id/favouriteFragment" />
         <action
             android:id="@+id/action_mainNavigation_to_productDetailsFragment"
-            app:destination="@id/productDetailsFragment" />
+            app:destination="@id/productDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_mainNavigation_to_botFragment"
             app:destination="@id/botFragment" />
