@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -11,15 +12,18 @@ import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
+import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.FragmentHistoryBinding
 import com.example.araccessories.ui.features.historyFragment.adapters.HistoryRecyclerViewAdapter
 import com.example.araccessories.ui.features.signIn.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 @AndroidEntryPoint
-class HistoryFragment : Fragment() {
+class HistoryFragment : Fragment()  , HistoryRecyclerViewAdapter.ProductRemoveClickListener {
     private lateinit var binding: FragmentHistoryBinding
-    private val historyRecyclerViewAdapter = HistoryRecyclerViewAdapter()
+    private val historyRecyclerViewAdapter = HistoryRecyclerViewAdapter(this)
     private lateinit var productList: List<Products>
     private val viewModel: HistoryFragmentViewModel by viewModels()
     private val sharedViewModel: SignInViewModel by activityViewModels()
@@ -32,6 +36,9 @@ class HistoryFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        binding.cartRecyclerView.visibility=View.INVISIBLE
+        binding.shimmerFrameLayout.startShimmer()
+        binding.shimmerFrameLayout.visibility=View.VISIBLE
         initializeProductsHist(sharedViewModel.userData.email)
         return binding.root
     }
@@ -51,7 +58,25 @@ class HistoryFragment : Fragment() {
 
             historyRecyclerViewAdapter.submitList(viewModel.productList.value)
             binding.cartRecyclerView.adapter=historyRecyclerViewAdapter
+            binding.shimmerFrameLayout.stopShimmer()
+            binding.cartRecyclerView.visibility=View.VISIBLE
+            binding.shimmerFrameLayout.visibility=View.INVISIBLE
         }
+    }
+
+    override fun onProductRemove(products: ProductsRemote) {
+        products.isTried=false
+        viewModel.deleteProductFromCart(products)
+        MotionToast.darkToast(requireActivity(),
+            duration = MotionToast.LONG_DURATION,
+            position = MotionToast.GRAVITY_BOTTOM,
+            font = ResourcesCompat.getFont(requireContext(),www.sanju.motiontoast.R.font.helvetica_regular),
+            style = MotionToastStyle.SUCCESS,
+            message = "Deleted From History",
+            title = "Item"
+        )
+        initializeProductsHist(sharedViewModel.userData.email)
+
     }
 
 }

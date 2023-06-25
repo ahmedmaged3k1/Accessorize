@@ -19,5 +19,10 @@ class HistoryFragmentViewModel @Inject constructor(private val userAccountUseCas
                     ?.filter { it.isTried } as ArrayList<ProductsRemote>?)
         }
     }
+    fun deleteProductFromCart(productsRemote: ProductsRemote) {
+        viewModelScope.launch {
+            userAccountUseCase.updateProduct(productsRemote)
+        }
+    }
 
     }

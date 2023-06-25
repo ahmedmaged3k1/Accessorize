@@ -15,8 +15,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+
             android:layout_height="110dp"
-            android:background="@drawable/product_item_shape"
+            android:background="@drawable/btn_sign_in_rounded_corners"
 
             android:elevation="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,20 +30,19 @@
 
             <ImageView
                 android:id="@+id/productImage"
-                android:layout_width="105dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/product_item_image_shape"
+                android:layout_width="81dp"
+                android:layout_height="84dp"
+                android:background="@drawable/btn_sign_in_rounded_corners"
                 android:contentDescription="@string/productImage"
                 android:elevation="20dp"
                 android:scaleType="fitXY"
-                app:productImage="@{product}"
                 android:src="@drawable/fox_face_mesh_texture"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.47"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0">
+                app:productImage="@{product}">
 
             </ImageView>
 
@@ -81,8 +81,8 @@
 
             <ImageButton
                 android:id="@+id/removeProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="45dp"
+                android:layout_height="34dp"
                 android:layout_marginStart="8dp"
                 android:background="@color/white"
                 android:contentDescription="@string/delete_item"

@@ -8,12 +8,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.araccessories.data.dataSource.localDataSource.entities.Products
 import com.example.araccessories.data.dataSource.remoteDataSource.entities.ProductsRemote
 import com.example.araccessories.databinding.ProductHistoryBinding
+import com.example.araccessories.ui.features.homeFragment.adapters.ProductsRecyclerViewAdapter
 
 
-class HistoryRecyclerViewAdapter :
+class HistoryRecyclerViewAdapter (private val listener: ProductRemoveClickListener) :
     ListAdapter<ProductsRemote, HistoryRecyclerViewAdapter.HistoryViewHolder>(diffCallbackHistory) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         return from(parent)
+    }
+    interface ProductRemoveClickListener {
+        fun onProductRemove(products: ProductsRemote)
+
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
@@ -25,6 +30,9 @@ class HistoryRecyclerViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(products: ProductsRemote) {
             binding.product = products
+            binding.removeProduct.setOnClickListener {
+                listener.onProductRemove(products)
+            }
 
 
             binding.executePendingBindings()

@@ -19,5 +19,10 @@ class FavouriteViewModel@Inject constructor( private val userAccountUseCase: Cac
         }
 
     }
+    fun deleteProductFromFav(productsRemote: ProductsRemote) {
+        viewModelScope.launch {
+            userAccountUseCase.updateProduct(productsRemote)
+        }
+    }
 
 }

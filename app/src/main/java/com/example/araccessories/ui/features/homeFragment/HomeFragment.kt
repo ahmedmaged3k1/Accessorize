@@ -287,12 +287,29 @@ class HomeFragment : Fragment(), ProductsRecyclerViewAdapter.ProductFavClickList
     override fun onProductAdd(position: Int) {
 
         viewModel.addToFavProduct(viewModel.productList.value!![position])
+        MotionToast.darkToast(requireActivity(),
+            duration = MotionToast.LONG_DURATION,
+            position = MotionToast.GRAVITY_BOTTOM,
+            font = ResourcesCompat.getFont(requireContext(),www.sanju.motiontoast.R.font.helvetica_regular),
+            style = MotionToastStyle.SUCCESS,
+            message = "Added To Fav",
+            title = "Item"
+        )
 
 
     }
 
     override fun onProductRemove(position: Int) {
         viewModel.deleteFromFavProduct(viewModel.productList.value!![position])
+        MotionToast.darkToast(requireActivity(),
+            duration = MotionToast.LONG_DURATION,
+            position = MotionToast.GRAVITY_BOTTOM,
+            font = ResourcesCompat.getFont(requireContext(),www.sanju.motiontoast.R.font.helvetica_regular),
+            style = MotionToastStyle.SUCCESS,
+            message = "Removed From Fav",
+            title = "Item"
+        )
+
 
     }
 
