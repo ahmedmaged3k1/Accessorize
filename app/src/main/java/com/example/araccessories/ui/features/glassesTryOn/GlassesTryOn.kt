@@ -78,7 +78,7 @@ class GlassesTryOn : Fragment() {
 
     private fun takeSnapShot() {
         captureShot.setOnClickListener {
-            viewModel.takeSnapShot(requireContext())
+            viewModel.takeSnapShot(requireContext(),requireActivity())
         }
     }
 

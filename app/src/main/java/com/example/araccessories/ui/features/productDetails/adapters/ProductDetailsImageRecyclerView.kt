@@ -37,6 +37,7 @@ class ProductImageRecyclerViewAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind (image: String ){
             binding.image=image
+         //   binding.imageDetailsRecyclerView.transitionName="transitionImage"
 
             binding.executePendingBindings()
         }

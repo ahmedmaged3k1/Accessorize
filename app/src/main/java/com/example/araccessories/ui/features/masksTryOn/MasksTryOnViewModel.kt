@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.masksTryOn
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -11,6 +12,7 @@ import android.util.Log
 import android.view.PixelCopy
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
@@ -25,6 +27,8 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.rendering.Renderable
 import com.google.ar.sceneform.ux.ArFragment
 import kotlinx.coroutines.launch
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 class MasksTryOnViewModel : ViewModel() {
     var faceNodeMap = HashMap<AugmentedFace, MaskNode>()
@@ -91,12 +95,12 @@ class MasksTryOnViewModel : ViewModel() {
                 }
         }
     }
-    fun takeSnapShot(context : Context){
+    fun takeSnapShot(context : Context,activity: Activity){
         viewModelScope.launch {
-            val width =  sceneView.width
-            val height =  sceneView.height
+            val width = sceneView.width
+            val height = sceneView.height
             val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
-            PixelCopy.request(sceneView,bitmap,{ res ->
+            PixelCopy.request(sceneView, bitmap, { res ->
                 val filename = "Try On_${System.currentTimeMillis()}.png"
                 val contentValues = ContentValues().apply {
                     put(MediaStore.Images.Media.DISPLAY_NAME, filename)
@@ -104,16 +108,33 @@ class MasksTryOnViewModel : ViewModel() {
                     put(MediaStore.Images.Media.DATE_ADDED, System.currentTimeMillis() / 1000)
                 }
                 val contentResolver = context.contentResolver
-                val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
+                val uri = contentResolver.insert(
+                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                    contentValues
+                )
                 uri?.let {
                     contentResolver.openOutputStream(it).use { outputStream ->
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-                        Toast.makeText(context, "Photo saved to gallery", Toast.LENGTH_SHORT).show()
+
+                        MotionToast.darkToast(
+                            activity,
+                            duration = 13000L,
+                            position = MotionToast.GRAVITY_BOTTOM,
+                            font = ResourcesCompat.getFont(
+                                context,
+                                www.sanju.motiontoast.R.font.helvetica_regular
+                            ),
+                            style = MotionToastStyle.SUCCESS,
+                            message = "Photo saved to gallery",
+                            title = "Hello"
+                        )
                     }
                 }
             }, Handler(Looper.getMainLooper()))
         }
-    }
+
+        }
+
 
 
 }

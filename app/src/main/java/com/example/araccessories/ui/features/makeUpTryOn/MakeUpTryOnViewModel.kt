@@ -1,5 +1,6 @@
 package com.example.araccessories.ui.features.makeUpTryOn
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.ContentValues.TAG
 import android.content.Context
@@ -11,6 +12,7 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.PixelCopy
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.araccessories.R
@@ -25,6 +27,8 @@ import com.google.ar.sceneform.rendering.Texture
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.AugmentedFaceNode
 import kotlinx.coroutines.launch
+import www.sanju.motiontoast.MotionToast
+import www.sanju.motiontoast.MotionToastStyle
 
 class MakeUpTryOnViewModel : ViewModel() {
     private var isDepthSupported = false
@@ -139,7 +143,7 @@ class MakeUpTryOnViewModel : ViewModel() {
         }
     }
 
-    fun takeSnapShot(context: Context) {
+    fun takeSnapShot(context : Context,activity: Activity) {
         viewModelScope.launch {
             val width = sceneView.width
             val height = sceneView.height
@@ -159,12 +163,22 @@ class MakeUpTryOnViewModel : ViewModel() {
                 uri?.let {
                     contentResolver.openOutputStream(it).use { outputStream ->
                         bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
-                        Toast.makeText(context, "Photo saved to gallery", Toast.LENGTH_SHORT).show()
+
+                        MotionToast.darkToast(
+                            activity,
+                            duration = 13000L,
+                            position = MotionToast.GRAVITY_BOTTOM,
+                            font = ResourcesCompat.getFont(
+                                context,
+                                www.sanju.motiontoast.R.font.helvetica_regular
+                            ),
+                            style = MotionToastStyle.SUCCESS,
+                            message = "Photo saved to gallery",
+                            title = "Hello"
+                        )
                     }
                 }
             }, Handler(Looper.getMainLooper()))
         }
-
-
     }
 }

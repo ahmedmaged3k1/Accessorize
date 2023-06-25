@@ -41,7 +41,11 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
     private lateinit var imageList: List<Int>
     private val viewModel: ProductDetailsViewModel by viewModels()
     private val sharedViewModel: SignInViewModel by activityViewModels()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(R.transition.transitions)
 
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

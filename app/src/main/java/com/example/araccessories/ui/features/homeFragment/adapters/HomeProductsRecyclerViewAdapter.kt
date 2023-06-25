@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -57,12 +58,16 @@ class ProductsRecyclerViewAdapter(private val listener: ProductFavClickListener)
                     }
                 }
                 binding.root.product_item.setOnClickListener {
+                    //val extras = FragmentNavigatorExtras(binding to "transitionImage")
+                    val extras = FragmentNavigatorExtras(
+                        binding.productImage to "imageView"
+                    )
                     val action =
                         MainNavigationDirections.actionMainNavigationToProductDetailsFragment(
                             getItem(position),position
                         )
                     binding.root.findNavController()
-                        .navigate(action)
+                        .navigate(action,extras)
 
                 }
                 binding.executePendingBindings()

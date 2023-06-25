@@ -29,6 +29,8 @@
 
 
             <ImageView
+                android:transitionName="imageView"
+
                 android:id="@+id/productImage"
                 android:layout_width="88dp"
                 android:layout_height="96dp"

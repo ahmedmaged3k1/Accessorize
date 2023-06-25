@@ -11,6 +11,8 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:windowContentTransitions">true</item>
+
         <!-- Customize your theme here. -->
     </style>
     <style name="Theme.ArAccessories.NoActionBar">
@@ -78,4 +80,5 @@
     </style>
     <color name="progress_bar_background_color">#ECECEC</color>
     <color name="progress_bar_color">#FF4081</color>
+
 </resources>
