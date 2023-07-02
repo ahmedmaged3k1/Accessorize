@@ -20,14 +20,20 @@ class BotResponse( private val listener: MessageClickListener) {
         RecommendProducts.initializeRecommenders()
         val random = (0..2).random()
         val message = _message.lowercase(Locale.getDefault())
-        if (message.contains("el nadara el gamda")) {
-            listener.onMessageClick("Rouge")
-        } else if (message.contains("rouge")) {
-            listener.onMessageClick("El Nadara El gamda")
-        } else if (message.contains("mask amirat")) {
-            listener.onMessageClick("Hat Belki")
-        } else if (message.contains("hat belki")) {
+        if (message.contains("yellow sunglasses")) {
+            listener.onMessageClick("Red Rouge")
+        } else if (message.contains("red rouge")) {
+            listener.onMessageClick("Yellow Sunglasses")
+        } else if (message.contains("queen mask")) {
+            listener.onMessageClick("Queen Mask ")
+        } else if (message.contains("black hat")) {
             listener.onMessageClick("Mask Amirat")
+        }
+        else if (message.contains("green sunglasses")) {
+            listener.onMessageClick("Red Earings")
+        }
+        else if (message.contains("red earings")) {
+            listener.onMessageClick("Green Sunglasses")
         }
         return when {
 
@@ -52,11 +58,31 @@ class BotResponse( private val listener: MessageClickListener) {
             }
 
             //Hello
+            message.contains("Hello") -> {
+                when (random) {
+                    0 -> "Hello there!"
+                    1 -> "Buongiorno!"
+                    else -> "error"
+                }
+            }
             message.contains("hello") -> {
                 when (random) {
                     0 -> "Hello there!"
-                    1 -> "Sup"
-                    2 -> "Buongiorno!"
+                    1 -> "Buongiorno!"
+                    else -> "error"
+                }
+            }
+            message.contains("hi") -> {
+                when (random) {
+                    0 -> "Hello there!"
+                    1 -> "Buongiorno!"
+                    else -> "error"
+                }
+            }
+            message.contains("Hi") -> {
+                when (random) {
+                    0 -> "Hello there!"
+                    1 -> "Buongiorno!"
                     else -> "error"
                 }
             }
@@ -95,26 +121,36 @@ class BotResponse( private val listener: MessageClickListener) {
                 OPEN_SEARCH
             }
 
-            message.contains("rouge") -> {
-                "People Often buy El Nadara El gamda   with the red rouge  \n" +
+            message.contains("red rouge") -> {
+                "People Often buy Yellow Sunglasses  with the red rouge  \n" +
                         "I will redirect you to this product\n"
 
             }
 
-            message.contains("hat belki") -> {
-                "People Often buy  mask amirat with  hat belki     \n" +
+            message.contains("black hat") -> {
+                "People Often buy Queen Mask with Black Hat     \n" +
                         "I will redirect you to this product\n"
 
             }
 
-            message.contains("mask amirat") -> {
-                "People Often buy hat belki  with mask amirat  \n" +
+            message.contains("queen mask") -> {
+                "People Often buy Black Hat with Queen Mask  \n" +
                         "I will redirect you to this product\n"
 
             }
 
-            message.contains("el nadara el gamda") -> {
-                "People Often buy red rouge with the  El Nadara El gamda  E\n" +
+            message.contains("yellow sunglasses") -> {
+                "People Often buy red rouge with the Yellow Sunglasses  E\n" +
+                        "I will redirect you to this product\n"
+
+            }
+            message.contains("red earings") -> {
+                "People Often buy Green Sunglasses with Red Earings  \n" +
+                        "I will redirect you to this product\n"
+
+            }
+            message.contains("green sunglasses") -> {
+                "People Often buy Red Earings with Green Sunglasses   E\n" +
                         "I will redirect you to this product\n"
 
             }

@@ -49,13 +49,12 @@
             <TextView
                 android:id="@+id/productName"
                 style="@style/categoryText"
-                android:layout_width="132dp"
-                android:layout_height="25dp"
+                android:layout_width="260dp"
+                android:layout_height="29dp"
                 android:layout_marginStart="8dp"
-                android:text="@{product.name}"
-
                 android:layout_marginTop="4dp"
-                android:gravity="center"
+
+                android:text="@{product.name}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
