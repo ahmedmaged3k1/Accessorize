@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -65,6 +66,10 @@ class EarTryOnFragment : Fragment() {
                 productModelRenderable=modelRenderable
 
             }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
 }

@@ -13,8 +13,10 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -42,7 +44,7 @@ class GlassesTryOn : Fragment() {
 
     private lateinit var captureShot: ImageButton
     private lateinit var record: Button
-
+    lateinit var progressBar : ProgressBar
     private var isRecording = false
     private lateinit var mediaRecorder: MediaRecorder
 
@@ -57,7 +59,7 @@ class GlassesTryOn : Fragment() {
             childFragmentManager.findFragmentById(R.id.face_fragment_glasses) as? ArFragment
                 ?: return view
         captureShot = view.findViewById(R.id.captureImageGlasses)
-
+         progressBar = view.findViewById(R.id.glassesProgressBar)
         initializeModel()
         takeSnapShot()
 
@@ -83,12 +85,16 @@ class GlassesTryOn : Fragment() {
     }
 
     private fun initializeModel() {
+        Log.d(TAG, "initializeModel:  ${args.products.modelLink}")
         ModelRenderable.builder()
+           // .setSource(this.activity, Uri.parse("circular.sfb"))
             .setSource(this.activity, Uri.parse(args.products.modelLink))
             .build()
             .thenAccept { modelRenderable ->
+                Log.d(TAG, "initializeModel:  loaded")
                 modelRenderable?.isShadowCaster = false
                 modelRenderable?.isShadowReceiver = false
+                progressBar.visibility=View.INVISIBLE
                 val productModelRenderable: ModelRenderable? = modelRenderable
                 viewModel.tryOnProduct(listOf(productModelRenderable), arFragment)
             }
@@ -97,7 +103,10 @@ class GlassesTryOn : Fragment() {
                 return@exceptionally null
             }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
 
 
 }

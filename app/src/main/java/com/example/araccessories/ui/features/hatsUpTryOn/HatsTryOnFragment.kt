@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.ImageButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -41,8 +42,10 @@ class HatsTryOnFragment : Fragment() {
         captureShot = view.findViewById(R.id.captureImageHats)
         takeSnapShot()
 
+
         return  view
     }
+
 
     private fun takeSnapShot() {
         captureShot.setOnClickListener {
@@ -61,5 +64,8 @@ class HatsTryOnFragment : Fragment() {
 
             }
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
 }

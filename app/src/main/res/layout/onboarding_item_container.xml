@@ -25,8 +25,8 @@
     <TextView
         android:id="@+id/onBoardingTextTitle"
         style="@style/onBoardTitle"
-        android:layout_width="296dp"
-        android:layout_height="84dp"
+        android:layout_width="312dp"
+        android:layout_height="105dp"
         android:layout_marginTop="28dp"
         android:text="@string/discover_a_new_you"
         app:layout_constraintEnd_toEndOf="parent"

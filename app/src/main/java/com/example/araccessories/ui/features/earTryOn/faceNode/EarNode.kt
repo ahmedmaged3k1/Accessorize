@@ -34,7 +34,7 @@ class EarNode (augmentedFace: AugmentedFace?,
         earNode?.setParent(this)
         ModelRenderable.builder()
                 //Uri.parse(model)
-            .setSource(context, Uri.parse("wedn1.sfb"))
+            .setSource(context, Uri.parse(model))
             .build()
             .thenAccept { modelRenderable ->
 
@@ -42,22 +42,6 @@ class EarNode (augmentedFace: AugmentedFace?,
                 modelRenderable.isShadowReceiver = false
                 earNode?.renderable=modelRenderable
             }
-//        ViewRenderable.builder()
-//            .setView(context, R.layout.element_layout)
-//            .setSource(context, Uri.parse("glasses.sfb"))
-//            .build()
-//            .thenAccept { uiRenderable: ViewRenderable ->
-//                uiRenderable.isShadowCaster = false
-//                uiRenderable.isShadowReceiver = false
-//                faceNode?.renderable = uiRenderable
-//                //uiRenderable.view.findViewById<ImageView>(R.id.element_image).setImageResource(R.drawable.hat)
-//            }
-//            .exceptionally { throwable: Throwable? ->
-//                throw AssertionError(
-//                    "Could not create ui element",
-//                    throwable
-//                )
-//            }
     }
     private fun getRegionPose(region: FaceRegions) : Vector3? {
         val buffer = augmentedFace?.meshVertices
@@ -80,15 +64,37 @@ class EarNode (augmentedFace: AugmentedFace?,
         augmentedFace.let {face ->
             getRegionPose(FaceRegions.EARS).let {
                 if (it != null) {
-                   earNode?.localPosition = Vector3(it.x-0.01f, it.y-0.07f, it.z -0.05f)
+                    earNode?.localPosition = Vector3(it.x+(localPosition!!.x), it.y+(localPosition!!.y) , it.z+(localPosition!!.z) )
+                   // earNode?.localPosition = Vector3(it.x, it.y-0.07f, it.z -0.08f)
                 }
-                earNode?.localScale = Vector3(0.12f, 0.12f, 0.12f)
+
+                earNode?.localScale = Vector3(localScale!!.x, localScale!!.y,localScale!!.z)
+               // earNode?.localScale = Vector3(0.12f, 0.12f, 0.12f)
+
             }
 
         }
 
     }
 }
+// tall diamond
+// position = 0 , -0.72 ,  -0.08
+// scale = 0.12 , 0.12 ,0.12
+
+//--------------------------
+//tall_4 diamond_earrings
+// position = 0,-0.072 ,-0.08
+// scale = 0.12 , 0.12 ,0.12
+//--------------------------
+//triangle_earrings
+//if (it != null) {
+//    earNode?.localPosition = Vector3(it.x, it.y-0.06f, it.z -0.08f)
+//}
+//earNode?.localScale = Vector3(0.12f, 0.12f, 0.12f)
+//}
+
+
+//-------------------------------
 // wedn 1
 //if (it != null) {
 //    earNode?.localPosition = Vector3(it.x, it.y-0.08f, it.z -0.08f)

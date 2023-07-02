@@ -264,6 +264,42 @@ sceneform.asset('sampledata/canonical_face_mesh.fbx',
         'sampledata/canonical_face_mesh.sfa',
         'src/main/assets/canonical_face_mesh')
 
+sceneform.asset('sampledata/triangle_earrings.fbx',
+        'default',
+        'sampledata/triangle_earrings.sfa',
+        'src/main/assets/triangle_earrings')
+sceneform.asset('sampledata/diamond_earrings.fbx',
+        'default',
+        'sampledata/diamond_earrings.sfa',
+        'src/main/assets/diamond_earrings')
+
+sceneform.asset('sampledata/tall_4_diamond_earrings.fbx',
+        'default',
+        'sampledata/tall_4_diamond_earrings.sfa',
+        'src/main/assets/tall_4_diamond_earrings')
+
+
+sceneform.asset('sampledata/long_diamong_earrings.glb',
+        'default',
+        'sampledata/long_diamong_earrings.sfa',
+        'src/main/assets/long_diamong_earrings')
+
+sceneform.asset('sampledata/tall_diamond_earrings.glb',
+        'default',
+        'sampledata/tall_diamond_earrings.sfa',
+        'src/main/assets/tall_diamond_earrings')
+
+
+sceneform.asset('sampledata/untitled.glb',
+        'default',
+        'sampledata/untitled.sfa',
+        'src/main/assets/untitled')
+
+
+
+
+
+
 
 
 

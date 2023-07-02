@@ -20,8 +20,8 @@
 
     <ImageButton
         android:id="@+id/captureImageEar"
-        android:layout_width="105dp"
-        android:layout_height="88dp"
+        android:layout_width="143dp"
+        android:layout_height="120dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/flag_transparent"
 
@@ -33,10 +33,10 @@
 
         app:layout_constraintBottom_toBottomOf="@+id/face_fragment_ear"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.532"
+        app:layout_constraintHorizontal_bias="0.548"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.988">
+        app:layout_constraintVertical_bias="0.943">
 
     </ImageButton>
 

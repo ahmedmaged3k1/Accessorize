@@ -11,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -54,6 +55,7 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
         binding = FragmentProductDetailsBinding.inflate(inflater, container, false)
         binding.product = viewModel
         binding.lifecycleOwner = this
+        activity?.window?.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
 
         backButton()
         initializeArgs()
@@ -152,6 +154,7 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
         binding.tryOnButton.setOnClickListener {
             addToHistory()
             if (args.products.category.lowercase(Locale.getDefault()) == "glasses") {
+                Log.d(TAG, "tryOnProduct:  glasses")
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToGlassesTryOn(
                         args.products
@@ -160,6 +163,8 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
                 binding.root.findNavController()
                     .navigate(action)
             } else if (args.products.category.lowercase(Locale.getDefault()) == "hats") {
+                Log.d(TAG, "tryOnProduct:  hats")
+
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToHatsTryOnFragment(
                         args.products
@@ -168,6 +173,8 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
                 binding.root.findNavController()
                     .navigate(action)
             } else if (args.products.category.lowercase(Locale.getDefault()) == "makeup") {
+                Log.d(TAG, "tryOnProduct:  makeup")
+
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToMakeUpTryOnFragment(
                         args.products
@@ -176,8 +183,21 @@ class ProductDetailsFragment : Fragment(), java.io.Serializable {
                 binding.root.findNavController()
                     .navigate(action)
             } else if (args.products.category.lowercase(Locale.getDefault()) == "masks") {
+                Log.d(TAG, "tryOnProduct:  masks")
+
                 val action =
                     ProductDetailsFragmentDirections.actionProductDetailsFragmentToMasksTryOnFragment(
+                        args.products
+                    )
+
+                binding.root.findNavController()
+                    .navigate(action)
+            }
+            else  if (args.products.category.lowercase(Locale.getDefault()) == "ears") {
+                Log.d(TAG, "tryOnProduct:  ears")
+
+                val action =
+                    ProductDetailsFragmentDirections.actionProductDetailsFragmentToEarTryOnFragment(
                         args.products
                     )
 
