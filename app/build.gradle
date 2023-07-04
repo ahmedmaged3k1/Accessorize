@@ -296,7 +296,15 @@ sceneform.asset('sampledata/untitled.glb',
         'src/main/assets/untitled')
 
 
+sceneform.asset('sampledata/gold_laurel_wreath_-_lowpoly.glb',
+        'default',
+        'sampledata/gold_laurel_wreath_-_lowpoly.sfa',
+        'src/main/assets/gold_laurel_wreath_-_lowpoly')
 
+sceneform.asset('sampledata/rose.glb',
+        'default',
+        'sampledata/rose.sfa',
+        'src/main/assets/rose')
 
 
 

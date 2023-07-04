@@ -2,6 +2,9 @@ package com.example.araccessories.data.network
 
 class Credentials {
     companion object {
-        const val baseUrl = "http://192.168.1.11:8000/user/"
+        //172.20.10.6
+        //192.168.1.11
+        //192.168.1.3
+        const val baseUrl = "http://192.168.1.3:8000/user/"
     }
 }

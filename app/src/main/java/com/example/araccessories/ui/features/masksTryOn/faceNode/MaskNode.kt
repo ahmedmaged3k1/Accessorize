@@ -38,7 +38,7 @@ class MaskNode(augmentedFace: AugmentedFace, val context:Context, val model:Stri
         ModelRenderable.builder()
             .setSource(context, Uri.parse(model))
             .build()
-            .thenAccept { modelRenderable ->
+            .thenAccept { modelRenderable ->999
 
                 modelRenderable.isShadowCaster = false
                 modelRenderable.isShadowReceiver = false

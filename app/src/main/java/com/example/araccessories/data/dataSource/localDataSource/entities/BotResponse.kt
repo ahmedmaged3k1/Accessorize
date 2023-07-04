@@ -21,8 +21,8 @@ class BotResponse( private val listener: MessageClickListener) {
         val random = (0..2).random()
         val message = _message.lowercase(Locale.getDefault())
         if (message.contains("yellow sunglasses")) {
-            listener.onMessageClick("Red Rouge")
-        } else if (message.contains("red rouge")) {
+            listener.onMessageClick("Red Lipstick")
+        } else if (message.contains("red lipstick")) {
             listener.onMessageClick("Yellow Sunglasses")
         } else if (message.contains("queen mask")) {
             listener.onMessageClick("Queen Mask ")
@@ -121,8 +121,8 @@ class BotResponse( private val listener: MessageClickListener) {
                 OPEN_SEARCH
             }
 
-            message.contains("red rouge") -> {
-                "People Often buy Yellow Sunglasses  with the red rouge  \n" +
+            message.contains("red lipstick") -> {
+                "People Often buy Yellow Sunglasses  with the red lipstick  \n" +
                         "I will redirect you to this product\n"
 
             }
@@ -140,7 +140,7 @@ class BotResponse( private val listener: MessageClickListener) {
             }
 
             message.contains("yellow sunglasses") -> {
-                "People Often buy red rouge with the Yellow Sunglasses  E\n" +
+                "People Often buy red lipstick with the Yellow Sunglasses  E\n" +
                         "I will redirect you to this product\n"
 
             }

@@ -1,8 +1,10 @@
 package com.example.araccessories.ui.features.hatsUpTryOn.faceNode
 
 
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import com.example.araccessories.R
 import com.example.araccessories.data.dataSource.localDataSource.entities.Position
 import com.example.araccessories.data.dataSource.localDataSource.entities.Scale
@@ -39,6 +41,7 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
             .setSource(context, Uri.parse(model))
             .build()
             .thenAccept { uiRenderable: ViewRenderable ->
+                Log.d(TAG, "onActivate: loaded")
                 uiRenderable.isShadowCaster = false
                 uiRenderable.isShadowReceiver = false
                 headNode?.renderable = uiRenderable
@@ -73,8 +76,9 @@ class HatFaceNode(augmentedFace: AugmentedFace?,
         super.onUpdate(frameTime)
         augmentedFace?.let {
             getRegionPose(FaceRegion.Head)?.let {
-                headNode?.localScale = Vector3(localScale!!.x, localScale.y, localScale.z)
-                headNode?.localPosition = Vector3(localPosition!!.x, localPosition!!.y, localPosition!!.z)
+                    headNode?.localScale = Vector3(localScale!!.x, localScale.y, localScale.z)
+                    headNode?.localPosition = Vector3(localPosition!!.x, localPosition!!.y, localPosition!!.z)
+
 
             }
 
