@@ -63,7 +63,7 @@ The admin module is responsible for managing the overall administration of the A
 - Accessing and analyzing sales and user data.
 - Generating reports and insights for business analysis.
 
-Github Repository : https://github.com/ziadtarekfa/AccessorizeAdmin
+Github Repository : https://github.com/ziadtarekfa/Accessorize-Admin-W 
 
 ### 2. Seller
 
@@ -74,7 +74,7 @@ The seller module is designed to facilitate the activities of sellers who wish t
 - Handling order fulfillment and shipping details.
 - Tracking sales and revenue.
 
-Github Repository :
+Github Repository : https://github.com/ziadtarekfa/Seller-Accessorize
 
 ### 3. User
 
@@ -87,8 +87,6 @@ The user module which is the app caters to the needs of individuals who browse a
 - Login and Register
 
 
-### User Interface Design 
-the app has an ui design and here is the link for it : https://www.figma.com/file/H5vnl8R6Vu1XHIjHhraYvQ/Ar-Accessories?type=design&node-id=0%3A1&t=tybvDr1a9rEjtsxH-1
 
 ## Contributors
 - Ahmed Maged
