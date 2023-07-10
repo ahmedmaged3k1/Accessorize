@@ -32,7 +32,7 @@ The MVVM architecture pattern further enhances the separation of concerns by int
 - Connect an Android device
 - download the backend server and run it according to the following steps https://github.com/Nouran-Elbagory/GraduationProject
 - In the Credentials class change the ip address to your local host ip address
-- ![image](https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/e301e275-1014-460f-bc60-11af34df8a7a)
+- ![cred](https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/e024877c-0ed3-4a58-8b0b-b5ef9be9d19a)
 - Build and run the application from Android Studio.
 - Make sure you run from a physical device
 ## Usage
