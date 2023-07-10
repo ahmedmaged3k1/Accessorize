@@ -97,7 +97,8 @@ The user module which is the app caters to the needs of individuals who browse a
 
 ## Demo
 
-https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/d674ac7b-b06f-42d3-bf69-0125843b9cd4
+https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/f38d06df-83ee-4ff7-9d74-76a4a7445298
+
 
 
 ## Contributors
