@@ -2,7 +2,7 @@
 
 ## Description
 
-The project is an e-commerce try-on application developed for Android devices using Kotlin. It allows users to try on face accessories through augmented reality and provides various e-commerce features such as product search and cart operations. The application follows the three-tier architecture pattern and is implemented using the MVVM (Model-View-ViewModel) architecture.
+The project is an e-commerce try-on application developed for Android devices using Kotlin. It enables users to try on face accessories through augmented reality, recommends products based on previous user data, and allows users to capture photos while wearing the accessories and share them via WhatsApp. The application provides various e-commerce features including product search and cart operations. It follows the three-tier architecture pattern and is implemented using the MVVM (Model-View-ViewModel) architecture.
 
 ### System Architecture
 ![image](https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/eb455782-912d-474f-a131-67ae45421e40)
@@ -96,8 +96,6 @@ The user module which is the app caters to the needs of individuals who browse a
 - Login and Register
 
 ## Demo
-
-
 
 https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/d674ac7b-b06f-42d3-bf69-0125843b9cd4
 
