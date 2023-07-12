@@ -108,7 +108,7 @@ https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/f38d06df-83ee-4ff7-
 <img src="https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/6f10a081-363b-4699-bcd1-1a3cb5525ff2" width="300" height="600">
 <img src="https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/023cab26-e7ac-4114-97ce-a182ed0dba8f" width="300" height="600">
 <img src="https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/8cdb87b8-89e4-4bdb-8247-b0506542ef51" width="300" height="600">
-<img src="https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/f52638c7-4442-4f65-a1e1-247100727f14" width="300" height="600">
+<img src="https://github.com/ahmedmaged3k1/Accessorize/assets/60134186/f52638c7-4442-4f65-a1e1-247100727f14" width="900" height="600">
 
 
 ## Contributors
